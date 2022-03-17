@@ -1,0 +1,477 @@
+\documentclass[12pt,a4paper]{amsart}
+% ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
+\usepackage[slovene]{babel}
+%\usepackage[cp1250]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{url}
+%\usepackage[normalem]{ulem}
+\usepackage[dvipsnames,usenames]{color}
+
+
+% ne spreminjaj podatkov, ki vplivajo na obliko strani
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\pagestyle{plain}
+\overfullrule=15pt % oznaci predlogo vrstico
+
+
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{primer}[definicija]{Primer}
+\newtheorem{opomba}[definicija]{Opomba}
+\newtheorem{zgled}[definicija]{Zgled}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
+
+
+% za stevilske mnozice uporabi naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+
+% naslednje ukaze ustrezno popravi
+\newcommand{\program}{Finančna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
+\newcommand{\imeavtorja}{David Rozman} % ime avtorja
+\newcommand{\imementorja}{doc.~dr. Uroš Kuzman} % akademski naziv in ime mentorja
+\newcommand{\naslovdela}{Diferencialne enačbe z zamikom}
+\newcommand{\letnica}{2022} %letnica diplome
+
+
+% vstavi svoje definicije ...
+
+
+
+
+\begin{document}
+
+% od tod do povzetka ne spreminjaj nicesar
+\thispagestyle{empty}
+\noindent{\large
+UNIVERZA V LJUBLJANI\\[1mm]
+FAKULTETA ZA MATEMATIKO IN FIZIKO\\[5mm]
+\program\ -- 1.~stopnja}
+\vfill
+
+\begin{center}{\large
+\imeavtorja\\[2mm]
+{\bf \naslovdela}\\[10mm]
+Delo diplomskega seminarja\\[1cm]
+Mentor: \imementorja}
+\end{center}
+\vfill
+
+\noindent{\large
+Ljubljana, \letnica}
+\pagebreak
+
+\thispagestyle{empty}
+\tableofcontents
+\pagebreak
+
+\thispagestyle{empty}
+\begin{center}
+{\bf \naslovdela}\\[3mm]
+{\sc Povzetek}
+\end{center}
+% tekst povzetka v slovenscini
+V povzetku na kratko opi"site vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pa"c pa le opis vsebine.
+\vfill
+\begin{center}
+{\bf Angle"ski naslov dela}\\[3mm] % prevod slovenskega naslova dela 
+{\sc Abstract}
+\end{center}
+% tekst povzetka v anglescini
+Prevod zgornjega povzetka v angle"s"cino.
+
+\vfill\noindent
+{\bf Math. Subj. Class. (2010):} navedite vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}  \\[1mm]  
+{\bf Klju"cne besede:} navedite nekaj klju"cnih pojmov, ki nastopajo v delu  \\[1mm]  
+{\bf Keywords:} angle"ski prevod klju"cnih besed
+\pagebreak
+
+
+
+% tu se zacne tekst seminarja
+\section{Uvod}
+
+Diferencialne enačbe spadajo med najpomembnejša področja matematične analize. So enačbe funkcije ene ali več
+spremenljivk, ki povezujejo njene vrednosti z njenimi odvodi. Poleg matematike so ključne pri modeliranju tudi v drugih
+znanstvenih vedah, npr. v fiziki, kemiji, astronomiji in ekonomiji.
+
+Začetki diferencialnih enačb segajo v drugo polovico 17. stoletja, ko sta Isaac Newton in Gottfried Wilhelm von 
+Leibniz predstavila infinitizemalni račun. V naslednjih sto letih so veliko dela preučevanju diferencialnih
+enačb namenili največji svetovni matematiki, kot so Euler, Bernoulli in Lagrange, ter odkrili nekaj najpomembnejših
+metod za reševanje.
+
+Kljub mnogim raziskavam pa diferencialne enačbe še danes ostajajo kompleksen matematični problem. Podobno kot pri
+nedoločenem integralu, splošni postopek za njihovo reševanje ne obstaja. Ker znamo reševati le določene tipe in je
+eksplicitno iskanje rešitve v praksi redko izvedljivo, za reševanje pogosto uporabimo numerične metode,
+včasih pa nas zanima le obstoj rešitve.
+
+Navadne diferencialne enačbe povezujejo odvod funkcije v neki točki z njenimi trenutnimi vrednostmi.
+V tej nalogi bomo obravnavali diferencialne enačbe z zamikom, pri katerih je vrednost odvoda iskane funkcije odvisna
+tudi od njenih preteklih vrednosti. Motivacija za njihov študij je bila želja po bolj realističnih modelih za procese, 
+katerih trenutno stanje je odvisno tudi od njihovih stanj v preteklosti. Take enačbe se zato pogosto uporabljajo
+v biologiji, kemiji in mehaniki.
+
+Na začetku naloge bomo na kratko ponovili osnove navadnih diferencialnih enačb. Nato bomo definirali
+diferencialne enačbe z zamikom in si na preprostem zgledu pogledali primer reševanja in rešitev primerjali z 
+rešitvijo analogne navadno diferencialne enačbe. V podrobnejši analizi bomo navedli eksistenčne izreke, torej kdaj 
+rešitev obstaja ter kakšne lastnosti ima iskana funkcija. Za tem si bomo pogledali nekaj osnovnih tipov enačb z 
+njihovimi postopki za reševanje. Na koncu pa bomo predstavili še nekaj zgledov uporabe takih enačb pri modeliranju.
+
+
+\newpage
+
+\section{Navadne diferencialne enačbe}
+
+Za začetek se spomnimo osnov navadnih diferencialnih enačb.
+
+\begin{definicija}
+    Splošna diferencialna enačba reda $n$ je enačba oblike:
+    \[F(x,y,y',y'',\dots,y^{(n)})=0,\]
+    kjer je $F$ dana funkcija $n+2$ spremenljivk, $y$ neznana funkcija spremenljivke $x$, $y^{(k)}$ pa njeni
+    odvodi.
+\end{definicija}
+Red enačbe je torej red najvišjega odvoda, ki nastopa v enačbi. Ker je $y$ funkcija ene spremenljivke,
+njene vrednosti pa gledamo le v trenutni točki, pravimo taki enačbi \emph{navadna diferencialna enačba} (v
+nadaljevanju NDE).
+
+Poglejmo si primer zelo preproste NDE z ločljivimi spremenljivkami.
+
+\begin{zgled}
+    Podana je NDE z začetnim pogojem:
+    \[\dot{x}(t) =-x(t),\quad x(0)=1.\]
+    Rešimo jo s standardnim postopkom za enačbe z ločljivimi spremenljivkami:
+    \begin{equation*}
+    \begin{split}
+      \frac{dx}{dt} & =-x \\
+      \frac{dx}{-x} & =dt \\
+      \int \frac{dx}{-x} & =\int dt \\
+     -ln|x| & =t+c \\
+      x(t) & =De^{-t} \\
+    \end{split}
+    \end{equation*}
+Ko upoštevamo še začetni pogoj, dobimo $D=1$. Končna rešitev je torej \[x(t)=e^{-t}.\]
+Rešitev je funkcija, ki je zvezna in odvedljiva na realni osi.
+\end{zgled}
+
+Pri NDE opazimo dve pomembni lastnosti, ki v nadaljevanju pri diferencialnih enačbah z zamikom ne bosta veljali. 
+Vrednost odvoda funkcije $x$ v točki $t$ je bila odvisna le od njene vrednosti v tej isti točki. Poleg tega smo 
+imeli še en začetni pogoj, zaradi katerega smo dobili enolično rešitev. Ta pogoj je bil podan kot vrednost funkcije
+$x$ v eni točki. Običajna verzija eksistenčnega izreka pove, da je rešitev tovrstnega začetnega problema
+ena sama, ker desna stran izpolnjuje Lipschitzev pogoj. Splošneje pa vemo, da
+je splošna rešitev NDE reda $n$, če obstaja, $n$-parametrična.
+Z vsakim dodatnim začetnim pogojem, ki je podan kot vrednost funkcije ali enega izmed njenih odvodov v fiksni točki,
+se število parametrov v splošni rešitvi zmanjša za ena.
+
+\newpage
+
+\section{Diferencialne enačbe z zamikom}
+
+\begin{definicija}
+    Naj bo $\tau > 0$ konstanta in $J = [\xi,\xi +a]$, kjer je $\xi \geq 0$ in $a > 0$. Enačbi oblike
+    \[\dot{x}(t)=f(t,x(t-\tau))\, \quad \text{za } t \in J\]
+    pravimo diferencialna enačba prvega reda z zamikom (V nadaljevanju jo bomo 
+    označevali s kratico DDE, ki ustreza angleškemu prevodu njenega imena - 
+    delay differential equation.), kjer je $\tau$ zamik.
+    Začetni pogoj je podan kot
+    \[x(t)=\phi(t) \quad \text{za } t \in J_{-} = [\xi-\tau,\xi],\]kjer je $\phi$ zvezna funkcija.
+\end{definicija}
+
+\noindent\textit{Opomba:} V nadaljevanju diplomske naloge, bo izraz začetni problem pomenil diferencialno enačbo z zamikom, podano kot v 
+zgornji definiciji.
+
+Pomembna razlika v primerjavi z NDE, ki jo takoj opazimo, je začetni pogoj, ki v tem primeru ni več vrednost 
+funkcije v eni točki, temveč kar funkcija sama na prejšnjem intervalu. Zaradi tega lahko sklepamo, da je družina vseh rešitev DDE neskončno
+dimenzionalna.
+
+\begin{zgled}
+    Rešimo sledečo DDE:
+    \[\dot{x}(t)=-x(t-\tau), \quad \text{za } t \geq 0,\]
+    pri začetnem pogoju \[x(t)=1, \quad t \in [-\tau,0].\]
+    Najprej rešimo za $t \in [0,\tau]$. Tedaj je $t-\tau \in [-\tau,0]$, zato je
+    \[\dot{x}(t)=-x(t-\tau)=-1.\]
+    Iz tega sledi
+    \[x(t)=x(0)+ \int_{0}^{t}(-1)ds = 1-t, \quad \text{za } t \in [0,\tau].\]
+    Tako smo dobili rešitev za interval $[0,\tau]$
+    Analogno nadaljujemo za $t \in [\tau, 2\tau]$. Tu velja $t-\tau \in [0,\tau]$, torej
+    \[\dot{x}(t)=-x(t-\tau)=-(1-(t-\tau))=(t-\tau)-1.\]
+    Od tod sledi
+    \[x(t)=x(\tau)+\int_{\tau}^{t}((s-\tau)-1)ds=1-t+\frac{(t-\tau)^2}{2},\quad \text{za }t\in[\tau,2\tau].\]
+    Dokažimo sedaj, da za vsak interval $[(n-1)\tau,n\tau], n\in \N$ velja
+    \[x(t)=1+\sum_{k=1}^{n}(-1)^k\frac{(t-(k-1)\tau)^k}{k!}.\]
+    Za $n=1$ dobimo: $x(t)=1-t$, kar je v skladu z že izračunano rešitvijo.
+    Predpostavimo sedaj, da formula drži za nek $n \in \N$ in dokažimo, da potem velja tudi za $n+1$.
+    Ker je $t \in [n\tau,(n+1)\tau]$, je $t-\tau \in [(n-1)\tau, n\tau]$. Zato je:
+    \[ \dot{x}(t)=-x(t-\tau)=-\left(1+\sum_{k=1}^{n}(-1)^k\frac{(t-\tau-(k-1)\tau)^k}{k!}\right).\]
+    Iz tega sledi:
+    \begin{equation*}
+    \begin{split}
+        x(t) &= x(n\tau) - \int_{n\tau}^{t}\left(1+\sum_{k=1}^{n}(-1)^k\frac{(s-k\tau)^k}{k!}\right)ds \\
+        & = x(n\tau) - \int_{n\tau}^{t}ds - \int_{n\tau}^{t}\sum_{k=1}^{n}(-1)^k\frac{(s-k\tau)^k}{k!}ds \\
+        & = x(n\tau) - t + n\tau - \sum_{k=1}^{n}\frac{(-1)^k}{k!}\int_{n\tau}^{t}(s-k\tau)^{k}ds \\
+        & = x(n\tau) - t + n\tau - \sum_{k=1}^{n}\frac{(-1)^k}{k!}\left(\frac{(s-k\tau)^{k+1}}{k+1}\Bigr|_{n\tau}^{t}\right) \\
+        & = x(n\tau) - t + n\tau - \sum_{k=1}^{n}\frac{(-1)^k}{(k+1)!}\left((t-k\tau)^{k+1}-((n-k)\tau)^{k+1}\right) \\
+        & = 1 + \sum_{k=1}^{n}\left((-1)^k\frac{(n\tau-(k-1)\tau)^k}{k!}\right)- t + n\tau - \sum_{k=1}^{n}\frac{(-1^k)}{(k+1)!}
+        (t-k\tau)^{k+1} - \\
+        &- \sum_{k=1}^{n}\frac{(-1)^{k+1}}{(k+1)!}((n-k)\tau)^{k+1}.
+    \end{split}      
+    \end{equation*}
+    Ko združimo prvo in tretjo vsoto dobimo $-n\tau$. Druga vsota pa skupaj z $-t$ da
+     $\sum_{k=1}^{n+1}(-1)^{k}\frac{(t-(k-1)\tau)^k}{k!}$. Končno dobimo:
+     \[x(t) = 1+ \sum_{k=1}^{n+1}(-1)^{k}\frac{(t-(k-1)\tau)^k}{k!},\]
+    kar je pa ravno predpostavljena formula za interval $[n\tau, (n+1)\tau].$
+    Dobljena rešitev je enolična, zvezna na $[-\tau,\infty)$, ni pa odvedljiva v točki $t=0$, saj je 
+    levi odvod enak 0, desni pa -1. To nakazuje, da gladka odvisnost odvoda $\dot{x}(t)$ od zamaknjene
+    funkcije $x(t-\tau)$
+    ne zagotavlja gladkosti rešitve, ki bi jo dobili
+    v NDE za $\tau=0$. Še podrobneje se bomo s tovrstno analizo ukvarjali v naslednjem razdelku.
+\end{zgled}
+
+
+
+\section{Obstoj in enoličnost rešitve}
+
+\begin{izrek}
+    Dan je začetni problem, kjer je $f$ zvezna funkcija na traku $S=J \times \R$, $\phi$ zvezna na $J_{-}$ in $\tau >0$
+    konstanta. Potem obstaja natanko ena rešitev začetnega problema.
+\end{izrek}
+
+\begin{proof}[Dokaz]
+    Naj bo \[\dot{x_{n}}(t)=f(t,x_{n}(t-\tau)) \text{ za } t \in [\xi + (n-1)\tau,\xi + n\tau],\]
+    kjer je $n \in \N$.
+    Iz $t \in [\xi, \xi + \tau]$ sledi $t-\tau \in [\xi - \tau, \xi]$. Za rešitev $x_{1}$ mora torej veljati:
+    \[\dot{x_{1}}=f(t,x_{1}(t-\tau))=f(t,\phi(t-\tau)),\quad x_{1}(\xi)=\phi(\xi).\]
+    Iz tega sledi, da je
+    \begin{equation*}
+        \begin{split}
+            x_{1}(t) &= x_{1}(\xi) + \int_{\xi}^{t}f(s, x_{1}(s-\tau))ds \\
+            & = \phi(\xi) + \int_{\xi}^{t}f(s,\phi(s-\tau))ds.
+        \end{split}      
+        \end{equation*}
+    Funkcija $x_{1}$ je torej enolično definirana na intervalu $[\xi, \xi + \tau]$. Analogno lahko pokažemo, da velja
+    \[\dot{x_{2}}=f(t,x_{2}(t-\tau))=f(t,x_{1}(t-\tau)) \text{ za } t \in [\xi + \tau, \xi + 2\tau]\] in 
+    \[x_{2}(\xi + \tau)=x_{1}(\xi + \tau).\]
+    Torej velja:
+    \begin{equation*}
+        \begin{split}
+            x_{2}(t) &= x_{2}(\xi + \tau) + \int_{\xi + \tau}^{t}f(s, x_{2}(s-\tau))ds \\
+            & = x_{1}(\xi + \tau) + \int_{\xi + \tau}^{t}f(s, x_{1}(s-\tau))ds.
+        \end{split}      
+        \end{equation*}
+    Funkcija $x_{2}$ je torej enolično določena na intervalu $[\xi + \tau,\xi + 2\tau]$. Induktivno sklepamo, da lahko za vsak 
+    $n \in \N$ definiramo $x_{n}$ s pomočjo $x_{n-1}$. Torej je $x_{n}$ enolično določena na intervalu 
+    $[\xi + (n-1)\tau, \xi + n\tau]$ za vsak $n \in \N$. Povedano drugače, funkcija podana s predpisom
+    \[
+        x(t) =
+        \begin{dcases}
+            \phi(t) &\quad \text{za  } t \in J_{-}=[\xi - \tau, \xi] \\
+            \phi(\xi) + \int_{\xi}^{t}f(s,x(s-t))ds &\quad \text{za  } t \in J=[\xi, \xi +a] \\
+        \end{dcases}
+    \]
+    je dobro definirana za vse $t \in J_{-} \cup J = [\xi - \tau, \xi + a]$ in je rešitev začetnega problema. Iz 
+    postopka pa sledi, da je enolična.
+\end{proof}
+
+\section{Model eksponentne rasti z zamikom}
+
+V tem poglavju si bomo pogledali nekoliko splošnejšo verzijo DDE iz 3. poglavja, ki je podana na sledeči način:
+\[\dot{x}(t)= \alpha x(t-\tau), \quad \tau > 0,\quad \alpha \in \R.\]
+Enačba je odvisna od dveh parametrov, zato jo zaradi lažjega reševanja zreduciramo na enega.
+Z uvedbo nove spremenljivke $\mu:=\eta t, \eta > 0$, in funkcijo
+$U(\mu)=x(t)$ želimo enačbo prevesti na tako, kjer bo zamik $\tau$ enak 1:
+\[\frac{dU}{d\mu}=\frac{dx}{\eta dt}=-\alpha \eta^{-1}x(t-\tau)=-\alpha \eta^{-1}U(\eta t - \eta \tau)=
+-\alpha \eta^{-1}U(\mu - \eta \tau).\]
+Če izberemo $\eta := 1/\tau$ in $\beta:=\alpha \tau$, dobimo:
+\begin{equation} \label{eq1}
+    \begin{split}
+ \frac{dU}{d\mu} & =-\beta U(\mu -1).
+    \end{split}
+\end{equation}
+Na množici odvedljivih funkcij, definiramo sledeči linearni operator:
+\[L(U)=\frac{dU}{d\mu} + \beta U(\mu -1).\]
+Ker obravnavana DDE spominja na NDE, pri katerih so rešitve eksponentne funkcije, poskusimo tudi tukaj
+iskati rešitve DDE \eqref{eq1} z nastavkom $U(\mu)=e^{\lambda \mu}$. Ko ga vstavimo v linearni operator,
+dobimo:
+\[L(e^{\lambda \mu})= \lambda e^{\lambda \mu} + \beta e^{\lambda (\mu -1)}=
+e^{\lambda \mu}(\lambda + \beta e^{-\lambda}).\]
+Iščemo $\lambda \in \C$ tako, da bo vrednost dobljenega izraza enaka 0. Ker
+za vsako kompleksno število $\lambda$ velja $e^{\lambda \mu} \neq 0$ , moramo rešiti naslednjo karakteristično
+enačbo:
+\[ h(\lambda) \equiv \lambda + \beta e^{-\lambda} =0.\]
+Če je $\lambda$ ničla te enačbe, je $e^{\lambda\mu}$ rešitev DDE $(1)$.
+Nastavek $\lambda = a + ib$ vstavimo v enačbo:
+\begin{equation*}
+    \begin{split}
+        a + ib + \beta e^{-(a+ib)} &= 0 \\
+        a + ib + \beta e^{-a}e^{-ib} &= 0 \\
+        a + ib + \beta e^{-a}(\cos(b) + \sin(-b)) &= 0 \\
+        a + \beta e^{-a}\cos(b) + i(b-\beta e^{-a}\sin(b)) &= 0
+    \end{split}      
+\end{equation*}
+Dobimo sistem enačb za $a$ in $b$:
+\begin{equation*}
+    \begin{split}
+        a &= -\beta e^{-a}\cos(b) \\
+        b &= \beta e^{-a}\sin(b).
+    \end{split}      
+\end{equation*}
+%Spomnimo se: Za $n$-krat zvezno odvedljivo funkcijo $h$ je $\lambda \in \C$ ničla reda $n$, če velja:
+%\[ h(\lambda) = h'(\lambda) = \dots = h^{(n-1)}(\lambda)=0, \quad h^{(n)}(\lambda)\neq 0.\]
+
+\begin{trditev}
+    Števila $\mu^{j}e^{\lambda \mu}, j=0,1,\dots,n$, so rešitve enačbe \eqref{eq1} natanko
+    tedaj, ko je $\lambda$ $(n+1)$-kratna ničla karakteristične funkcije $h$.
+\end{trditev}
+
+\begin{proof}[Ideja dokaza]
+    Linearni operator $L$ $n$-krat odvajamo po $\lambda$, nato vanj vstavimo $\mu^{n}\lambda^{\lambda \mu}$.
+\end{proof}
+
+\noindent $h$ je analitična funkcija kompleksne spremenljivke $\lambda$, zato zanjo veljajo naslednje lastnosti:
+\begin{enumerate}
+    \item[(A)] Za $\forall R > 0$, je množica ničel, ki zadoščajo pogoju $|\lambda|\leq R$ končna. Torej je
+            množica ničel funkcije $h$ števna (pogosto tudi končna) množica.
+    \item[(B)] Če je množica ničel neskončna (označimo jo z $\{\lambda_{n}\}_{n=1}^{\infty}$), potem
+    $|\lambda_{n}| \to \infty$. Ker je $|\beta|e^{-\text{Re}(\lambda_{n})}=|\lambda_n|$, sledi, da
+    $\text{Re}(\lambda_n) \to -\infty$. Prav tako $\forall a \in \R$ obstaja končno mnogo ničel $\lambda_n$,
+    da je $\text{Re}(\lambda_n) \geq a$. 
+    \item[(C)] Če je $\lambda$ ničla funkcije $h$, je njen red končen.
+    \item[(D)] Če je $\lambda$ ničla funkcije $h$, je tudi $\overline{\lambda}$ ničla.
+\end{enumerate}
+
+
+\begin{trditev}
+    Za karakteristično funkcijo $h$ velja naslednje:
+    \begin{enumerate}
+        \item Če je $\beta < 0$, potem obstaja natanko ena realna ničla $\lambda$ in je pozitivna.
+        \item Če je $0 < \beta < 1/e$, potem obstajata natanko dve različni negativni realni
+         ničli, $\lambda_{1} < \lambda_{2}$, za kateri velja:
+         \[ \lim_{\beta \to 0}\lambda_{1}=-\infty \quad \text{in} \quad \lim_{\beta \to 0}\lambda_{2}=0. \]
+        \item Če je $\beta = 1/e$, potem obstaja ena realna ničla reda 2 in sicer $\lambda = -1$.
+        \item Če je $\beta > 1/e$, potem funkcija nima realnih ničel.
+    \end{enumerate}
+\end{trditev}
+
+\begin{proof}[Dokaz]
+    \begin{enumerate}
+        \item Funkcija $h$ je naraščajoča in velja $h \to \pm \infty$, ko $x \to \pm \infty$. Obstaja 
+        torej natanko ena realna ničla. Ker je $\beta < 0$, je $\lambda = -\beta e^{-\lambda} >0$.
+        \item Funkcija $h$ doseže minimum pod abscisno osjo, zatp obstajata natanko dve realni ničli. Ker je 
+        $\beta > 0$, je $\lambda = -\beta e^{-\lambda} <0$. Drugi del trditve sledi iz naslednjega:
+        $ \beta = -\lambda e^{\lambda} \to 0 \Leftrightarrow \lambda \to 0$ ali $\lambda \to -\infty$.
+        \item Funkcija $h$ doseže minimum na abscisni osi, torej obstaja natanko ena realna ničla. Ko v
+        $h$ vstavimo $\beta = 1/e$, je rešitev $\lambda = -1$. Velja tudi $h'(-1)=0$ in $h''(-1)=1$, torej
+        je ničla reda 2.
+        \item Funkcija $h$ doseže minimum nad abscisno osjo, torej realne ničle ne obstajajo.
+    \end{enumerate}
+\end{proof}
+
+Za $\beta > 0$ ima enačba lepe lastnosti, kar nam pove naslednja trditev.
+
+\begin{trditev}
+    Za karakteristično funkcijo $h$ velja:
+    \begin{enumerate}
+        \item Če je $0<\beta < \pi /2$, potem $\exists \delta > 0$, da je Re($\lambda$) $\leq -\delta$
+        za vse ničle $\lambda$.
+        \item Če je $\beta = \pi /2$, potem sta $\lambda_{1,2}=\pm i\pi /2$ ničli reda 1.
+        \item Če je $\beta > \pi /2$, potem so ničle oblike $\lambda = a + ib$, kjer je $x>0$ in 
+         $y \in (\pi /2, \pi)$.
+    \end{enumerate} 
+\end{trditev}
+
+\begin{proof}[Dokaz]
+(1)  Iz $\beta > 0$ sledi: Če obstaja $\lambda = a +ib$ z $a \geq 0$ in $b > 0$, ki reši sistem za $a$ in $b$,
+je $\cos(b) \leq 0 < \sin(b)$. Torej $b \in S = \bigcup_{n=0}^{\infty}\{[\pi / 2,\pi)+2n\pi\}.$ Velja
+tudi $\frac{\sin(b)}{b}=\frac{e^{x}}{\beta}$. Ker je tudi $\frac{d}{db}\frac{\sin(b)}{b} < 0$ za $b \in S$
+in $\frac{\sin(\pi /2)}{\pi / 2} = \frac{2}{\pi}$, je torej $\frac{\sin(b)}{b} \leq \frac{2}{\pi} \quad
+\forall b \in S$.
+Dobili smo naslednjo neenakost: 
+\[\frac{1}{\beta} \leq \frac{e^x}{\beta} = \frac{\sin(b)}{b} \leq \frac{2}{\pi}.\]
+Sledi, da je $\beta \geq \pi/2$. Torej, če je $\beta < \pi/2$, je potem Re($\lambda$) $<0$ za vsako ničlo
+$\lambda$. Ko upoštevamo še lastnost (B) funckije $h$, je prvi del trditve dokazan. \\
+(2)  Drugi del trditve se dokaže z direktnim izračunom. \\
+(3)  Za dokaz tretjega dela nastavimo $\lambda = re^{i\theta}$ in vstavimo v karakteristično enačbo, pri čemer
+upoštevamo Eulerjevo formulo:
+\[ r(\cos(\theta - \pi)+i\sin(\theta - \pi))=\beta e^{-a}(\cos(-b)+i\sin(-b)).\]
+Veljati mora torej:
+\[r=\beta e^{-a} \quad \text{in} \quad \theta - \pi = -b + 2k\pi, \quad k \in \Z.\]
+Rešitve enačbe iščemo v prvem kvadrantu, torej $a(\theta)>0,\quad b(\theta) = \pi - \theta > 0, \quad
+k=0$ in $\theta \in (0,\pi/2)$. Ko upoštevamo še $y/x = \tan(\theta)$, dobimo naslednjo družino rešitev:
+\begin{equation*}
+    \begin{split}
+        x(\theta) &= (\pi - \theta)\cot(\theta) \\
+        y(\theta) &= \pi - \theta, \quad 0<\theta <\pi/2 \\
+        \beta(\theta) &= \frac{\pi - \theta}{\sin(\theta)}e^{x(\theta)}. 
+    \end{split}      
+\end{equation*}
+$a, b$, in $\beta$ so zvezne funkcije spremenljivke $\theta$ na intervalu $(0,\pi/2)$. Ko $\theta \to 0$,
+velja:
+\[ a(\theta) \to \infty, \quad b(\theta) \to \pi, \quad \beta(\theta) \to \infty.\]
+Za $\theta \to \pi/2$ pa je:
+\[a(\theta) \to 0, \quad b(\theta) \to \pi/2, \quad \beta(\theta) \to \pi/2.\]
+Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednosti $(\pi/2, \infty)$.
+\end{proof}
+
+\begin{definicija}
+    Dana je DDE $\dot{x}(t)=f(t,x(t-\tau))$ in njena rešitev $\phi(t)$. $\phi$ je stabilna rešitev, če 
+    $\forall \varepsilon > 0 \quad \exists \delta > 0$ tako da, če je $\psi$ neka druga rešitev in je 
+    $|\psi(t_0)-\phi(t_0)| < \delta$, je potem $|\psi(t)-\phi(t)| < \varepsilon$ za $t \geq t_0$. \\
+    Če velja
+    še $\lim_{x \to \infty}|\psi(t)-\phi(t)|=0$, je rešitev asimptotsko stabilna.
+\end{definicija}
+
+\begin{trditev}
+    Za DDE oblike $\dot{x}(t)= \alpha x(t-\tau), \tau >0, \alpha \in \R$ velja:
+    \begin{enumerate}
+        \item Če je $\alpha > 0$, je $x=0$ nestabilna rešitev.
+        \item Če je $0>\alpha \tau >-\pi/2$, je $x=0$ asimptotsko stabilna.
+        \item Če je $\alpha \tau = -\pi/2$, sta rešitvi $x=\sin(\pi\mu/2)$ in $x=\cos(\pi\mu/2)$.
+        \item Če je $\alpha\tau < -\pi/2$, je $x=0$ nestabilna.
+    \end{enumerate}
+\end{trditev}
+
+\noindent \textit{Opomba: }Dokaz sledi direktno iz prejšnjih trditev in rezultata, ki pove, da je $x=0$ asimptotsko stabilna, če 
+je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funkcije, oziroma nestabilna,
+če obstaja ničla $\lambda$ s pozitivnim realnim delom.
+
+\begin{lema}
+    Za DDE oblike $\dot{x}(t)= \alpha x(t-\tau), \tau >0, \alpha \in \R$ sta naslednji trditvi
+    ekvivalentni:
+    \begin{itemize}
+        \item Vse rešitve so oscilirajoče.
+        \item $\alpha\tau > 1/e$
+    \end{itemize}
+\end{lema}
+
+\begin{proof}
+    Za vsak $\lambda \in \R$ je $U(\mu)=e^{\lambda\mu}$ bodisi monotona, bodisi konstantna funkcija.
+    Za realne $\lambda$ torej rešitev $x(t)$ ne oscilira. $x(t)$ je torej oscilirajoča natanko tedaj, ko
+    je $\lambda$ nerealna ničla. Po trditvi 5.3 je $\lambda$ nerealna ničla natanko tedaj, ko je 
+    $\beta = \alpha\tau > 1/e$.
+\end{proof}
+
+
+\end{document}
