@@ -346,17 +346,17 @@ Dobimo sistem enačb za $a$ in $b$:
     tedaj, ko je $\lambda$ $(n+1)$-kratna ničla karakteristične funkcije $h$.
 \end{trditev}
 
-\begin{proof}[Ideja dokaza]
+\begin{proof}[Dokaz]
     Linearni operator $L$ $n$-krat odvajamo po $\lambda$, nato vanj vstavimo $\mu^{n}\lambda^{\lambda \mu}$.
 \end{proof}
 
-\noindent $h$ je analitična funkcija kompleksne spremenljivke $\lambda$, zato zanjo veljajo naslednje lastnosti:
+\noindent Funkcija $h$ je analitična, zato zanjo veljajo naslednje lastnosti:
 \begin{enumerate}
     \item[(A)] Za $\forall R > 0$, je množica ničel, ki zadoščajo pogoju $|\lambda|\leq R$ končna. Torej je
-            množica ničel funkcije $h$ števna (pogosto tudi končna) množica.
-    \item[(B)] Če je množica ničel neskončna (označimo jo z $\{\lambda_{n}\}_{n=1}^{\infty}$), potem
+            množica ničel funkcije $h$ števna množica.
+    \item[(B)] Naj bo množica ničel neskončna (označimo jo z $\{\lambda_{n}\}_{n=1}^{\infty}$), potem velja
     $|\lambda_{n}| \to \infty$. Ker je $|\beta|e^{-\text{Re}(\lambda_{n})}=|\lambda_n|$, sledi, da
-    $\text{Re}(\lambda_n) \to -\infty$. Prav tako $\forall a \in \R$ obstaja končno mnogo ničel $\lambda_n$,
+    $\text{Re}(\lambda_n) \to -\infty$. Prav tako za vsak $a \in \R$ obstaja končno mnogo ničel $\lambda_n$,
     da je $\text{Re}(\lambda_n) \geq a$. 
     \item[(C)] Če je $\lambda$ ničla funkcije $h$, je njen red končen.
     \item[(D)] Če je $\lambda$ ničla funkcije $h$, je tudi $\overline{\lambda}$ ničla.
@@ -370,22 +370,24 @@ Dobimo sistem enačb za $a$ in $b$:
         \item Če je $0 < \beta < 1/e$, potem obstajata natanko dve različni negativni realni
          ničli, $\lambda_{1} < \lambda_{2}$, za kateri velja:
          \[ \lim_{\beta \to 0}\lambda_{1}=-\infty \quad \text{in} \quad \lim_{\beta \to 0}\lambda_{2}=0. \]
-        \item Če je $\beta = 1/e$, potem obstaja ena realna ničla reda 2 in sicer $\lambda = -1$.
+        \item Če je $\beta = 1/e$, potem je edina realna ničla $\lambda = -1$ in je dvakratna.
         \item Če je $\beta > 1/e$, potem funkcija nima realnih ničel.
     \end{enumerate}
 \end{trditev}
 
 \begin{proof}[Dokaz]
+    Trditev se v celoti osredotoča na primer, ko je $\lambda\in\R$ zato bo to tudi naš privzetek.
     \begin{enumerate}
-        \item Funkcija $h$ je naraščajoča in velja $h \to \pm \infty$, ko $x \to \pm \infty$. Obstaja 
-        torej natanko ena realna ničla. Ker je $\beta < 0$, je $\lambda = -\beta e^{-\lambda} >0$.
-        \item Funkcija $h$ doseže minimum pod abscisno osjo, zatp obstajata natanko dve realni ničli. Ker je 
-        $\beta > 0$, je $\lambda = -\beta e^{-\lambda} <0$. Drugi del trditve sledi iz naslednjega:
-        $ \beta = -\lambda e^{\lambda} \to 0 \Leftrightarrow \lambda \to 0$ ali $\lambda \to -\infty$.
-        \item Funkcija $h$ doseže minimum na abscisni osi, torej obstaja natanko ena realna ničla. Ko v
-        $h$ vstavimo $\beta = 1/e$, je rešitev $\lambda = -1$. Velja tudi $h'(-1)=0$ in $h''(-1)=1$, torej
+        \item Funkcija $h$ je naraščajoča vzdolž realne osi in velja $h \to \pm \infty$, ko $\lambda \to \pm \infty$. Obstaja 
+        torej natanko ena realna ničla. Ker je $\beta < 0$, zanjo velja $\lambda = -\beta e^{-\lambda} >0$.
+        \item Funkcija $h$ ima pri $\lambda=\ln\beta$ stacionarno točko z negativno lastno vrednostjo. Po drugi strani pa velja, da je gre $h\to\infty$ za $\lambda\to\pm\infty$
+        , zato obstajata natanko dve realni ničli. Ker je 
+        $\beta > 0$, za eno realno ničlo velja $\lambda = -\beta e^{-\lambda} <0$. Drugi del trditve sledi iz dejstva, da velja:
+        $ \beta = -\lambda e^{\lambda} \to 0$ natanko tedaj, ko gre $\lambda \to 0$ ali $\lambda \to -\infty$.
+        \item Kot v prejšnjem primeru imamo tudi tokrat stacionarno točko, ki pa je hkrati enaka ničli. $\lambda = -1$. Velja $h'(-1)=0$ in $h''(-1)=1$, torej
         je ničla reda 2.
-        \item Funkcija $h$ doseže minimum nad abscisno osjo, torej realne ničle ne obstajajo.
+        \item Stacionarna točka ima v tem primeru pozitivno vrednost. Ker je na intervalu pred njo funkcija padajoča,
+         za njo pa padajoča, realne ničle ne obstajajo. 
     \end{enumerate}
 \end{proof}
 
@@ -394,22 +396,22 @@ Za $\beta > 0$ ima enačba lepe lastnosti, kar nam pove naslednja trditev.
 \begin{trditev}
     Za karakteristično funkcijo $h$ velja:
     \begin{enumerate}
-        \item Če je $0<\beta < \pi /2$, potem $\exists \delta > 0$, da je Re($\lambda$) $\leq -\delta$
+        \item Če je $0<\beta < \pi /2$, potem obstaja $\delta > 0$, da je Re($\lambda$) $\leq -\delta$
         za vse ničle $\lambda$.
         \item Če je $\beta = \pi /2$, potem sta $\lambda_{1,2}=\pm i\pi /2$ ničli reda 1.
-        \item Če je $\beta > \pi /2$, potem so ničle oblike $\lambda = a + ib$, kjer je $x>0$ in 
-         $y \in (\pi /2, \pi)$.
+        \item Če je $\beta > \pi /2$, potem so ničle oblike $\lambda = a + ib$, kjer je $a>0$ in 
+         $b \in (\pi /2, \pi)$.
     \end{enumerate} 
 \end{trditev}
 
 \begin{proof}[Dokaz]
 (1)  Iz $\beta > 0$ sledi: Če obstaja $\lambda = a +ib$ z $a \geq 0$ in $b > 0$, ki reši sistem za $a$ in $b$,
-je $\cos(b) \leq 0 < \sin(b)$. Torej $b \in S = \bigcup_{n=0}^{\infty}\{[\pi / 2,\pi)+2n\pi\}.$ Velja
-tudi $\frac{\sin(b)}{b}=\frac{e^{x}}{\beta}$. Ker je tudi $\frac{d}{db}\frac{\sin(b)}{b} < 0$ za $b \in S$
+je $\cos(b) \leq 0 < \sin(b)$. Torej mora biti $b \in S = \bigcup_{n=0}^{\infty}\{[\pi / 2,\pi)+2n\pi\}.$ Velja
+tudi $\frac{\sin(b)}{b}=\frac{e^{a}}{\beta}$. Ker je tudi $\frac{d}{db}\frac{\sin(b)}{b} < 0$ za $b \in S$
 in $\frac{\sin(\pi /2)}{\pi / 2} = \frac{2}{\pi}$, je torej $\frac{\sin(b)}{b} \leq \frac{2}{\pi} \quad
 \forall b \in S$.
 Dobili smo naslednjo neenakost: 
-\[\frac{1}{\beta} \leq \frac{e^x}{\beta} = \frac{\sin(b)}{b} \leq \frac{2}{\pi}.\]
+\[\frac{1}{\beta} \leq \frac{e^a}{\beta} = \frac{\sin(b)}{b} \leq \frac{2}{\pi}.\]
 Sledi, da je $\beta \geq \pi/2$. Torej, če je $\beta < \pi/2$, je potem Re($\lambda$) $<0$ za vsako ničlo
 $\lambda$. Ko upoštevamo še lastnost (B) funckije $h$, je prvi del trditve dokazan. \\
 (2)  Drugi del trditve se dokaže z direktnim izračunom. \\
@@ -424,7 +426,7 @@ k=0$ in $\theta \in (0,\pi/2)$. Ko upoštevamo še $y/x = \tan(\theta)$, dobimo 
     \begin{split}
         x(\theta) &= (\pi - \theta)\cot(\theta) \\
         y(\theta) &= \pi - \theta, \quad 0<\theta <\pi/2 \\
-        \beta(\theta) &= \frac{\pi - \theta}{\sin(\theta)}e^{x(\theta)}. 
+        \beta(\theta) &= \frac{\pi - \theta}{\sin(\theta)}e^{a(\theta)}. 
     \end{split}      
 \end{equation*}
 $a, b$, in $\beta$ so zvezne funkcije spremenljivke $\theta$ na intervalu $(0,\pi/2)$. Ko $\theta \to 0$,
@@ -436,15 +438,18 @@ Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednos
 \end{proof}
 
 \begin{definicija}
-    Dana je DDE $\dot{x}(t)=f(t,x(t-\tau))$ in njena rešitev $\phi(t)$. $\phi$ je stabilna rešitev, če 
-    $\forall \varepsilon > 0 \quad \exists \delta > 0$ tako da, če je $\psi$ neka druga rešitev in je 
-    $|\psi(t_0)-\phi(t_0)| < \delta$, je potem $|\psi(t)-\phi(t)| < \varepsilon$ za $t \geq t_0$. \\
-    Če velja
-    še $\lim_{x \to \infty}|\psi(t)-\phi(t)|=0$, je rešitev asimptotsko stabilna.
+    Dana je DDE $\dot{x}(t)=f(t,x(t-\tau))$ in njena rešitev $\phi(t)$.
+    Pravimo, da je $\phi$ stabilna rešitev, če 
+    za vsak $\varepsilon > 0$ obstaja $\delta > 0$ tako da za poljubno drugo rešitev $\psi$ z lastnostjo
+    $|\psi(t_0)-\phi(t_0)| < \delta$, velja $|\psi(t)-\phi(t)| < \varepsilon$ za $t \geq t_0$.
+    Če dodatno velja
+    še $\lim_{x \to \infty}|\psi(t)-\phi(t)|=0$, pravimo, da je rešitev asimptotsko stabilna.
 \end{definicija}
 
+\newpage
+
 \begin{trditev}
-    Za DDE oblike $\dot{x}(t)= \alpha x(t-\tau), \tau >0, \alpha \in \R$ velja:
+    Za DDE oblike $\dot{x}(t)= \alpha x(t-\tau), \tau >0, \alpha \in \R$, velja:
     \begin{enumerate}
         \item Če je $\alpha > 0$, je $x=0$ nestabilna rešitev.
         \item Če je $0>\alpha \tau >-\pi/2$, je $x=0$ asimptotsko stabilna.
@@ -462,15 +467,15 @@ je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funk
     ekvivalentni:
     \begin{itemize}
         \item Vse rešitve so oscilirajoče.
-        \item $\alpha\tau > 1/e$
+        \item $\alpha\tau < 1/e$
     \end{itemize}
 \end{lema}
 
 \begin{proof}
     Za vsak $\lambda \in \R$ je $U(\mu)=e^{\lambda\mu}$ bodisi monotona, bodisi konstantna funkcija.
-    Za realne $\lambda$ torej rešitev $x(t)$ ne oscilira. $x(t)$ je torej oscilirajoča natanko tedaj, ko
-    je $\lambda$ nerealna ničla. Po trditvi 5.3 je $\lambda$ nerealna ničla natanko tedaj, ko je 
-    $\beta = \alpha\tau > 1/e$.
+    Za realne $\lambda$ torej rešitev $x(t)$ ne oscilira. Funkcija $x(t)$ je torej oscilirajoča natanko tedaj, ko
+    je $\lambda\in\mathbb{C}\setminus\mathbb{R}$. Po trditvi 5.3 je to res natanko tedaj, ko je 
+    $\beta = \alpha\tau < 1/e$.
 \end{proof}
 
 
