@@ -347,7 +347,10 @@ Dobimo sistem enačb za $a$ in $b$:
 \end{trditev}
 
 \begin{proof}[Dokaz]
-    Linearni operator $L$ $n$-krat odvajamo po $\lambda$, nato vanj vstavimo $\mu^{n}\lambda^{\lambda \mu}$.
+    Linearni operator $L$ $n$-krat odvajamo po $\lambda$. Ker $k$-ti odvod komutira z $L$, dobimo:
+    \[L(\mu^{k}e^{\lambda\mu})=\frac{\partial^k}{\partial\lambda^k}(e^{\lambda\mu}h(\lambda))
+    =e^{\lambda\mu}\left(\sum_{k=0}^{n}\binom{n}{k}h^{(k)}(\lambda)\mu^{n-k}\right). \]
+    To je enako 0 natanko tedaj, ko je $\lambda$ $(n+1)$-kratna ničla funkcije $h$.
 \end{proof}
 
 \noindent Funkcija $h$ je analitična, zato zanjo veljajo naslednje lastnosti:
@@ -446,7 +449,6 @@ Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednos
     še $\lim_{x \to \infty}|\psi(t)-\phi(t)|=0$, pravimo, da je rešitev asimptotsko stabilna.
 \end{definicija}
 
-\newpage
 
 \begin{trditev}
     Za DDE oblike $\dot{x}(t)= \alpha x(t-\tau), \tau >0, \alpha \in \R$, velja:
@@ -478,5 +480,58 @@ je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funk
     $\beta = \alpha\tau < 1/e$.
 \end{proof}
 
+\subsection{Reševanje z Laplaceovo transformacijo}
 
+\begin{definicija}
+    Naj bo $f:[0,\infty) \to \R$ zvezna funkcija. Laplaceova transformacija funkcije $f$ je funkcija
+    $F:\C\to\C$, podana s predpisom
+    \[ F(s)=\int_{0}^{\infty}f(t)e^{-st}dt.\]
+\end{definicija}
+
+Laplaceova transformacija je lahko zelo koristna pri iskanju rešitev DDE, kar si bomo pogledali
+na naslednjem zgledu.
+
+\begin{zgled}
+    Podana je DDE:
+    \begin{equation} \label{eq2}
+        \begin{split}
+     \dot{x}(t)=x(t-1).
+        \end{split}
+    \end{equation}
+    Obe strani pomnožimo z $e^{-st}$ in integriramo na intervalu $[1,\infty)$:
+    \begin{equation} \label{eq3}
+        \begin{split}
+     \int_{1}^{\infty}\dot{x}(t)e^{-st}dt = \int_{1}^{\infty}x(t-1)e^{-st}dt.
+        \end{split}
+    \end{equation}
+    Z uvedbo nove spremenljivke $r=t-1$ preoblikujemo desno stran enačbe:
+    \begin{equation*}
+        \begin{split}
+            \int_{1}^{\infty}x(t-1)e^{-st}dt &= \int_{0}^{\infty}x(r)e^{-s(r+1)}dr \\
+             &= \int_{0}^{\infty}x(t)e^{-s(t+1)}dt \\
+             &= e^{-s}\left(\int_{1}^{\infty}x(t)e^{-st}dt + \int_{0}^{1}x(t)e^{-st}dt\right). 
+        \end{split}      
+    \end{equation*}
+    Na levi strani enačbe uporabimo integracijo per partes. Pri tem predpostavljamo, da za 
+    rešitev velja $x(t)e^{-st} \to 0$, ko $t \to\infty$.
+    \[\int_{1}^{\infty}\dot{x}(t)e^{-st}dt=-x(1)e^{-s}+s\int_{1}^{\infty}x(t)e^{-st}dt.\]
+    Enačbo (3) smo pretvorili na naslednjo obliko:
+    \[(s-e^{-s})\int_{1}^{\infty}x(t)e^{-st}dt=x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt.\]
+    Za $s-e^{-s}\neq 0$ dobimo torej:
+    \[\int_{1}^{\infty}x(t)e^{-st}dt=\frac{x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt}{s-e^{-s}}.\]
+    Nova enačba izrazi transformacijo funkcije $x$ z njenimi vrednostmi na intervalu [0,1]. Če 
+    dodatno predpostavimo še obstoj inverzov, dobimo:
+    \[x(t)=\int_{(c)}\frac{x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt}{s-e^{-s}}e^{st}ds.\]
+    Vidimo, da je rešitev DDE (1) izražena s svojimi vrednostmi na intervalu [0,1], torej njenega
+    začetnega pogoja. Za razliko od analognega zgleda iz 3. poglavja, pa nam tu ni uspelo rešitve
+    izraziti z elementarnimi funkcijami. Kljub temu, pa so lahko tako izražene rešitve koristne, saj
+    nam lahko povejo veliko o njenih lastnostih, v kar se pa v tem delu ne bomo spuščali.
+\end{zgled}
+
+\section{Linearne diferencialne enačbe z zamikom}
+
+\begin{definicija}
+    Linearna DDE je podana na sledeči način:
+    \[\dot{x}(t)=ax(t)=bx(t-\tau)+f(t),\quad a,b\in\R, \quad \tau>0.\]
+\end{definicija}
 \end{document}
