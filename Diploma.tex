@@ -492,7 +492,8 @@ Laplaceova transformacija je lahko zelo koristna pri iskanju rešitev DDE, kar s
 na naslednjem zgledu.
 
 \begin{zgled}
-    Podana je DDE:
+    Z Laplaceovo transformacijo bomo ponovno rešili DDE iz 3. poglavja, le da tokrat 
+    nimamo podanega začetnega pogoja:
     \begin{equation} \label{eq2}
         \begin{split}
      \dot{x}(t)=x(t-1).
@@ -504,10 +505,10 @@ na naslednjem zgledu.
      \int_{1}^{\infty}\dot{x}(t)e^{-st}dt = \int_{1}^{\infty}x(t-1)e^{-st}dt.
         \end{split}
     \end{equation}
-    Z uvedbo nove spremenljivke $r=t-1$ preoblikujemo desno stran enačbe:
+    Z uvedbo nove spremenljivke $u=t-1$ preoblikujemo desno stran enačbe:
     \begin{equation*}
         \begin{split}
-            \int_{1}^{\infty}x(t-1)e^{-st}dt &= \int_{0}^{\infty}x(r)e^{-s(r+1)}dr \\
+            \int_{1}^{\infty}x(t-1)e^{-st}dt &= \int_{0}^{\infty}x(u)e^{-s(u+1)}du \\
              &= \int_{0}^{\infty}x(t)e^{-s(t+1)}dt \\
              &= e^{-s}\left(\int_{1}^{\infty}x(t)e^{-st}dt + \int_{0}^{1}x(t)e^{-st}dt\right). 
         \end{split}      
@@ -522,9 +523,9 @@ na naslednjem zgledu.
     Nova enačba izrazi transformacijo funkcije $x$ z njenimi vrednostmi na intervalu [0,1]. Če 
     dodatno predpostavimo še obstoj inverzov, dobimo:
     \[x(t)=\int_{(c)}\frac{x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt}{s-e^{-s}}e^{st}ds.\]
-    Vidimo, da je rešitev DDE (1) izražena s svojimi vrednostmi na intervalu [0,1], torej njenega
-    začetnega pogoja. Za razliko od analognega zgleda iz 3. poglavja, pa nam tu ni uspelo rešitve
-    izraziti z elementarnimi funkcijami. Kljub temu, pa so lahko tako izražene rešitve koristne, saj
+    Vidimo, da je rešitev DDE (2) izražena s svojimi vrednostmi na intervalu [0,1], torej njenega
+    začetnega pogoja. Za razliko od 3. poglavja, pa nam tu rešitve ni uspelo
+    izraziti z elementarnimi funkcijami. Kljub temu pa so lahko tako izražene rešitve koristne, saj
     nam lahko povejo veliko o njenih lastnostih, v kar se pa v tem delu ne bomo spuščali.
 \end{zgled}
 
@@ -532,6 +533,35 @@ na naslednjem zgledu.
 
 \begin{definicija}
     Linearna DDE je podana na sledeči način:
-    \[\dot{x}(t)=ax(t)=bx(t-\tau)+f(t),\quad a,b\in\R, \quad \tau>0.\]
+    \begin{equation} \label{eq4}
+        \begin{split}
+            \dot{x}(t)=ax(t)=bx(t-\tau)+f(t),\quad a,b\in\R, \quad \tau>0.
+        \end{split}
+    \end{equation}
+    Če je $f(t)=0$, je enačba homogena, sicer je nehomogena. 
 \end{definicija}
+
+V tem poglavju bomo obravnavali homogene linearne DDE. Za njihovo reševanje uporabimo nastavek
+$x(t)=e^{\lambda t}c$, $\lambda \in\C$, $c\in\R\setminus\{0\}$, in ga vstavimo v enačbo:
+\begin{equation*}
+    \begin{split}
+        h(\lambda)&=\lambda e^{\lambda t}c - ae^{\lambda t}c -be^{\lambda(t-\tau)} \\
+         &= \lambda - a -be^{-\lambda\tau}.
+    \end{split}      
+\end{equation*}
+Iščemo ničle karakteristične funkcije $h$. Izraz lahko z uvedbo novih spremenljivk še dodatno 
+poenostavimo. Če nastavimo $z:=\lambda\tau$, $\alpha:=a\tau$ in $\beta:=b\tau$, se karakteristična
+enačba prevede na
+\[h(z)=z-\alpha-\beta e^{-z}=0.\]
+Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne rasti z zamikom.
+\begin{trditev}
+    Za DDE oblike \eqref{eq4} in rešitev $x=0$ velja:
+    \begin{itemize}
+        \item Če je $a+b>0$, potem je $x=0$ stabilna.
+        \item Če je $a+b<0$ in $b\geq a$, potem je $x=0$ asimptotsko stabilna.
+        \item Če je $a+b<0$ in $b<a$, potem obstaja $\tau^{*}>0$, tako da je $x=0$ 
+        asimptotsko stabilna za $0<\tau<\tau^{*}$ in nestabilna za $\tau>\tau^{*}$.
+    \end{itemize}
+\end{trditev}
+
 \end{document}
