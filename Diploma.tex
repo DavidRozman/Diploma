@@ -480,7 +480,11 @@ je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funk
     $\beta = \alpha\tau < 1/e$.
 \end{proof}
 
-\subsection{Reševanje z Laplaceovo transformacijo}
+\section{Laplaceova transformacija}
+
+Pri reševanju DDE si lahko pomagamo z Laplaceovo transformacijo, kar si bomo pogledali na zgledu.
+Da bi razumeli postopek, pa si moramo najprej pogledati nekaj osnovnih definicij in lastnosti
+Laplaceovih transformacij.
 
 \begin{definicija}
     Naj bo $f:[0,\infty) \to \R$ zvezna funkcija. Laplaceova transformacija funkcije $f$ je funkcija
@@ -488,9 +492,36 @@ je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funk
     \[ F(s)=\int_{0}^{\infty}f(t)e^{-st}dt.\]
 \end{definicija}
 
-Laplaceova transformacija je lahko zelo koristna pri iskanju rešitev DDE, kar si bomo pogledali
-na naslednjem zgledu.
+\noindent Najprej se je potrebno vprašati, za katere $s\in\C$, je funkcija $F$ sploh definirana. Če je
+$|f(t)|\leq e^{at}$ za $t\geq0$ in upoštevamo, da za $s\in\C$ velja $|e^{s}|=e^{\text{Re}(s)}$, je potem:
+\[|e^{-st}f(t)| \leq ce^{-t\text{Re}(s)}e^{at}=ce^{-t(\text{Re}(s)-a)}.\]
+Integral $\int_0^{\infty}ce^{-t(\text{Re}(s)-a)}dt$ je konvergenten za $\text{Re}(s)>a$.
 
+Laplaceova transformacija je torej preslikava, ki funkciji, definirani na $[0,\infty)$, priredi
+kompleksno funkcijo, definirano na polravnini $\{z\in\C | \text{Re}(z)>a\}$, pri ustreznem $a$.
+
+\begin{zgled}
+    Izračunajmo Laplaceovo transformacijo funkcije $f(t)=t$:
+    \[\int_0^{\infty}te^{-st}dt = \frac{-ste^{-st}-e^{-st}}{s^2}\Bigr|_{0}^{\infty}=\frac{1}{s^2}.\]
+    Dobljena funkcija je definirana za vse $s\in\C$ s pozitivnim realnim delom.
+\end{zgled}
+
+\subsection{Problem inverza}
+Na tem mestu se nam postavi vprašanje o inverzni transformaciji. Recimo, da imamo podano funkcijo
+$F$ in želimo poiskati funkcijo $f$, katere Laplaceova transformacija je enaka $F$. Najprej si poglejmo
+najpreprostejši način za iskanje inverza.
+
+Recimo, da je integral 
+\[\int_0^{\infty}f(r)e^{-sr}dr\]
+konvergenten za $\text{Re}(s)>\alpha$. Potem za $a>\alpha$ označimo
+\[F(a+it)=\int_0^{\infty}f(r)e^{-(a+it)r}dr.\]
+Obe strani pomnožimo z $e^{u(a+it)}$ in integriramo na $[-T,T]$ po spremenljivki $t$:
+\[\int_{-T}^{T}e^{u(a+it)}F(a+it)dt=e^{au}\int_0^{\infty}f(r)e^{-ar}\left(\int_{-T}^{T}e^{iut-irt}dt\right)dr.\]
+Zaradi absolutne konvergence smo lahko na desni strani zamenjali vrstni red integriranja.
+Ko desno stran poenostavimo, dobimo:
+\[\int_{-T}^{T}e^{u(a+it)}F(a+it)dt=2e^{au}\int_0^{\infty}f(r)e^{-ar}\frac{\sin(T(u-r))}{u-r}dr.\]
+Funkciji $k(u,r,T)=\sin(T(u-r))/(u-r)$ pravimo Dirichlet-Kernelova funkcija in je velikega pomena 
+pri iskanju inverzne funkcije. Da bo $k$ zvezna, naj bo $k(u,u,T)=T$.
 \begin{zgled}
     Z Laplaceovo transformacijo bomo ponovno rešili DDE iz 3. poglavja, le da tokrat 
     nimamo podanega začetnega pogoja:
