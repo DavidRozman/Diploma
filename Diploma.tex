@@ -519,19 +519,82 @@ Obe strani pomnožimo z $e^{u(a+it)}$ in integriramo na $[-T,T]$ po spremenljivk
 \[\int_{-T}^{T}e^{u(a+it)}F(a+it)dt=e^{au}\int_0^{\infty}f(r)e^{-ar}\left(\int_{-T}^{T}e^{iut-irt}dt\right)dr.\]
 Zaradi absolutne konvergence smo lahko na desni strani zamenjali vrstni red integriranja.
 Ko desno stran poenostavimo, dobimo:
-\[\int_{-T}^{T}e^{u(a+it)}F(a+it)dt=2e^{au}\int_0^{\infty}f(r)e^{-ar}\frac{\sin(T(u-r))}{u-r}dr.\]
+\begin{equation} \label{eq2}
+    \begin{split}
+        \int_{-T}^{T}e^{u(a+it)}F(a+it)dt=2e^{au}\int_0^{\infty}f(r)e^{-ar}\frac{\sin(T(u-r))}{u-r}dr.
+    \end{split}
+\end{equation}
 Funkciji $k(u,r,T)=\sin(T(u-r))/(u-r)$ pravimo Dirichlet-Kernelova funkcija in je velikega pomena 
-pri iskanju inverzne funkcije. Da bo $k$ zvezna, naj bo $k(u,u,T)=T$.
-\begin{zgled}
+pri iskanju inverzne funkcije. Da bo $k$ zvezna, naj bo $k(u,u,T)=T$. Izkaže se, da je za velike $T$ na
+območju $u=r$ vrednost integrala na desni vedno bolj odvisna le od izraza $f(r)e^{-ar}$. Tako lahko
+določimo $f(t)$ za $t\geq0$.
+
+Poglejmo sedaj še drugi način za reševanje enačbe (2). Interval $(0,\infty)$ razbijemo na tri 
+dele: $(0,\infty) = (0,u-d] + (u-d,u+d] + (u+d,\infty]$ za nek majhen $d$. Po aditivnosti določenega
+integrala dobimo:
+\[\int_{-T}^{T}e^{u(a+it)}F(a+it)dt=2e^{au}\left(\int_0^{u-d}gdr +
+\int_{u-d}^{u+d}gdr+
+\int_{u+d}^{\infty}gdr\right),\] 
+kjer je $g(u,r,T)=f(r)e^{-ar}\frac{\sin(T(u-r))}{u-r}$. Pokazati želimo, da se prvi in tretji integral
+na desni strani enačbe bližata 0, ko $T\to\infty$.
+\begin{lema}[Riemann-Lebesgueova lema]
+    Če je funkcija $g$ absolutno integrabilna na realni osi, potem je:
+    \[\lim_{T\to\infty}\int_{-\infty}^{\infty}g(t)\sin(Tt)dt=0.\]
+\end{lema}
+Ker smo predpostavili, da je $\int_0^{\infty}|f(t)|e^{-as}dt<\infty$, je torej funkcija 
+$f(r)e^{-ar}(u-r)$ absolutno integrabilna na vsakem zaprtem intervalu, ki ne vsebuje točke $r=u$. Po 
+Riemann-Lebesgueovi lemi se lahko znebimo prvega in tretjega na desni strani enačbe. Ostane
+nam torej le še:
+\[I = 2e^{au}\int_{u-d}^{u+d}f(r)e^{-ar}\frac{\sin(T(u-r))}{u-r}dr.\]
+Predpostavimo, da obstaja Taylorjev polinom druge stopnje za funkcijo $f$ na okolici točke $u$.
+Zapišimo:
+\[f(r)e^{-ar}=f(u)e^{-au}+h(u,r)(u-r),\]
+kjer je $|h(u,r)|\leq k, \quad r\in(u-d,u+d).$
+Vstavimo v $I$ in dobimo:
+\[I = 2f(u)\int_{u-d}^{u+d}\frac{\sin(T(u-r))}{u-r}dr+2e^{au}\int_{u-d}^{u+d}h(u,r)\sin(T(u-r))dr.\]
+Ker je $|\sin(T(u-r))|\leq1$, je drugi integral enak $\mathcal{O}(d)$, ko $T\to\infty$. Z uvedbo 
+nove spremenljivke $v=T(u-r)$, dobimo
+\[I=2f(u)\int_{-Td}^{Td}\frac{\sin v}{v}dv +\mathcal{O}(d),\]
+oziroma
+\[\lim_{T\to\infty}I=2f(u)\int_{-\infty}^{\infty}\frac{\sin v}{v}dv +\mathcal{O}(d).\]
+Vrednost zgornjega integrala je enaka $\pi$, zato za vsak $d>0$ velja:
+\[\lim_{T\to\infty}I=2\pi f(u)+\mathcal{O}(d).\]
+Ker je d poljuben, lahko trdimo, da velja:
+\[\lim_{T\to\infty}\int_{-\infty}^{\infty}e^{(a+it)u}F(a+it)dt=2\pi f(u).\]
+
+\begin{izrek}
+    Naj bo $f$ funkcija z naslednjimi lastnostmi:
+    \begin{enumerate}
+        \item[(a)]Integral $\int_0^{\infty}f(t)e^{-at}dt$ je absolutno konvergenten za nek $a>0$,
+        \item[(b)]$f$ ima omejene variacije v okolici točke $u>0$.  
+    \end{enumerate}
+    Potem obstaja
+    \[F(s)=\int_0^{\infty}e^{-st}f(t)dt\]
+    za $\text{Re}(s)\geq a$. Za $b>a$ pa velja:
+    \[\lim_{T\to\infty}\frac{1}{2\pi}\int_{-T}^{T}e^{(b+it)u}F(b+it)dt=\frac{f(u^-)+f(u^+)}{2}.\]
+\end{izrek}
+
+\noindent\textit{Opomba: }$f(u^-)$ in $f(u^+)$ tu označujeta levo in desno limito. Če je $f$ zvezna v $u$, se desna
+stran poenostavi v $f(u)$. \\
+S tem izrekom smo dobili formulo za izračun inverzne funkcije pri Laplaceovi transformaciji, ki pa jo 
+lahko še malo okrajšamo. Če vpeljemo novo spremenljivko $s=b+ir$ za $r\in[-T,T]$, dobimo:
+\[\frac{1}{2\pi}\int_{-T}^{T}e^{(b+it)u}F(b+it)dr=\frac{1}{2\pi i}\int_{b-iT}^{b+iT}F(s)e^{st}ds.\]
+Desni integral je krivuljni interal po daljici med točkama $b-iT$ in $b+iT$. Označimo lahko
+\[ \int_{(b)}F(s)e^{st}ds=\lim_{T\to\infty}\frac{1}{2\pi i}\int_{b-iT}^{b+iT}F(s)e^{st}ds,\]
+kadar desna stran obstaja.
+Končna formula za inverzno funkcijo je torej:
+\[f(t)=\int_{(b)}F(s)e^{st}ds.\]
+
+\subsection{Reševanje DDE z Laplaceovo transformacijo}
     Z Laplaceovo transformacijo bomo ponovno rešili DDE iz 3. poglavja, le da tokrat 
     nimamo podanega začetnega pogoja:
-    \begin{equation} \label{eq2}
+    \begin{equation} \label{eq3}
         \begin{split}
      \dot{x}(t)=x(t-1).
         \end{split}
     \end{equation}
     Obe strani pomnožimo z $e^{-st}$ in integriramo na intervalu $[1,\infty)$:
-    \begin{equation} \label{eq3}
+    \begin{equation} \label{eq4}
         \begin{split}
      \int_{1}^{\infty}\dot{x}(t)e^{-st}dt = \int_{1}^{\infty}x(t-1)e^{-st}dt.
         \end{split}
@@ -551,14 +614,12 @@ pri iskanju inverzne funkcije. Da bo $k$ zvezna, naj bo $k(u,u,T)=T$.
     \[(s-e^{-s})\int_{1}^{\infty}x(t)e^{-st}dt=x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt.\]
     Za $s-e^{-s}\neq 0$ dobimo torej:
     \[\int_{1}^{\infty}x(t)e^{-st}dt=\frac{x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt}{s-e^{-s}}.\]
-    Nova enačba izrazi transformacijo funkcije $x$ z njenimi vrednostmi na intervalu [0,1]. Če 
-    dodatno predpostavimo še obstoj inverzov, dobimo:
-    \[x(t)=\int_{(c)}\frac{x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt}{s-e^{-s}}e^{st}ds.\]
-    Vidimo, da je rešitev DDE (2) izražena s svojimi vrednostmi na intervalu [0,1], torej njenega
-    začetnega pogoja. Za razliko od 3. poglavja, pa nam tu rešitve ni uspelo
+    Izraz na desni je zvezna funkcija spremenljivke $s$. Označimo jo z $G(s)$. Po izreku o inverzni
+    transformaciji dobimo:
+    \[x(t)=\int_{(c)}G(s)e^{st}ds.\]
+    Za razliko od 3. poglavja, nam tu rešitve ni uspelo
     izraziti z elementarnimi funkcijami. Kljub temu pa so lahko tako izražene rešitve koristne, saj
     nam lahko povejo veliko o njenih lastnostih, v kar se pa v tem delu ne bomo spuščali.
-\end{zgled}
 
 \section{Linearne diferencialne enačbe z zamikom}
 
