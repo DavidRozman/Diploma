@@ -8,7 +8,9 @@
 \usepackage{url}
 %\usepackage[normalem]{ulem}
 \usepackage[dvipsnames,usenames]{color}
-
+\usepackage{biblatex}
+\addbibresource{viri.bib}
+\nocite{*}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -482,22 +484,21 @@ je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funk
 
 \section{Laplaceova transformacija}
 
-Pri reševanju DDE si lahko pomagamo z Laplaceovo transformacijo, kar si bomo pogledali na zgledu.
-Da bi razumeli postopek, pa si moramo najprej pogledati nekaj osnovnih definicij in lastnosti
-Laplaceovih transformacij.
+V tem poglavju si bomo ogledali, kako si lahko pri reševanju DDE pomagamo z Laplaceovo transformacijo.
+Da bi razumeli postopek, najprej ponovimo in predstavimo nekaj lastnosti omenjene transformacije.
 
 \begin{definicija}
-    Naj bo $f:[0,\infty) \to \R$ zvezna funkcija. Laplaceova transformacija funkcije $f$ je funkcija
-    $F:\C\to\C$, podana s predpisom
+    Naj bo $f:[0,\infty) \to \R$ zvezna funkcija. Laplaceova transformacija funkcije $f$ je kompleksna funkcija
+    $F$, podana s predpisom
     \[ F(s)=\int_{0}^{\infty}f(t)e^{-st}dt.\]
 \end{definicija}
 
-\noindent Najprej se je potrebno vprašati, za katere $s\in\C$, je funkcija $F$ sploh definirana. Če je
-$|f(t)|\leq e^{at}$ za $t\geq0$ in upoštevamo, da za $s\in\C$ velja $|e^{s}|=e^{\text{Re}(s)}$, je potem:
+\noindent V zgornji definiciji funkcije $F$ nismo podali njenega definicijskega območja, zato se je
+najprej potrebno vprašati, za katere $s\in\C$, je funkcija $F$ sploh definirana. Predpostavimo, da je
+$|f(t)|\leq e^{at}$ za $t\geq0$. Ker za $s\in\C$ velja $|e^{s}|=e^{\text{Re}(s)}$, imamo
 \[|e^{-st}f(t)| \leq ce^{-t\text{Re}(s)}e^{at}=ce^{-t(\text{Re}(s)-a)}.\]
-Integral $\int_0^{\infty}ce^{-t(\text{Re}(s)-a)}dt$ je konvergenten za $\text{Re}(s)>a$.
-
-\noindent Laplaceova transformacija je torej preslikava, ki funkciji, definirani na $[0,\infty)$, priredi
+Če funkcijo na desni strani te neenačbe integriramo po $t\in [0,\infty)$, dobimo integral, ki je konvergenten za $\text{Re}(s)>a$.
+Laplaceova transformacija je torej preslikava, ki funkciji, definirani na $[0,\infty)$, priredi
 kompleksno funkcijo, definirano na polravnini $\{s\in\C | \text{Re}(s)>a\}$, za ustrezen $a$.
 
 \begin{zgled}
@@ -507,11 +508,12 @@ kompleksno funkcijo, definirano na polravnini $\{s\in\C | \text{Re}(s)>a\}$, za 
 \end{zgled}
 
 \subsection{Inverzna transformacija}
-Na tem mestu se nam postavi vprašanje o inverzni transformaciji. Recimo, da imamo podano funkcijo
-$F$ in želimo poiskati funkcijo $f$, katere Laplaceova transformacija je enaka $F$. V tem poglavju si 
-bomo pogledali enega osnovnih načinov za iskanje inverzne transformacije.
+Kot se bo izkazalo kasneje, bo za uporabo Laplaceove transformacije pri reševanju DDE ključno, ali znamo poiskati tudi njen inverz.
+Natančneje, recimo, da imamo podano funkcijo
+$F$ in želimo poiskati funkcijo $f$, katere Laplaceova transformacija je enaka $F$.
+Zanimalo nas bo, kako to storiti in katerim pogojem mora zadoščati funkcija $f$.
 
-\noindent Recimo, da je integral 
+Recimo, da je integral 
 \[\int_0^{\infty}f(r)e^{-sr}dr\]
 konvergenten za $\text{Re}(s)>\alpha$. Potem za $a>\alpha$ označimo
 \[F(a+it)=\int_0^{\infty}f(r)e^{-(a+it)r}dr.\]
@@ -524,26 +526,32 @@ Ko desno stran poenostavimo, dobimo:
         \int_{-T}^{T}e^{u(a+it)}F(a+it)dt=2e^{au}\int_0^{\infty}f(r)e^{-ar}\frac{\sin(T(u-r))}{u-r}dr.
     \end{split}
 \end{equation}
-Funkciji $k(u,r,T)=\sin(T(u-r))/(u-r)$ pravimo Dirichlet-Kernelova funkcija in je velikega pomena 
-pri iskanju inverzne funkcije. Da bo $k$ zvezna, naj bo $k(u,u,T)=T$. Izkaže se, da je za velike $T$ na
-območju $u=r$ vrednost integrala na desni vedno bolj odvisna le od izraza $f(r)e^{-ar}$. Tako dobimo
-idejo za iskanje funkcije $f$.
+Funkciji $$k(u,r,T)=\frac{\sin(T(u-r))}{(u-r)}$$ pravimo Dirichlet-Kernelova funkcija in je velikega pomena 
+pri iskanju inverzne funkcije. Da bo $k$ zvezna, dodajmo pogoj $k(u,u,T)=T$. % Izkaže se, da je za velike $T$ na
+%območju $u=r$ vrednost integrala na desni vedno bolj odvisna le od izraza $f(r)e^{-ar}$. Tako dobimo
+%idejo za iskanje funkcije $f$.
 
-Izpeljimo sedaj formulo za reševanje enačbe (2). Interval $(0,\infty)$ razbijemo na tri 
-dele: $(0,\infty) = (0,u-d] + (u-d,u+d] + (u+d,\infty]$ za nek $d>0$. Po aditivnosti določenega
+Izpeljimo sedaj formulo za reševanje enačbe (2). Integracijski interval razbijemo na tri 
+dele: $$(0,\infty) = (0,u-d] \cup (u-d,u+d] \cup (u+d,\infty]$$ za nek $d>0$. Zaradi aditivnosti določenega
 integrala dobimo:
-\[\int_{-T}^{T}e^{u(a+it)}F(a+it)dt=2e^{au}\left(\int_0^{u-d}gdr +
-\int_{u-d}^{u+d}gdr+
-\int_{u+d}^{\infty}gdr\right),\] 
-kjer je $g(u,r,T)=f(r)e^{-ar}\sin(T(u-r))/(u-r)$. Pokazati želimo, da se prvi in tretji integral
-na desni strani enačbe bližata 0, ko $T\to\infty$.
+\begin{equation*}
+    \begin{split}
+        \int_{-T}^{T}e^{u(a+it)}F(a+it)dt) &= 2e^{au}\int_0^{u-d}g(u,r,T)dr +
+        2e^{au}\int_{u-d}^{u+d}g(u,r,T)dr+ \\
+        &+ 2e^{au}\int_{u+d}^{\infty}g(u,r,T)dr,
+    \end{split}
+\end{equation*}
+kjer je $$g(u,r,T)=f(r)e^{-ar}\frac{\sin(T(u-r))}{(u-r)}.$$ Pokazati želimo, da se prvi in tretji integral
+na desni strani enačbe bližata ničelni vrednosti, ko gre $T\to\infty$. Pri tem uporabimo naslednjo lemo.
 \begin{lema}[Riemann-Lebesgueova lema]
     Če je funkcija $g$ absolutno integrabilna na realni osi, potem je:
     \[\lim_{T\to\infty}\int_{-\infty}^{\infty}g(t)\sin(Tt)dt=0.\]
 \end{lema}
+Dokaz leme lahko bralec najde v viru \cite{dokazleme}
+
 Ker smo predpostavili, da je $\int_0^{\infty}|f(t)|e^{-as}dt<\infty$, je torej funkcija 
 $f(r)e^{-ar}(u-r)$ absolutno integrabilna na vsakem zaprtem intervalu, ki ne vsebuje točke $r=u$. Po 
-Riemann-Lebesgueovi lemi se lahko znebimo prvega in tretjega na desni strani enačbe. Ostane
+Riemann-Lebesgueovi lemi se lahko znebimo prvega in tretjega integrala na desni strani enačbe. Ostane
 nam torej le še:
 \[I = 2e^{au}\int_{u-d}^{u+d}f(r)e^{-ar}\frac{\sin(T(u-r))}{u-r}dr.\]
 Predpostavimo, da obstaja Taylorjev polinom druge stopnje za funkcijo $f$ na okolici točke $u$.
@@ -552,7 +560,7 @@ Zapišimo:
 kjer je $|h(u,r)|\leq k, \quad r\in(u-d,u+d).$
 Vstavimo v $I$ in dobimo:
 \[I = 2f(u)\int_{u-d}^{u+d}\frac{\sin(T(u-r))}{u-r}dr+2e^{au}\int_{u-d}^{u+d}h(u,r)\sin(T(u-r))dr.\]
-Ker je $|\sin(T(u-r))|\leq1$, je drugi integral enak $\mathcal{O}(d)$, ko $T\to\infty$. Z uvedbo 
+Ker je $|\sin(T(u-r))|\leq1$, je drugi integral reda $\mathcal{O}(d)$, ko gre $T\to\infty$. Z uvedbo 
 nove spremenljivke $v=T(u-r)$, dobimo
 \[I=2f(u)\int_{-Td}^{Td}\frac{\sin v}{v}dv +\mathcal{O}(d),\]
 oziroma
@@ -576,21 +584,23 @@ Ker je $d$ poljuben, lahko trdimo, da velja:
 
 \noindent\textit{Opomba: }$f(u^-)$ in $f(u^+)$ tu označujeta levo in desno limito. Če je $f$ zvezna v $u$, se desna
 stran poenostavi v $f(u)$. \\
+
+
 S tem smo dobili formulo za izračun inverzne funkcije pri Laplaceovi transformaciji.
 Če vpeljemo novo spremenljivko $s=b+ir$ za $r\in[-T,T]$, lahko formulo še malo polepšamo:
 \[\frac{1}{2\pi}\int_{-T}^{T}e^{(b+it)u}F(b+it)dr=\frac{1}{2\pi i}\int_{b-iT}^{b+iT}F(s)e^{st}ds.\]
-Desni integral je krivuljni interal po daljici med točkama $b-iT$ in $b+iT$. Označimo lahko
+Desni integral je krivuljni interal po daljici med točkama $b-iT$ in $b+iT$. Označimo
 \[ \int_{(b)}F(s)e^{st}ds=\lim_{T\to\infty}\frac{1}{2\pi i}\int_{b-iT}^{b+iT}F(s)e^{st}ds,\]
 kadar desna stran obstaja.
 Končna formula za inverzno funkcijo je torej:
 \[f(t)=\int_{(b)}F(s)e^{st}ds.\]
 
 \subsection{Reševanje DDE z Laplaceovo transformacijo}
-    Z Laplaceovo transformacijo bomo ponovno rešili DDE iz 3. poglavja, le da tokrat 
-    nimamo podanega začetnega pogoja:
+    Z Laplaceovo transformacijo bomo ponovno rešili DDE iz 3. poglavja, le da imamo tokrat
+    podan bolj splošen začetni pogoj:
     \begin{equation} \label{eq3}
         \begin{split}
-     \dot{x}(t)=x(t-1).
+            \dot{x}(t)=x(t-1), \quad x(t)=\varphi(t), \quad t\in[0,1].
         \end{split}
     \end{equation}
     Obe strani pomnožimo z $e^{-st}$ in integriramo na intervalu $[1,\infty)$:
@@ -606,16 +616,15 @@ Končna formula za inverzno funkcijo je torej:
     Na levi strani enačbe uporabimo integracijo per partes. Pri tem predpostavljamo, da za 
     rešitev velja $x(t)e^{-st} \to 0$, ko $t \to\infty$.
     \[\int_{1}^{\infty}\dot{x}(t)e^{-st}dt=-x(1)e^{-s}+s\int_{1}^{\infty}x(t)e^{-st}dt.\]
-    Enačbo (3) smo pretvorili na naslednjo obliko:
-    \[(s-e^{-s})\int_{1}^{\infty}x(t)e^{-st}dt=x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt.\]
+    Sedaj upoštevajmo še, da za $t\in[0,1]$ velja $x(t)=\varphi(t)$. Enačbo (3) smo pretvorili na naslednjo obliko:
+    \[(s-e^{-s})\int_{1}^{\infty}x(t)e^{-st}dt=\varphi(1)e^{-s}+e^{-s}\int_0^1\varphi(t)e^{-st}dt.\]
     Za $s-e^{-s}\neq 0$ dobimo torej:
-    \[\int_{1}^{\infty}x(t)e^{-st}dt=\frac{x(1)e^{-s}+e^{-s}\int_0^1x(t)e^{-st}dt}{s-e^{-s}}.\]
+    \[\int_{1}^{\infty}x(t)e^{-st}dt=\frac{\varphi(1)e^{-s}+e^{-s}\int_0^1\varphi(t)e^{-st}dt}{s-e^{-s}}.\]
     Izraz na desni je zvezna funkcija spremenljivke $s$. Označimo jo z $G(s)$. Po izreku o inverzni
     transformaciji dobimo:
     \[x(t)=\int_{(c)}G(s)e^{st}ds.\]
     Za razliko od 3. poglavja, nam tu rešitve ni uspelo
-    izraziti z elementarnimi funkcijami. Kljub temu pa so lahko tako izražene rešitve koristne, saj
-    nam lahko povejo veliko o njenih lastnostih, v kar se pa v tem delu ne bomo spuščali.
+    izraziti z elementarnimi funkcijami. Kljub temu bi lahko z dodatno analizo obravnavali njene lastnosti.
 
 \section{Linearne diferencialne enačbe z zamikom}
 
@@ -652,4 +661,9 @@ Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne ras
     \end{itemize}
 \end{trditev}
 
+
+
+\section{Viri in literatura}
+
+\printbibliography
 \end{document}
