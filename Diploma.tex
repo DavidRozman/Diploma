@@ -547,7 +547,7 @@ na desni strani enačbe bližata ničelni vrednosti, ko gre $T\to\infty$. Pri te
     Če je funkcija $g$ absolutno integrabilna na realni osi, potem je:
     \[\lim_{T\to\infty}\int_{-\infty}^{\infty}g(t)\sin(Tt)dt=0.\]
 \end{lema}
-Dokaz leme lahko bralec najde v viru \cite{dokazleme}
+\noindent Dokaz leme lahko bralec najde v viru \cite{dokazleme}.
 
 Ker smo predpostavili, da je $\int_0^{\infty}|f(t)|e^{-as}dt<\infty$, je torej funkcija 
 $f(r)e^{-ar}(u-r)$ absolutno integrabilna na vsakem zaprtem intervalu, ki ne vsebuje točke $r=u$. Po 
@@ -569,21 +569,19 @@ Vrednost zgornjega integrala je enaka $\pi$, zato za vsak $d>0$ velja:
 \[\lim_{T\to\infty}I=2\pi f(u)+\mathcal{O}(d).\]
 Ker je $d$ poljuben, lahko trdimo, da velja:
 \[\lim_{T\to\infty}\int_{-\infty}^{\infty}e^{(a+it)u}F(a+it)dt=2\pi f(u).\]
+S tem smo dokazali naslednji izrek.
 
 \begin{izrek}
-    Naj bo $f$ funkcija z naslednjimi lastnostmi:
+    Naj bo $f$ zvezna funkcija z naslednjimi lastnostmi:
     \begin{enumerate}
         \item[(a)]Integral $\int_0^{\infty}f(t)e^{-at}dt$ je absolutno konvergenten za nek $a>0$,
-        \item[(b)]$f$ ima omejene variacije v okolici točke $u>0$.  
+        \item[(b)]$f$ ima omejen odvod v okolici točke $u>0$.  
     \end{enumerate}
     Potem obstaja
     \[F(s)=\int_0^{\infty}e^{-st}f(t)dt\]
     za $\text{Re}(s)\geq a$. Za $b>a$ pa velja:
-    \[\lim_{T\to\infty}\frac{1}{2\pi}\int_{-T}^{T}e^{(b+it)u}F(b+it)dt=\frac{f(u^-)+f(u^+)}{2}.\]
+    \[\lim_{T\to\infty}\frac{1}{2\pi}\int_{-T}^{T}e^{(b+it)u}F(b+it)dt=f(u).\]
 \end{izrek}
-
-\noindent\textit{Opomba: }$f(u^-)$ in $f(u^+)$ tu označujeta levo in desno limito. Če je $f$ zvezna v $u$, se desna
-stran poenostavi v $f(u)$. \\
 
 
 S tem smo dobili formulo za izračun inverzne funkcije pri Laplaceovi transformaciji.
@@ -600,26 +598,26 @@ Končna formula za inverzno funkcijo je torej:
     podan bolj splošen začetni pogoj:
     \begin{equation} \label{eq3}
         \begin{split}
-            \dot{x}(t)=x(t-1), \quad x(t)=\varphi(t), \quad t\in[0,1].
+            \dot{x}(t)=x(t-1), \quad x(t)=\varphi(t), \quad t\in[-1,0].
         \end{split}
     \end{equation}
-    Obe strani pomnožimo z $e^{-st}$ in integriramo na intervalu $[1,\infty)$:
-     \[\int_{1}^{\infty}\dot{x}(t)e^{-st}dt = \int_{1}^{\infty}x(t-1)e^{-st}dt.\]
+    Obe strani pomnožimo z $e^{-st}$ in integriramo na intervalu $[0,\infty)$:
+     \[\int_{0}^{\infty}\dot{x}(t)e^{-st}dt = \int_{0}^{\infty}x(t-1)e^{-st}dt.\]
     Z uvedbo nove spremenljivke $u=t-1$ preoblikujemo desno stran enačbe:
     \begin{equation*}
         \begin{split}
-            \int_{1}^{\infty}x(t-1)e^{-st}dt &= \int_{0}^{\infty}x(u)e^{-s(u+1)}du \\
-             &= \int_{0}^{\infty}x(t)e^{-s(t+1)}dt \\
-             &= e^{-s}\left(\int_{1}^{\infty}x(t)e^{-st}dt + \int_{0}^{1}x(t)e^{-st}dt\right). 
+            \int_{0}^{\infty}x(t-1)e^{-st}dt &= \int_{-1}^{\infty}x(u)e^{-s(u+1)}du \\
+             &= \int_{-1}^{\infty}x(t)e^{-s(t+1)}dt \\
+             &= e^{-s}\left(\int_{0}^{\infty}x(t)e^{-st}dt + \int_{-1}^{0}x(t)e^{-st}dt\right). 
         \end{split}      
     \end{equation*}
     Na levi strani enačbe uporabimo integracijo per partes. Pri tem predpostavljamo, da za 
-    rešitev velja $x(t)e^{-st} \to 0$, ko $t \to\infty$.
-    \[\int_{1}^{\infty}\dot{x}(t)e^{-st}dt=-x(1)e^{-s}+s\int_{1}^{\infty}x(t)e^{-st}dt.\]
-    Sedaj upoštevajmo še, da za $t\in[0,1]$ velja $x(t)=\varphi(t)$. Enačbo (3) smo pretvorili na naslednjo obliko:
-    \[(s-e^{-s})\int_{1}^{\infty}x(t)e^{-st}dt=\varphi(1)e^{-s}+e^{-s}\int_0^1\varphi(t)e^{-st}dt.\]
+    rešitev velja $x(t)e^{-st} \to 0$, ko gre $t \to\infty$.
+    \[\int_{0}^{\infty}\dot{x}(t)e^{-st}dt=-x(0)e^{-s}+s\int_{0}^{\infty}x(t)e^{-st}dt.\]
+    Sedaj upoštevajmo še, da za $t\in[-1,0]$ velja $x(t)=\varphi(t)$. Enačbo (3) smo pretvorili na naslednjo obliko:
+    \[(s-e^{-s})\int_{0}^{\infty}x(t)e^{-st}dt=\varphi(0)e^{-s}+e^{-s}\int_{-1}^0\varphi(t)e^{-st}dt.\]
     Za $s-e^{-s}\neq 0$ dobimo torej:
-    \[\int_{1}^{\infty}x(t)e^{-st}dt=\frac{\varphi(1)e^{-s}+e^{-s}\int_0^1\varphi(t)e^{-st}dt}{s-e^{-s}}.\]
+    \[\int_{0}^{\infty}x(t)e^{-st}dt=\frac{\varphi(0)e^{-s}+e^{-s}\int_{-1}^0\varphi(t)e^{-st}dt}{s-e^{-s}}.\]
     Izraz na desni je zvezna funkcija spremenljivke $s$. Označimo jo z $G(s)$. Po izreku o inverzni
     transformaciji dobimo:
     \[x(t)=\int_{(c)}G(s)e^{st}ds.\]
