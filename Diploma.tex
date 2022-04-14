@@ -495,7 +495,7 @@ Da bi razumeli postopek, najprej ponovimo in predstavimo nekaj lastnosti omenjen
 
 \noindent V zgornji definiciji funkcije $F$ nismo podali njenega definicijskega območja, zato se je
 najprej potrebno vprašati, za katere $s\in\C$, je funkcija $F$ sploh definirana. Predpostavimo, da je
-$|f(t)|\leq e^{at}$ za $t\geq0$. Ker za $s\in\C$ velja $|e^{s}|=e^{\text{Re}(s)}$, imamo
+$|f(t)|\leq e^{at}$ za $a\in\R$ in $t\geq0$. Ker za $s\in\C$ velja $|e^{s}|=e^{\text{Re}(s)}$, imamo
 \[|e^{-st}f(t)| \leq ce^{-t\text{Re}(s)}e^{at}=ce^{-t(\text{Re}(s)-a)}.\]
 Če funkcijo na desni strani te neenačbe integriramo po $t\in [0,\infty)$, dobimo integral, ki je konvergenten za $\text{Re}(s)>a$.
 Laplaceova transformacija je torej preslikava, ki funkciji, definirani na $[0,\infty)$, priredi
@@ -569,7 +569,10 @@ Vrednost zgornjega integrala je enaka $\pi$, zato za vsak $d>0$ velja:
 \[\lim_{T\to\infty}I=2\pi f(u)+\mathcal{O}(d).\]
 Ker je $d$ poljuben, lahko trdimo, da velja:
 \[\lim_{T\to\infty}\int_{-\infty}^{\infty}e^{(a+it)u}F(a+it)dt=2\pi f(u).\]
-S tem smo dokazali naslednji izrek.
+S tem smo predstavili glavne korake za dokaz izreka, ki je naveden spodaj, pri čemer pa 
+smo predpostavili, da je $f$ dvakrat zvezno odvedljiva oz. da lahko poiščemo njen Taylorjev polinom drugega
+reda v vsaki točki. 
+Z nekaj dodatne analize lahko dokažemo tudi splošnejšo verzijo, ki je navedena spodaj. Dokaz najdemo v viru \cite{knjiga}.
 
 \begin{izrek}
     Naj bo $f$ zvezna funkcija z naslednjimi lastnostmi:
@@ -659,6 +662,44 @@ Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne ras
     \end{itemize}
 \end{trditev}
 
+
+
+\section{Linearni sistemi DDE}
+
+\begin{definicija}
+    Sistem linearnih DDE je podan z $$\dot{x}=Ax(t)+Bx(t-\tau)+f(t)\quad \text{za}\quad t\geq0,$$ kjer je
+    $A,B\in\R^{n\times n}$, $\tau>0$ in $f$ zvezna funkcija. Začetni pogoj je podan kot
+    $$x(t)=\phi(t)\quad \text{za}\quad t\in [-\tau,0],$$ kjer je $\phi$ zvezna funkcija. Če je $f(t)=0$, pravimo,
+    da je sistem homogen.
+\end{definicija}
+Za analizo sistemov DDE bomo uporabili Laplaceovo transformacijo. Najprej jo uporabimo na levi strani sistema:
+\begin{equation*}
+    \begin{split}
+        G_1(s)&= \int_0^{\infty}e^{-st}\dot{x}(t)dt \\
+            &= (e^{-st}x(t))\Bigr|_{0}^{\infty} + s\int_0^{\infty}e^{-st}x(t)dt \\
+            &= -\phi(0) + sX(s),
+    \end{split}      
+\end{equation*}
+kjer je $X(s)$ Laplaceova transformacija iskane funkcije.
+Ko transformiramo še desno stran, dobimo:
+\begin{equation*}
+    \begin{split}
+        G_2(s)&= \int_0^{\infty}e^{-st}\left(Ax(t)+Bx(t-\tau)+f(t)\right)dt \\
+            &= A\int_0^{\infty}e^{-st}x(t)dt+B\int_0^{\infty}e^{-st}x(t-\tau)dt+\int_0^{\infty}e^{-st}f(t)dt \\
+            &= AX(s) + B\left(\int_0^{\tau}e^{-st}\phi(t-\tau)dt+\int_{\tau}^{\infty}e^{-st}x(t-\tau)dt\right) + F(s) \\
+            &= AX(s) + B\left(\int_0^{\tau}e^{-st}\phi(t-\tau)dt+\int_{0}^{\infty}e^{-s(t+\tau)}x(t)dt\right) + F(s) \\
+            &= AX(s) + B\left(\int_0^{\tau}e^{-st}\phi(t-\tau)dt+e^{-st}X(s)\right)+F(s) \\
+            &= (A+e^{-st}B)X(s) + B\int_0^{\tau}e^{-st}\phi(t-\tau)dt+F(s) \\
+            &= (A+e^{-st}B)X(s) + B\Phi(s)+F(s).
+    \end{split}      
+\end{equation*}
+\textit{Opomba:} Pri izračunu smo predpostavili, da je funkcija $\phi$ ničelna na $(0,\infty)$. Funkcija $\Phi$ pa 
+označuje Laplaceovo transformacijo funkcije $\phi(t-\tau)$.
+
+\noindent Ko izenačimo $G_1$ in $G_2$, dobimo:
+\[X(s)=K(s)(\phi(0)+B\Phi(s)+F(s)),\]
+kjer je 
+\[K(s)=(sI-A-e^{-st}B)^{-1}.\]
 
 
 \section{Viri in literatura}
