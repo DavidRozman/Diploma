@@ -667,9 +667,19 @@ Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne ras
 \section{Linearni sistemi DDE}
 
 \begin{definicija}
-    Sistem linearnih DDE je podan z $$\dot{x}=Ax(t)+Bx(t-\tau)+f(t)\quad \text{za}\quad t\geq0,$$ kjer je
+    Sistem linearnih DDE je podan z 
+    \begin{equation} \label{eq5}
+        \begin{split}
+            \dot{x}=Ax(t)+Bx(t-\tau)+f(t)\quad \text{za}\quad t\geq0,
+        \end{split}
+    \end{equation} kjer je
     $A,B\in\R^{n\times n}$, $\tau>0$ in $f$ zvezna funkcija. Začetni pogoj je podan kot
-    $$x(t)=\phi(t)\quad \text{za}\quad t\in [-\tau,0],$$ kjer je $\phi$ zvezna funkcija. Če je $f(t)=0$, pravimo,
+    \begin{equation} \label{eq6}
+        \begin{split}
+            x(t)=\phi(t)\quad \text{za}\quad t\in [-\tau,0],
+        \end{split}
+    \end{equation}
+    kjer je $\phi$ zvezna funkcija. Če je $f(t)=0$, pravimo,
     da je sistem homogen.
 \end{definicija}
 Za analizo sistemov DDE bomo uporabili Laplaceovo transformacijo. Najprej jo uporabimo na levi strani sistema:
@@ -700,7 +710,95 @@ označuje Laplaceovo transformacijo funkcije $\phi(t-\tau)$.
 \[X(s)=K(s)(\phi(0)+B\Phi(s)+F(s)),\]
 kjer je 
 \[K(s)=(sI-A-e^{-st}B)^{-1}.\]
+Da bi dobili lepo rešitev enačbe, moramo poiskati inverzno transformacijo $k$ funkcije $K$. Ta je rešitev \eqref{eq5}
+ za $f=0$ in z začetnim pogojem
+\[
+        \xi(\theta) =
+        \begin{dcases}
+            I &\quad \text{za  } \theta=0 \\
+            0 &\quad \text{za  } \theta \in [-\tau,0). \\
+        \end{dcases}
+    \]
+Kljub nezveznosti funkcije $\xi$ pri $\theta=0$ funkcija $k$ obstaja za $t\geq0$. Pravimo ji fundamentalna matrična
+rešitev \eqref{eq5}.
 
+\begin{lema}
+    Rešitev enačbe \eqref{eq5} pri začetnem pogoju \eqref{eq6} lahko izrazimo kot
+    \[x(t):=x(t;\phi,f)=x(t;\phi,0)+x(t;0,f).\]
+\end{lema}
+
+\begin{proof}
+    Za $t\in [0,\tau]$ velja:
+    \begin{equation*}
+        \begin{split}
+            \dot{x}(t;\phi,f) &= Ax(t;\phi,f)+B\phi(t-\tau)+f(t) \\
+            \dot{x}(t;\phi,0)  &= Ax(t;\phi,0)+B\phi(t-\tau)\\
+            \dot{x}(t;0,f)  &= Ax(t;0,f)+f(t).
+        \end{split}      
+    \end{equation*}
+Za $t\in[0,\tau]$ je torej
+\[\dot{x}(t;\phi,0)+\dot{x}(t;0,f)=A\left(x(t;\phi,0)+x(t;0,f)\right)+B\phi(t-\tau)+f(t).\]
+Sledi, da je
+\[x(t):=x(t;\phi,f)=x(t;\phi,0)+x(t;0,f).\]
+Po enoličnosti rešitve je to res za $t\geq0$.
+\end{proof}
+
+\begin{zgled}
+    Podan je homogen linearen sistem DDE
+    \[\dot{x}=Ax(t)+Bx(t-\tau)\quad \text{za}\quad t\geq0,\]
+    kjer je $A=
+    \begin{bmatrix}
+        0 & 1 \\
+        -2 & 3 
+    \end{bmatrix}$
+    in $B=
+    \begin{bmatrix}
+        0 & 1 \\
+        1 & 0 
+    \end{bmatrix}.$
+    Začetni pogoj je podan kot 
+    $\phi(t)=\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}$
+    za $t\in[-\tau,0]$. \\
+    Najprej izračunamo lastne vrednosti matrike $A$ in pripadajoče lastne vektorje:
+    \[\text{det}(A-\lambda I)=\lambda^2-3\lambda+2=0.\]
+    Lastni vrednosti $A$ sta torej $\lambda_1=1$ in $\lambda_2=2$.
+    Iz homogenih sistemov
+    \[(A-\lambda_1 I)v_1=\begin{bmatrix}
+        0 \\
+        0 
+    \end{bmatrix}
+    \quad \text{in} \quad
+    (A-\lambda_2 I)v_2=\begin{bmatrix}
+        0 \\
+        0 
+    \end{bmatrix}\]
+    dobimo lastna vektorja $v_1=\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}$
+    in  $v_2=\begin{bmatrix}
+        1 \\
+        2 
+    \end{bmatrix}$.
+    Rešitve sistema 
+    \[\dot{x}(t)=Ax(t)\]
+    so torej 
+    \[x_h(t)=c_1e^t\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}
+    +c_2e^{2t}\begin{bmatrix}
+        1 \\
+        2 
+    \end{bmatrix}.\]
+    za konstanti $c_1$ in $c_2$. 
+    Za $t\in[0,\tau]$ je
+    
+
+\end{zgled}
 
 \section{Viri in literatura}
 
