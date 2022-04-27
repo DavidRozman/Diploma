@@ -796,7 +796,113 @@ Po enoličnosti rešitve je to res za $t\geq0$.
     \end{bmatrix}.\]
     za konstanti $c_1$ in $c_2$. 
     Za $t\in[0,\tau]$ je
-    
+    \begin{equation*}
+        \begin{split}
+            \dot{x}(t) &= Ax(t)+B\phi(t-\tau) \\
+            &= \begin{bmatrix}
+                0 & 1 \\
+                -2 & 3 
+            \end{bmatrix}x(t)+\begin{bmatrix}
+                0 & 1 \\
+                1 & 0 
+            \end{bmatrix}
+            \begin{bmatrix}
+                1  \\
+                1  
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+                0 & 1 \\
+                -2 & 3 
+            \end{bmatrix}x(t)+
+            \begin{bmatrix}
+                1  \\
+                1  
+            \end{bmatrix}.
+        \end{split}
+    \end{equation*}
+    Iščemo partikularno rešitev 
+    \[x_p(t)=\begin{bmatrix}
+        p_1  \\
+        p_2  
+    \end{bmatrix}\]
+    za neki konstantni $p_1$ in $p_2$, ki reši ta sistem. $x_p(t)$ vstavimo v enačbo in dobimo
+    \[\dot{x_p}(t)=\begin{bmatrix}
+        0  \\
+        0  
+    \end{bmatrix} = \begin{bmatrix}
+        0 & 1 \\
+        -2 & 3 
+    \end{bmatrix}
+    \begin{bmatrix}
+        p_1  \\
+        p_2  
+    \end{bmatrix} +
+    \begin{bmatrix}
+        1  \\
+        1  
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        p_2+1  \\
+        -p_1+3p_2+1  
+    \end{bmatrix}.\]
+    Sledi, da je $p_1=-2$ in $p_2=-1$. Partikularna rešitev je torej
+    \[x_p(t)=
+    \begin{bmatrix}
+        -2  \\
+        -1  
+    \end{bmatrix}.\]
+    Za $t\in[0,\tau]$ je splošna rešitev sistema
+    \[x(t)=x_h(t)+x_p(t)= c_1e^t\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}
+    +c_2e^{2t}\begin{bmatrix}
+        1 \\
+        2 
+    \end{bmatrix} + \begin{bmatrix}
+        -2  \\
+        -1  
+    \end{bmatrix}.\]
+    Z upoštevanjem začetnega pogoja določimo še konstanti $c_1$ in $c_2$:
+    \[x(0)=\begin{bmatrix}
+        1  \\
+        1  
+    \end{bmatrix} = c_1 \begin{bmatrix}
+        1  \\
+        1  
+    \end{bmatrix} + c_2 \begin{bmatrix}
+        1  \\
+        2  
+    \end{bmatrix} + \begin{bmatrix}
+        -2  \\
+        -1  
+    \end{bmatrix} = \begin{bmatrix}
+        c_1 + c_2 -2  \\
+        c_1+2c_2 -1  
+    \end{bmatrix}.\]
+    Dobimo, da je $c_1=4$ in $c_2=-1$. Končna rešitev našega sistema je torej 
+    \[x(t)=x_h(t)+x_p(t)= 4e^t\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}
+    -e^{2t}\begin{bmatrix}
+        1 \\
+        2 
+    \end{bmatrix} + \begin{bmatrix}
+        -2  \\
+        -1  
+    \end{bmatrix}.\]
+    Podobno kot v tretjem poglavju bi lahko induktivno poiskali rešitve na vseh intervalih oblike
+    $[(n-1)\tau,\tau], n\in\N$.
+
+\subsection{Reševanje sistemov v splošnem}
+V tem podpoglavju bomo izpeljali splošen postopek za reševanje linearnih sistemov DDE oblike 
+\[\dot{x}(t)=L(x_t),\]
+kjer je $L:C\to\C^n$ za $C=C([-\tau,0])$, $x_t$ pa je definiran kot 
+\[x_t(\theta):=x(t+\theta) \quad \text{za} \quad -\tau\leq\theta\leq0.\]
+Rešitve sistema iščemo z nastavkom 
+\[x(t)=e^{\lambda t}v, \quad v\neq0,\]
+kjer je $\lambda\in\C$ in  $v\in\C^n$.
 
 \end{zgled}
 
