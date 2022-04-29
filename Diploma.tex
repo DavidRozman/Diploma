@@ -46,6 +46,8 @@
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
+\newcommand{\okr}{\text{exp}_{\lambda}}
+
 
 % ukaz za slovarsko geslo
 \newlength{\odstavek}
@@ -670,7 +672,7 @@ Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne ras
     Sistem linearnih DDE je podan z 
     \begin{equation} \label{eq5}
         \begin{split}
-            \dot{x}=Ax(t)+Bx(t-\tau)+f(t)\quad \text{za}\quad t\geq0,
+            \dot{x}(t)=Ax(t)+Bx(t-\tau)+f(t)\quad \text{za}\quad t\geq0,
         \end{split}
     \end{equation} kjer je
     $A,B\in\R^{n\times n}$, $\tau>0$ in $f$ zvezna funkcija. Začetni pogoj je podan kot
@@ -895,16 +897,63 @@ Po enoličnosti rešitve je to res za $t\geq0$.
     Podobno kot v tretjem poglavju bi lahko induktivno poiskali rešitve na vseh intervalih oblike
     $[(n-1)\tau,\tau], n\in\N$.
 
+\end{zgled}
+
+
 \subsection{Reševanje sistemov v splošnem}
 V tem podpoglavju bomo izpeljali splošen postopek za reševanje linearnih sistemov DDE oblike 
 \[\dot{x}(t)=L(x_t),\]
-kjer je $L:C\to\C^n$ za $C=C([-\tau,0])$, $x_t$ pa je definiran kot 
+kjer je $L:C\to\C^n$ za $C=C([-\tau,0])$ linearna preslikava, $x_t$ pa je definiran kot 
 \[x_t(\theta):=x(t+\theta) \quad \text{za} \quad -\tau\leq\theta\leq0.\]
 Rešitve sistema iščemo z nastavkom 
 \[x(t)=e^{\lambda t}v, \quad v\neq0,\]
-kjer je $\lambda\in\C$ in  $v\in\C^n$.
-
-\end{zgled}
+kjer je $\lambda\in\C$ in  $v\in\C^n$. Uvedimo še novo oznako $\text{exp}_{\lambda}(\theta):=e^{\lambda\theta}$.
+Potem velja
+\[x_t(\theta)=x(t+\theta)=e^{\lambda(t+\theta)}v=e^{\lambda t}e^{\lambda\theta}v=e^{\lambda t}\text{exp}_{\lambda}(\theta)v.\]
+Ker je $L$ linearna preslikava in $e^{\lambda t}\in\C$ za vse $\lambda$ in $t$, dobimo z upoštevanjem nastavka naslednji
+pogoj:
+\[\dot{x}(t)=\lambda e^{\lambda t}v=L(x_t)=L(e^{\lambda t}(\text{exp}_{\lambda})v)=e^{\lambda t}L((\text{exp}_{\lambda})v).\]
+Obe strani delimo z $e^{\lambda t}$ in dobimo 
+\[ \lambda v=L((\okr)v).\]
+Naj bo $\{e_1,e_2,\dots,e_n\}$ standardna baza prostora $\C^n$. Potem je 
+$v=\sum_{i=1}^nv_ie_i$, kjer je $v_i\in\C$ za vse $i$. Iz linearnosti preslikave $L$ sledi 
+\[L((\okr)v)=\sum_{i=1}^{n}v_i((\okr)e_i).\]
+Definirajmo $n\times n$ matriko $L_\lambda$ na sledeči način:
+\[ L_{\lambda}=[L((\okr)e_j)]_{j=1,\dots,n}.\]
+$j$-ti stolpec matrike je torej vektor $L((\okr)e_j$. Potem je
+\begin{equation*}
+    \begin{split}
+        \lambda v &= L((\okr)v) \\
+                &= \sum_{j=1}^{n}v_jL((\okr)e_j) \\
+                &= (L((\okr)e_1)|(L((\okr)e_2)|\cdots|(L((\okr)e_n)) \cdot (v_1,v_2,\dots,v_n)^{T} \\
+                &= L_{\lambda}v.
+    \end{split}
+\end{equation*}
+Ker je torej $L_\lambda v =\lambda v$ in $v\neq0$, je $x(t)=e^{\lambda t}v$ rešitev sistema natanko tedaj, ko je
+$\lambda$ lastna vrednost matrike $L_\lambda$, oziroma
+\[ \text{det}(L_\lambda-\lambda I)=0,\]
+vektor $v$ pa njen lastni vektor.
+Poglejmo si sedaj homogen sistem 
+\[ \dot{x}(t)=Ax(t)+Bx(t-\tau),\]
+z $A$ in $B$ $n\times n$ matriki in zamik $\tau>0$. Linearno preslikavo $L$ definirajmo na naslednji način:
+\[L(y)=Ay(0)+By(-\tau).\]
+Matrika $L_\lambda$ je v tem primeru
+\begin{equation*}
+    \begin{split}
+        L_\lambda &= (L_i((\okr)e_j)) \\
+                &= ((A\okr(0)e_j+B\okr(-\tau)e_j)_i) \\
+                &= ((Ae_j+e^{-\lambda\tau}Be_j)_i) \\
+                &= (Ae_1+e^{-\lambda\tau}Be_1|Ae_2+e^{-\lambda\tau}Be_2|\cdots|Ae_n+e^{-\lambda\tau}Be_n) \\
+                &= (A+e^{-\lambda\tau}B)(e_1,e_2,\dots,e_n) \\
+                &= (A+e^{-\lambda\tau}B)I \\
+                &= A+e^{-\lambda\tau}B.
+    \end{split}
+\end{equation*}
+Karakteristična enačba sistema je torej
+\[\text{det}(A+e^{-\lambda\tau}B-\lambda I)=0.\]
+Rešitve sistema $\dot{x}(t)=Ax(t)+Bx(t-\tau)$ so torej oblike $x(t)=e^{\lambda t}v$, kjer je $\lambda$ lastna vrednost in $v$ pripadajoči lastni 
+vektor matrike $A+e^{-\lambda\tau}B$. Opazimo, da je reševanje linearnih sistemov DDE precej bolj zahtevno kot
+linearnih reševanje sistemov NDE, saj tu karakteristična funkcija ni več polinom.
 
 \section{Viri in literatura}
 
