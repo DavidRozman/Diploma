@@ -510,8 +510,9 @@ kompleksno funkcijo, definirano na polravnini $\{s\in\C | \text{Re}(s)>a\}$, za 
 \end{zgled}
 
 \subsection{Inverzna transformacija}
-Kot se bo izkazalo kasneje, bo za uporabo Laplaceove transformacije pri reševanju DDE ključno, ali znamo poiskati tudi njen inverz.
-Natančneje, recimo, da imamo podano funkcijo
+Izkazalo se bo, da je za uporabo Laplaceove transformacije pri reševanju DDE ključno, 
+ali znamo poiskati tudi njen inverz.
+Recimo, da imamo podano funkcijo
 $F$ in želimo poiskati funkcijo $f$, katere Laplaceova transformacija je enaka $F$.
 Zanimalo nas bo, kako to storiti in katerim pogojem mora zadoščati funkcija $f$.
 
@@ -684,7 +685,7 @@ Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne ras
     kjer je $\phi$ zvezna funkcija. Če je $f(t)=0$, pravimo,
     da je sistem homogen.
 \end{definicija}
-Za analizo sistemov DDE bomo uporabili Laplaceovo transformacijo. Najprej jo uporabimo na levi strani sistema:
+Za analizo linearnih sistemov DDE bomo uporabili Laplaceovo transformacijo. Najprej jo uporabimo na levi strani sistema:
 \begin{equation*}
     \begin{split}
         G_1(s)&= \int_0^{\infty}e^{-st}\dot{x}(t)dt \\
@@ -903,7 +904,7 @@ Po enoličnosti rešitve je to res za $t\geq0$.
 \subsection{Reševanje sistemov v splošnem}
 V tem podpoglavju bomo izpeljali splošen postopek za reševanje linearnih sistemov DDE oblike 
 \[\dot{x}(t)=L(x_t),\]
-kjer je $L:C\to\C^n$ za $C=C([-\tau,0])$ linearna preslikava, $x_t$ pa je definiran kot 
+kjer je $L:C\to\C^n$ za $C=C([-\tau,0],\C^n)$ linearna preslikava, $x_t$ pa je definiran kot 
 \[x_t(\theta):=x(t+\theta) \quad \text{za} \quad -\tau\leq\theta\leq0.\]
 Rešitve sistema iščemo z nastavkom 
 \[x(t)=e^{\lambda t}v, \quad v\neq0,\]
