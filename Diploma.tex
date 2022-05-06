@@ -670,19 +670,19 @@ Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne ras
 \section{Linearni sistemi DDE}
 
 \begin{definicija}
-    Sistem linearnih DDE je podan z 
+    Sistem linearnih DDE s konstantnimi koeficienti je podan z 
     \begin{equation} \label{eq5}
         \begin{split}
             \dot{x}(t)=Ax(t)+Bx(t-\tau)+f(t)\quad \text{za}\quad t\geq0,
         \end{split}
-    \end{equation} kjer je
-    $A,B\in\R^{n\times n}$, $\tau>0$ in $f$ zvezna funkcija. Začetni pogoj je podan kot
+    \end{equation} kjer so
+    $A,B\in\R^{n\times n}$, $\tau>0$ in $f$ zvezna funkcija. Začetni pogoj je znova podan s predpisom
     \begin{equation} \label{eq6}
         \begin{split}
             x(t)=\phi(t)\quad \text{za}\quad t\in [-\tau,0],
         \end{split}
     \end{equation}
-    kjer je $\phi$ zvezna funkcija. Če je $f(t)=0$, pravimo,
+    kjer je $\phi$ zvezna funkcija. Če je $f(t)\equiv0$, pravimo,
     da je sistem homogen.
 \end{definicija}
 Za analizo linearnih sistemov DDE bomo uporabili Laplaceovo transformacijo. Najprej jo uporabimo na levi strani sistema:
@@ -706,15 +706,15 @@ Ko transformiramo še desno stran, dobimo:
             &= (A+e^{-st}B)X(s) + B\Phi(s)+F(s).
     \end{split}      
 \end{equation*}
-\textit{Opomba:} Pri izračunu smo predpostavili, da je funkcija $\phi$ ničelna na $(0,\infty)$. Funkcija $\Phi$ pa 
+Pri izračunu smo predpostavili, da je funkcija $\phi$ ničelna na $(0,\infty)$. Funkcija $\Phi$ pa 
 označuje Laplaceovo transformacijo funkcije $\phi(t-\tau)$.
 
-\noindent Ko izenačimo $G_1$ in $G_2$, dobimo:
+Ko izenačimo $G_1$ in $G_2$, dobimo:
 \[X(s)=K(s)(\phi(0)+B\Phi(s)+F(s)),\]
 kjer je 
 \[K(s)=(sI-A-e^{-st}B)^{-1}.\]
-Da bi dobili lepo rešitev enačbe, moramo poiskati inverzno transformacijo $k$ funkcije $K$. Ta je rešitev \eqref{eq5}
- za $f=0$ in z začetnim pogojem
+Da bi dobili lepo rešitev enačbe, moramo poiskati inverzno transformacijo funkcije $K$, ki jo bomo označili s $k$.
+Spomnimo, da mora taka funkcija rešiti sistem \eqref{eq5} za $f=0$ in zadostiti začetnemu pogoju
 \[
         \xi(\theta) =
         \begin{dcases}
@@ -723,10 +723,10 @@ Da bi dobili lepo rešitev enačbe, moramo poiskati inverzno transformacijo $k$ 
         \end{dcases}
     \]
 Kljub nezveznosti funkcije $\xi$ pri $\theta=0$ funkcija $k$ obstaja za $t\geq0$. Pravimo ji fundamentalna matrična
-rešitev \eqref{eq5}.
+rešitev sistema \eqref{eq5}.
 
 \begin{lema}
-    Rešitev enačbe \eqref{eq5} pri začetnem pogoju \eqref{eq6} lahko izrazimo kot
+    Rešitev sistema \eqref{eq5} pri začetnem pogoju \eqref{eq6} lahko izrazimo kot
     \[x(t):=x(t;\phi,f)=x(t;\phi,0)+x(t;0,f).\]
 \end{lema}
 
@@ -883,7 +883,7 @@ Po enoličnosti rešitve je to res za $t\geq0$.
         c_1 + c_2 -2  \\
         c_1+2c_2 -1  
     \end{bmatrix}.\]
-    Dobimo, da je $c_1=4$ in $c_2=-1$. Končna rešitev našega sistema je torej 
+    Dobimo, da je $c_1=4$ in $c_2=-1$. Končna rešitev je torej 
     \[x(t)=x_h(t)+x_p(t)= 4e^t\begin{bmatrix}
         1 \\
         1 
@@ -894,7 +894,51 @@ Po enoličnosti rešitve je to res za $t\geq0$.
     \end{bmatrix} + \begin{bmatrix}
         -2  \\
         -1  
+    \end{bmatrix}, \quad t\in[0,\tau].\]
+    Poiščimo še rešitev za $t\in[\tau,2\tau]$. Rešitve sistema $\dot{x}=Ax(t)$ so še vedno oblike
+    \[ x_h(t)=c_1e^t\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}
+    +c_2e^{2t}\begin{bmatrix}
+        1 \\
+        2 
     \end{bmatrix}.\]
+    Za $t\in[\tau,2\tau]$ je
+    \begin{equation*}
+        \begin{split}
+            \dot{x}(t) &= Ax(t)+Bx(t-\tau) \\
+            &= \begin{bmatrix}
+                0 & 1 \\
+                -2 & 3 
+            \end{bmatrix}x(t)+\begin{bmatrix}
+                0 & 1 \\
+                1 & 0 
+            \end{bmatrix}
+            \begin{bmatrix}
+                4e^{t-\tau}-e^{2(t-\tau)}-2  \\
+                4e^{t-\tau}-2e^{2(t-\tau)}-1  
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+                0 & 1 \\
+                -2 & 3 
+            \end{bmatrix}x(t)+
+            \begin{bmatrix}
+                4e^{t-\tau}-2e^{2(t-\tau)}-1  \\
+                4e^{t-\tau}-e^{2(t-\tau)}-2  
+            \end{bmatrix}.
+        \end{split}
+    \end{equation*}
+    Partikularno rešitev tokrat iščemo z nastavkom
+    \[x_p(t)=\begin{bmatrix}
+        p_1e^t+p_2e^{2t}+p_3  \\
+        p_4e^{t}+p_5e^{2t}+p_6  
+    \end{bmatrix}. \]
+    Vstavimo v sistem in dobimo
+    \[\dot{x_p}(t)= \begin{bmatrix}
+        4e^{t-\tau}-e^{2(t-\tau)}-2  \\
+        4e^{t-\tau}-2e^{2(t-\tau)}-1  
+    \end{bmatrix} \]
     Podobno kot v tretjem poglavju bi lahko induktivno poiskali rešitve na vseh intervalih oblike
     $[(n-1)\tau,\tau], n\in\N$.
 
@@ -904,7 +948,7 @@ Po enoličnosti rešitve je to res za $t\geq0$.
 \subsection{Reševanje sistemov v splošnem}
 V tem podpoglavju bomo izpeljali splošen postopek za reševanje linearnih sistemov DDE oblike 
 \[\dot{x}(t)=L(x_t),\]
-kjer je $L:C\to\C^n$ za $C=C([-\tau,0],\C^n)$ linearna preslikava, $x_t$ pa je definiran kot 
+kjer je $L:C\to\C^n$ za $C=\mathcal{C}([-\tau,0],\C^n)$ linearna preslikava, $x_t$ pa je definiran kot 
 \[x_t(\theta):=x(t+\theta) \quad \text{za} \quad -\tau\leq\theta\leq0.\]
 Rešitve sistema iščemo z nastavkom 
 \[x(t)=e^{\lambda t}v, \quad v\neq0,\]
@@ -921,7 +965,7 @@ $v=\sum_{i=1}^nv_ie_i$, kjer je $v_i\in\C$ za vse $i$. Iz linearnosti preslikave
 \[L((\okr)v)=\sum_{i=1}^{n}v_i((\okr)e_i).\]
 Definirajmo $n\times n$ matriko $L_\lambda$ na sledeči način:
 \[ L_{\lambda}=[L((\okr)e_j)]_{j=1,\dots,n}.\]
-$j$-ti stolpec matrike je torej vektor $L((\okr)e_j$. Potem je
+$j$-ti stolpec matrike je torej vektor $L((\okr)e_j)$. Potem je
 \begin{equation*}
     \begin{split}
         \lambda v &= L((\okr)v) \\
@@ -934,7 +978,7 @@ Ker je torej $L_\lambda v =\lambda v$ in $v\neq0$, je $x(t)=e^{\lambda t}v$ reš
 $\lambda$ lastna vrednost matrike $L_\lambda$, oziroma
 \[ \text{det}(L_\lambda-\lambda I)=0,\]
 vektor $v$ pa njen lastni vektor.
-Poglejmo si sedaj homogen sistem 
+Poglejmo si znova homogen sistem 
 \[ \dot{x}(t)=Ax(t)+Bx(t-\tau),\]
 z $A$ in $B$ $n\times n$ matriki in zamik $\tau>0$. Linearno preslikavo $L$ definirajmo na naslednji način:
 \[L(y)=Ay(0)+By(-\tau).\]
@@ -958,5 +1002,5 @@ linearnih reševanje sistemov NDE, saj tu karakteristična funkcija ni več poli
 
 \section{Viri in literatura}
 
-\printbibliography
+\overfullrule=0mm\printbibliography
 \end{document}
