@@ -725,6 +725,42 @@ Spomnimo, da mora taka funkcija rešiti sistem \eqref{eq5} za $f=0$ in zadostiti
 Kljub nezveznosti funkcije $\xi$ pri $\theta=0$ funkcija $k$ obstaja za $t\geq0$. Pravimo ji fundamentalna matrična
 rešitev sistema \eqref{eq5}.
 
+Naslednji izrek za bolj splošne sisteme DDE nam bo podal pomemben rezultat o enoličnosti in obstoju rešitve.
+
+\begin{izrek}
+    Podan je linearen sistem DDE oblike:
+    \begin{equation}\sum_{i=0}^m\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right)=f(t),\end{equation}
+    kjer je 
+    \[0=\tau_0<\tau_1<\dots<\tau_m, \quad \det(A)\neq0,\]
+    pri začetnem pogoju
+    \[x(t)=\phi(t), \quad t \in[0,\tau_m].\]
+    Naj bo $\phi$ zvezno odvedljiva na $[0,\tau_m]$ in $f$ zvezna na $[0,\infty)$. 
+    Označimo še $S = \{\sum_{i=1}^mj_i\tau_i|j_i\in\Z\}$ in  $S_1=S\cap(\tau_m,\infty)$.
+    Potem obstaja natanko ena rešitev
+    sistema za $t\geq0$, ki je zvezna in odvedljiva na $[0,\infty)$ razen morda na $S_1$.
+\end{izrek}
+
+\noindent\textit{Opomba pred dokazom:} Če vzamemo $A_0=I$, $A_i=0$ za vse $i\neq0$, $B_0\neq0$, $B_i\neq0$ za nek $i\neq0$ ter 
+$B_j=0$ za $j\neq0,i$, smo sistem prevedli na obliko (5) z zamikom $\tau_i$.
+
+\begin{proof}
+    Ker je $A_0$ obrnljiva, lahko sistem (7) pomnožimo z $A_0^{-1}$. Brez škode za splošnost lahko zato predpostavimo, da 
+    za sistem (7) velja $A_0=I$. Definirajmo:
+    \[g(t)=f(t)-\sum_{i=1}^{m}\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right).\]
+    Ker je $f$ zvezna na $[0,\infty)$ in $\phi$ zvezno odvedljiva na $[0,\tau_m]$, je $g$ zvezna na 
+    $[\tau_m,\tau_m+\tau_1]$. Po integraciji sledi, da obstaja enolična funkcija $x(t)$, ki zadošča sistemu (7) na 
+    $(\tau_m,\tau_m+\tau_1)$ in začetnemu pogoju. Ta funkcija je zvezno odvedljiva na $[0,\tau_m+\tau_1]$, razen 
+    morda v točki $t=\tau_m$. Sledi, da je 
+    $g$ zvezna na $[\tau_m,\tau_m+2\tau_1]$ razen morda v točkah $t=\tau_m+\tau_j$, $j=1,\dots,m$, $t<\tau_m+2\tau_1$.
+    Z integracijo 
+    razširimo rešitev na $[0,\tau_m+2\tau_1]$. Tu je rešitev zvezna, zadošča sistemu na $(\tau_m,\tau_m+2\tau_1)$
+    razen morda v točkah $t=\tau_m+\tau_j$, $j=1,\dots,m$, $t<\tau_m+2\tau_1$ in je odvedljiva na $[0,\tau_m+2\tau_1]$, razen 
+    morda v točkah $t=\tau_m+\tau_j$, $j=0,\dots,m$, $t<\tau_m+2\tau_1$.
+    Postopek lahko induktivno ponavljamo v neskočnčnost. Vidimo, da je
+    rešitev $x(t)$ zvezna na $[0,\infty)$ in zvezno odvedljiva na $(0,\infty)$, razen morda na $S_1$.
+
+\end{proof}
+
 \begin{lema}
     Rešitev sistema \eqref{eq5} pri začetnem pogoju \eqref{eq6} lahko izrazimo kot
     \[x(t):=x(t;\phi,f)=x(t;\phi,0)+x(t;0,f).\]
