@@ -734,10 +734,13 @@ Naslednji izrek za bolj splošne sisteme DDE nam bo podal pomemben rezultat o en
     \[0=\tau_0<\tau_1<\dots<\tau_m, \quad \det(A)\neq0,\]
     pri začetnem pogoju
     \[x(t)=\phi(t), \quad t \in[0,\tau_m].\]
-    Naj bo $\phi$ zvezno odvedljiva na $[0,\tau_m]$ in $f$ zvezna na $[0,\infty)$. 
-    Označimo še $S = \{\sum_{i=1}^mj_i\tau_i|j_i\in\Z\}$ in  $S_1=S\cap(\tau_m,\infty)$.
-    Potem obstaja natanko ena rešitev
-    sistema za $t\geq0$, ki je zvezna in odvedljiva na $[0,\infty)$ razen morda na $S_1$.
+    Z $S$ označimo množico točk oblike $t=\sum_{i=0}^{m}j_i\tau_i$, kjer so $j_i\in\Z$. Naj bo še $S_1=S\cap[\tau_m,m\infty)$ in
+    $S_2=S\cap(\tau_m,m\infty)$. Naj bo vektor $\phi$ reda $\mathcal{C^1}([0,\tau_m])$ in $f$ reda $\mathcal{C^0}([0,\infty)$,
+    razen morda za kočno mnogo točk nezveznosti na $S_1$. Potem obstaja natanko ena funkcija $x(t)$, ki je zvezna 
+    za $t\geq0$, zadošča začetnemu pogoju in reši sistem (7) za $t\geq\tau_m$, $t\notin S_2$. Nadalje, $x(t)$ je reda
+    $\mathcal{C^1}$ za $t>0$, $t\notin S_1$. Če je $f$ zvezna na $[0,\infty)$, je $x(t)$ reda $\mathcal{C^1}$ za vse $t>0$ in 
+    reši sistem (7) za vse $t>\tau_m$ natanko tedaj, ko je zvezno odvedljiva v točki $t=\tau_m$. To je natanko tedaj, ko velja
+    $\sum_{i=0}^m\left(A_ig'(\tau_m-\tau_i)+B_ig(\tau_m-\tau_i)\right)=f(\tau_m)$.
 \end{izrek}
 
 \noindent\textit{Opomba pred dokazom:} Če vzamemo $A_0=I$, $A_i=0$ za vse $i\neq0$, $B_0\neq0$, $B_i\neq0$ za nek $i\neq0$ ter 
@@ -747,18 +750,22 @@ $B_j=0$ za $j\neq0,i$, smo sistem prevedli na obliko (5) z zamikom $\tau_i$.
     Ker je $A_0$ obrnljiva, lahko sistem (7) pomnožimo z $A_0^{-1}$. Brez škode za splošnost lahko zato predpostavimo, da 
     za sistem (7) velja $A_0=I$. Definirajmo:
     \[g(t)=f(t)-\sum_{i=1}^{m}\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right).\]
-    Ker je $f$ zvezna na $[0,\infty)$ in $\phi$ zvezno odvedljiva na $[0,\tau_m]$, je $g$ zvezna na 
-    $[\tau_m,\tau_m+\tau_1]$. Po integraciji sledi, da obstaja enolična funkcija $x(t)$, ki zadošča sistemu (7) na 
-    $(\tau_m,\tau_m+\tau_1)$ in začetnemu pogoju. Ta funkcija je zvezno odvedljiva na $[0,\tau_m+\tau_1]$, razen 
-    morda v točki $t=\tau_m$. Sledi, da je 
-    $g$ zvezna na $[\tau_m,\tau_m+2\tau_1]$ razen morda v točkah $t=\tau_m+\tau_j$, $j=1,\dots,m$, $t<\tau_m+2\tau_1$.
+    Ker je $f$ reda $\mathcal{C^0}$ na $[0,\infty)$ razen na $S_1$ in $\phi$ reda $\mathcal{C^1}$ na $[0,\tau_m]$, je
+    $g$ reda $\mathcal{C^0}$ na $[\tau_m,\tau_m+\tau_1]$. Po integraciji sledi, da obstaja enolična funkcija $x(t)$, ki zadošča sistemu (7) na 
+    $(\tau_m,\tau_m+\tau_1)$ in začetnemu pogoju. Ta funkcija je reda $\mathcal{C^1}$ na $[0,\tau_m+\tau_1]$ razen morda v 
+    točki $t=\tau_m$. Sledi, da je 
+    $g$ reda $\mathcal{C^0}$ na $[\tau_m,\tau_m+2\tau_1]$ razen morda v točkah $t=\tau_m+\tau_j$, $j=1,\dots,m$, $t<\tau_m+2\tau_1$.
+    
     Z integracijo 
-    razširimo rešitev na $[0,\tau_m+2\tau_1]$. Tu je rešitev zvezna, zadošča sistemu na $(\tau_m,\tau_m+2\tau_1)$
-    razen morda v točkah $t=\tau_m+\tau_j$, $j=1,\dots,m$, $t<\tau_m+2\tau_1$ in je odvedljiva na $[0,\tau_m+2\tau_1]$, razen 
+    razširimo rešitev na $[0,\tau_m+2\tau_1]$. 
+    Tu je rešitev reda $\mathcal{C^0}$, zadošča sistemu na $(\tau_m,\tau_m+2\tau_1)$
+    razen morda v točkah $t=\tau_m+\tau_j$, $j=1,\dots,m$, $t<\tau_m+2\tau_1$ in reda $\mathcal{C^1}$ na $[0,\tau_m+2\tau_1]$, razen 
     morda v točkah $t=\tau_m+\tau_j$, $j=0,\dots,m$, $t<\tau_m+2\tau_1$.
     Postopek lahko induktivno ponavljamo v neskočnčnost. Vidimo, da je
-    rešitev $x(t)$ zvezna na $[0,\infty)$ in zvezno odvedljiva na $(0,\infty)$, razen morda na $S_1$.
-
+    rešitev $x(t)$ reda $\mathcal{C^0}$ na $[0,\infty)$, in reda $\mathcal{C^1}$ razen morda na $S_1$.
+    Iz zgronje konstrukcije je lahko videti, da če je $f$ reda $\mathcal{C^0}$ na $[0,\infty)$, je $x(t)$
+    reda $\mathcal{C^1}$ na $[0,\infty)$ in reši sistem za vse $t>\tau_m$ natanko tedaj, ko je zvezno odvedljiva v $t=\tau_m$.
+    To je res natanko tedaj, ko je $\dot{x}(\tau_m+0)=\phi'(\tau_m-0)$, torej, ko drži pogoj iz izreka.
 \end{proof}
 
 \begin{lema}
@@ -952,29 +959,110 @@ Po enoličnosti rešitve je to res za $t\geq0$.
                 1 & 0 
             \end{bmatrix}
             \begin{bmatrix}
-                4e^{t-\tau}-e^{2(t-\tau)}-2  \\
-                4e^{t-\tau}-2e^{2(t-\tau)}-1  
+                4e^{t}-e^{2t}-2  \\
+                4e^{t}-2e^{2t}-1  
             \end{bmatrix} \\
             &= \begin{bmatrix}
                 0 & 1 \\
                 -2 & 3 
             \end{bmatrix}x(t)+
             \begin{bmatrix}
-                4e^{t-\tau}-2e^{2(t-\tau)}-1  \\
-                4e^{t-\tau}-e^{2(t-\tau)}-2  
+                4e^{t}-2e^{2t}-1  \\
+                4e^{t}-e^{2t}-2  
             \end{bmatrix}.
         \end{split}
     \end{equation*}
-    Partikularno rešitev tokrat iščemo z nastavkom
-    \[x_p(t)=\begin{bmatrix}
-        p_1e^t+p_2e^{2t}+p_3  \\
-        p_4e^{t}+p_5e^{2t}+p_6  
+    Označimo
+    \[\Psi(t)=\begin{bmatrix}
+        4e^{t}-e^{2t}-2  \\
+        4e^{t}-2e^{2t}-1  
+    \end{bmatrix}.]
+    Ker bi bilo tu iskanje partikularne rešitve z nastavkom prezahtevno, uporabimo variacijo konstante.
+    Matrika Wronskega je enaka
+    \[W(t)=\begin{bmatrix}
+        e^{\lambda_1t} & e^{\lambda_2t} \\
+        (e^{\lambda_1t})' & (e^{\lambda_1t})' 
+    \end{bmatrix}
+    =\begin{bmatrix}
+        e^t & e^{2t} \\
+        e^t & 2e^{2t} 
+    \end{bmatrix}.\]
+    Partikularno rešitev iščemo v obliki $x_p(t)=W(t)\vec{D}(t)$, $\vec{D}(t)=(D_1(t),D_2(t)).$ Ko to vstavimo v enačbo, dobimo 
+    \begin{equation*}
+        \begin{split}
+            \dot{W}\vec{D}+W\dot{\vec{D}} &= AW\vec{D}+B\Psi(t) \\
+            \dot{\vec{D}}&=W^{-1}(B\Psi(t)) \\
+            \vec{D} &=\int W^{-1}(B\Psi(t))dt
+        \end{split}
+    \end{equation*}
+    Za tak vektor $\vec{D}$ bo torej $x_p(t)=W(t)\vec{D}(t)$ partikularna rešitev sistema.
+    Izračunajmo najprej $W^{-1}$:
+    \[W^{-1}=\frac{1}{2e^{3t}-e^{3t}}\begin{bmatrix}
+        2e^{2t} & -e^{2t} \\
+        -e^t & e^t
+    \end{bmatrix}=\frac{1}{e^{3t}}\begin{bmatrix}
+        2e^{2t} & -e^{2t} \\
+        -e^t & e^t
+    \end{bmatrix}.\] 
+    Po formulu izračunamo še $\vec{D}$:
+    \begin{equation*}
+        \begin{split}
+            \vec{D} &=\int W^{-1}(B\Psi(t))dt \\
+                    &= \int W^{-1}(\begin{bmatrix}
+                        4e^{t}-2e^{2t}-1  \\
+                        4e^{t}-e^{2t}-2  
+                    \end{bmatrix})dt \\
+                    &= e^{-3t} \int \begin{bmatrix}
+                        2e^{2t} & -e^{2t} \\
+                        -e^t & e^t
+                    \end{bmatrix} \begin{bmatrix}
+                        4e^{t}-2e^{2t}-1  \\
+                        4e^{t}-e^{2t}-2  
+                    \end{bmatrix} dt \\
+                    &= e^{-3t}\int \begin{bmatrix}
+                        -3e^{4t}+4e^{3t}  \\
+                        e^{3t}-e^t  
+                    \end{bmatrix} dt \\
+                    &= \int \begin{bmatrix}
+                        -3e^{4t}+4  \\
+                        1-e^{-2t}  
+                    \end{bmatrix} dt \\
+                    &= \begin{bmatrix}
+                        -3e^t+4t  \\
+                        t+\frac{1}{2}e^{-2t}  
+                    \end{bmatrix}.
+        \end{split}
+    \end{equation*}
+    Partikularna rešitev je torej 
+    \begin{equation*}
+        \begin{split}
+            x_p(t) &= W\vec{D} \\
+                    &= \begin{bmatrix}
+                        e^t & e^{2t} \\
+                        e^t & 2e^{2t} 
+                    \end{bmatrix} \begin{bmatrix}
+                        -3e^t+4t  \\
+                        t+\frac{1}{2}e^{-2t}  
+                    \end{bmatrix} \\
+                    &= \begin{bmatrix}
+                        te^{2t}-3e^{2t}+4te^t+\frac{1}{2}  \\
+                        2te^{2t}-3e^{2t}+4te^{t}+1 
+                    \end{bmatrix}
+        \end{split}
+    \end{equation*}
+    Za $t\in[\tau,2\tau]$ je splošna rešitev sistema torej
+    \[x(t)=x_h(t)+x_p(t)=\begin{bmatrix}
+        te^{2t}+(c_2-3)e^{2t}+4te^t+c_1e^t+\frac{1}{2}  \\
+        2te^{2t}+(2c_2-3)e^{2t}+4te^{t}+c_1e^t+1 
+    \end{bmatrix}.\]
+    Za določitev konstant $c_1$ in $c_2$ uporabimo pogoj
+    \[x(\tau) =\Psi(\tau)=\begin{bmatrix}
+        4e^{\tau}-e^{2\tau}-2  \\
+        4e^{\tau}-2e^{2\tau}-1  
+    \end{bmatrix} = \begin{bmatrix}
+        \taue^{2\tau}+(c_2-3)e^{2\tau}+4te^\tau+c_1e^\tau+\frac{1}{2}  \\
+        2\taue^{2\tau}+(2c_2-3)e^{2\tau}+4te^{\tau}+c_1e^t+1 
     \end{bmatrix}. \]
-    Vstavimo v sistem in dobimo
-    \[\dot{x_p}(t)= \begin{bmatrix}
-        4e^{t-\tau}-e^{2(t-\tau)}-2  \\
-        4e^{t-\tau}-2e^{2(t-\tau)}-1  
-    \end{bmatrix} \]
     Podobno kot v tretjem poglavju bi lahko induktivno poiskali rešitve na vseh intervalih oblike
     $[(n-1)\tau,\tau], n\in\N$.
 
