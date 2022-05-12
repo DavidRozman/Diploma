@@ -173,7 +173,7 @@ Poglejmo si primer zelo preproste NDE z ločljivimi spremenljivkami.
       \frac{dx}{dt} & =-x \\
       \frac{dx}{-x} & =dt \\
       \int \frac{dx}{-x} & =\int dt \\
-     -ln|x| & =t+c \\
+     -\ln|x| & =t+c \\
       x(t) & =De^{-t} \\
     \end{split}
     \end{equation*}
@@ -1152,13 +1152,39 @@ kjer je $a>0$. Vstavimo v enačbo in dobimo
 \[\dot{x}(t)=(r-ax(t))x(t).\]
 %Pogosto tu še izpostavimo $r$:
 \begin{equation} \label{eq8}
-    \dot{x}(t) = r(1-\frac{x}{K})x,
+    \dot{x}(t) = rx\left(1-\frac{x}{K}\right),
 \end{equation}
 kjer je $K=r/a$. Enačbi \eqref{eq8} pravimo logistična enačba.
 
 Sedaj izpeljimo še rešitve. Trivialni rešitvi sta $x(t)=0$ in $x(t)=K$. Da poiščemo še ostale, zapišemo enačbo v obliki
 \[\frac{dx}{(1-\frac{x}{K})x}=r\text{ }dt.\]
+Vidimo, da gre za enačbo z ločljivimi spremenljivkami. Z razcepom na parcialne ulomke dobimo
+\[\left(\frac{1}{x}+\frac{\frac{1}{K}}{1-\frac{x}{K}}\right)dy=r\text{ }dt.\]
+Tako smo enačbo poenostavili in lahko integriramo obe strani:
+\[\ln|x|-\ln\biggr{|}1-\frac{x}{K}\biggr{|}=rt+c.\]
+Če je $0<x(t)<K$ za vse $t\geq0$, lahko absolutne vrednosti odstranimo. Dobimo 
+\[\frac{x}{1-\frac{x}{K}}=e^ce^{rt}.\]
+Ko upoštevamo še začetni pogoj $x(0)=x_0$, dobimo končno rešitev
+\[x(t)=\frac{x_0K}{x_0+(K-x_0)e^{-rt}},\]
+ki ji pravimo logistična funkcija.
 
+
+\begin{figure}[h]
+    \includegraphics[width=10cm, height=6cm]{1200px-Logistic-curve.svg.png}
+    \caption{Logistična funkcija za $K=1$, $r=1$ in $x_0=0.5$}
+\end{figure}
+
+\noindent Za začetni pogoj $x(0)>K$ se izkaže, da je rešitev ista.
+Opazimo, da je rešitev ustrezna tudi za $x_0=0$ in $x_0=K$. Iz 
+\[\lim_{t\to\infty}x(t)=\frac{x_0K}{x_0}=K\]
+pa vidimo, da se za $x_0\neq0$ velikost populacije z večanjem časa res bliža svoji nosilnosti. $K$ je asimpotsko stabilna 
+rešitev logistične enačbe, 0 pa nestabilna, saj se poljubna rešitev, ki se začne bliža 0, v neskončnosti bliža $K$.
+
+\subsection{Logistična enačba z zamikom}
+
+Navadna logistična enačba predpostavlja, da sprememba v velikosti populacije takoj vpliva na njeno rast. Da bi naredili 
+model bolj realističen, je smiselno vpeljati logistično enačbo z zamikom. Ta je podana kot 
+\[\dot{x}(t)=rx\left(1-\frac{x(t-\tau)}{K}\right).\]
 
 \newpage
 \overfullrule=0mm\printbibliography
