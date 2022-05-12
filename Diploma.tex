@@ -729,7 +729,8 @@ Naslednji izrek za bolj splošne sisteme DDE nam bo podal pomemben rezultat o en
 
 \begin{izrek}
     Podan je linearen sistem DDE oblike:
-    \begin{equation}\sum_{i=0}^m\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right)=f(t),\end{equation}
+    \begin{equation} \label{eq7}
+        \sum_{i=0}^m\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right)=f(t),\end{equation}
     kjer je 
     \[0=\tau_0<\tau_1<\dots<\tau_m, \quad \det(A_0)\neq0,\]
     pri začetnem pogoju
@@ -747,7 +748,7 @@ Naslednji izrek za bolj splošne sisteme DDE nam bo podal pomemben rezultat o en
 $B_j=0$ za $j\neq0,i$, smo sistem prevedli na obliko (5) z zamikom $\tau_i$.
 
 \begin{proof}
-    Ker je $A_0$ obrnljiva, lahko sistem (7) pomnožimo z $A_0^{-1}$. Brez škode za splošnost lahko zato predpostavimo, da 
+    Ker je $A_0$ obrnljiva, lahko sistem \eqref{eq7} pomnožimo z $A_0^{-1}$. Brez škode za splošnost lahko zato predpostavimo, da 
     za sistem (7) velja $A_0=I$. Definirajmo:
     \[g(t)=f(t)-\sum_{i=1}^{m}\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right).\]
     Ker je $f$ reda $\mathcal{C}^0$ na $[0,\infty)$ razen na $S_1$ in $\phi$ reda $\mathcal{C}^1$ na $[0,\tau_m]$, je
@@ -765,7 +766,7 @@ $B_j=0$ za $j\neq0,i$, smo sistem prevedli na obliko (5) z zamikom $\tau_i$.
     rešitev $x(t)$ reda $\mathcal{C}^0$ na $[0,\infty)$, in reda $\mathcal{C}^1$ razen morda na $S_1$.
     Iz zgronje konstrukcije je lahko videti, da če je $f$ reda $\mathcal{C}^0$ na $[0,\infty)$, je $x(t)$
     reda $\mathcal{C}^1$ na $[0,\infty)$ in reši sistem za vse $t>\tau_m$ natanko tedaj, ko je zvezno odvedljiva v $t=\tau_m$.
-    To je res natanko tedaj, ko je $\dot{x}(\tau_m+0)=\phi'(\tau_m-0)$, torej, ko drži pogoj iz izreka.
+    To je res natanko tedaj, ko je $\dot{x}(\tau_m+0)=\dot{\phi}(\tau_m-0)$, torej, ko drži pogoj iz izreka.
 \end{proof}
 
 \begin{lema}
@@ -1005,7 +1006,7 @@ Po enoličnosti rešitve je to res za $t\geq0$.
         2e^{2t} & -e^{2t} \\
         -e^t & e^t
     \end{bmatrix}.\] 
-    Po formulu izračunamo še $\vec{D}$:
+    Po formuli izračunamo še $\vec{D}$:
     \begin{equation*}
         \begin{split}
             \vec{D} &=\int W^{-1}(B\Psi(t))dt \\
@@ -1133,9 +1134,32 @@ Karakteristična enačba sistema je torej
 \[\text{det}(A+e^{-\lambda\tau}B-\lambda I)=0.\]
 Rešitve sistema $\dot{x}(t)=Ax(t)+Bx(t-\tau)$ so torej oblike $x(t)=e^{\lambda t}v$, kjer je $\lambda$ lastna vrednost in $v$ pripadajoči lastni 
 vektor matrike $A+e^{-\lambda\tau}B$. Opazimo, da je reševanje linearnih sistemov DDE precej bolj zahtevno kot
-linearnih reševanje sistemov NDE, saj tu karakteristična funkcija ni več polinom.
+reševanje linearnih sistemov NDE, saj tu karakteristična funkcija ni več polinom.
 
-\section{Viri in literatura}
+\section{Logistična enačba}
+V tem poglavju bomo obravnavali logistično enačbo, ki opisuje rast prebivalstva ekosistema. Najprej bomo analizirali 
+osnovno verzijo logistične enačbe, nato pa še enačbo z zamikom.
 
+\subsection{Navadna logistična enačba}
+Populacijo nekega ekosistema želimo opisati s funkcijo časa $x(t)$. Eksponentni model predpostavlja, da je rast 
+populacije premo sorazmerna z njeno velikostjo, torej
+\[\dot{x}(t)=rx(t), \]
+kjer je $r$ konstanta. V tem primeru gre torej za eksponentno rast. Ker pa je ekosistem omejen z viri, se slej ko 
+prej rast upočasni skoraj na 0, ko populacija doseže nosilnost okolja ($K$) za dano vrsto. Zato konstantno $r$ v 
+enačbi zamenjamo z neko funkcijo $f(x)$, za katero velja $f(x)\approx r>0$ za majhne $x$, torej, da je rast na začetku 
+približno eksponentna, ter $f(x)<0$ za velike $t$. Najpreprostejša funkcija s tema lastnostima je $f(x)=r-ax$, 
+kjer je $a>0$. Vstavimo v enačbo in dobimo
+\[\dot{x}(t)=(r-ax(t))x(t).\]
+%Pogosto tu še izpostavimo $r$:
+\begin{equation} \label{eq8}
+    \dot{x}(t) = r(1-\frac{x}{K})x,
+\end{equation}
+kjer je $K=r/a$. Enačbi \eqref{eq8} pravimo logistična enačba.
+
+Sedaj izpeljimo še rešitve. Trivialni rešitvi sta $x(t)=0$ in $x(t)=K$. Da poiščemo še ostale, zapišemo enačbo v obliki
+\[\frac{dx}{(1-\frac{x}{K})x}=r\text{ }dt.\]
+
+
+\newpage
 \overfullrule=0mm\printbibliography
 \end{document}
