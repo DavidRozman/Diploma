@@ -99,14 +99,30 @@ Ljubljana, \letnica}
 {\sc Povzetek}
 \end{center}
 % tekst povzetka v slovenscini
-V povzetku na kratko opi"site vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pa"c pa le opis vsebine.
-\vfill
+ %V povzetku na kratko opi"site vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pa"c pa le opis vsebine.
+Diferencialne enačbe z zamikom povezujejo odvod funkcije z njenimi vrednosti v preteklem času. Začetni pogoj je 
+podan kot funkcija na nekem intervalu. Ker je reševanje takih enačb precej bolj zahtevno kot reševanje navadnih 
+diferencialnih enačb, je tu zelo pogosta uporaba numeričnih metod. Pogoji za obstoj in enoličnost rešitve so podobni kot
+pri navadnih diferencialnih enačbah, vendar ta pogosto ne bo odvedljiva ali zvezna. Do rešitev lahko pridemo tudi s 
+pomočjo Laplaceove transformacije, pri čemer končni rezultat ne bo nujno izražen z elementarnimi funkcijami. Določene 
+enačbe lahko še vedno rešimo z nastavki ali variacijo konstante. Pri sistemih poznamo splošen postopek za reševanje, ki 
+pa skoraj vedno zahteva uporabo numeričnih metod. Diferencialne enačbe z zamikom so tudi koristne pri analiziranju 
+zamaknjene logistične enačbe.
+ \vfill
 \begin{center}
 {\bf Angle"ski naslov dela}\\[3mm] % prevod slovenskega naslova dela 
 {\sc Abstract}
 \end{center}
 % tekst povzetka v anglescini
-Prevod zgornjega povzetka v angle"s"cino.
+Delay differential equations connect the derivative of a function with its value in a previous state. The initial 
+condition is given as a function over a certain interval. Solving such equations is generally much harder than solving 
+ordinary differential equations, therefore numerical methods are commonly used in the process. The conditions for 
+existence and uniqueness of a solution are similar to those for ordinary differential equations, yet the solution
+is often neither differentiable nor continuous. Laplace transform can be used to solve equations, altough the final 
+result may not be expressed as an elementary function. Certain equations can still be solved using specific 
+expression or variation of constant. Systems can be solved using a general method, altough numerical methods 
+will be required most of the time in the process. Delay differential equations are useful as a tool to analyse
+delayed logistic equation.
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2010):} navedite vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}  \\[1mm]  
@@ -665,18 +681,17 @@ Končna formula za inverzno funkcijo je torej:
 V tem poglavju bomo obravnavali homogene linearne DDE. Za njihovo reševanje uporabimo nastavek
 $x(t)=e^{\lambda t}c$, $\lambda \in\C$, $c\in\R\setminus\{0\}$, in ga vstavimo v enačbo:
 \begin{equation*}
-    \begin{split}
-        h(\lambda)&=\lambda e^{\lambda t}c - ae^{\lambda t}c -be^{\lambda(t-\tau)} \\
-         &= \lambda - a -be^{-\lambda\tau}.
-    \end{split}      
+        0 = \lambda e^{\lambda t}c - ae^{\lambda t}c -be^{\lambda(t-\tau)}c.   
 \end{equation*}
+Ker $e^{\lambda t}c \neq0$ za $vse t\in\R$, je karakteristična funkcija
+\[h(\lambda)=\lambda-a-be^{-\lambda\tau}.\]
 Iščemo ničle karakteristične funkcije $h$. Izraz lahko z uvedbo novih spremenljivk še dodatno 
 poenostavimo. Če nastavimo $z:=\lambda\tau$, $\alpha:=a\tau$ in $\beta:=b\tau$, se karakteristična
 enačba prevede na
 \[h(z)=z-\alpha-\beta e^{-z}=0.\]
 Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne rasti z zamikom.
 \begin{trditev}
-    Za DDE oblike \eqref{eq4} in rešitev $x=0$ velja:
+    Za homogene DDE oblike \eqref{eq4} in rešitev $x=0$ velja:
     \begin{itemize}
         \item Če je $a+b>0$, potem je $x=0$ stabilna.
         \item Če je $a+b<0$ in $b\geq a$, potem je $x=0$ asimptotsko stabilna.
@@ -684,6 +699,7 @@ Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne ras
         asimptotsko stabilna za $0<\tau<\tau^{*}$ in nestabilna za $\tau>\tau^{*}$.
     \end{itemize}
 \end{trditev}
+Dokaz trditve se nahaja v viru \cite{envir}
 
 
 
