@@ -146,8 +146,6 @@ rešitev obstaja ter kakšne lastnosti ima iskana funkcija. Za tem si bomo pogle
 njihovimi postopki za reševanje. Na koncu pa bomo predstavili še nekaj zgledov uporabe takih enačb pri modeliranju.
 
 
-\newpage
-
 \section{Navadne diferencialne enačbe}
 
 Za začetek se spomnimo osnov navadnih diferencialnih enačb.
@@ -181,6 +179,13 @@ Ko upoštevamo še začetni pogoj, dobimo $D=1$. Končna rešitev je torej \[x(t
 Rešitev je funkcija, ki je zvezna in odvedljiva na realni osi.
 \end{zgled}
 
+
+\begin{figure}[h]
+    \includegraphics[width=10cm, height=6cm]{exp.jpg}
+    \caption{Graf funkcije $x(t)=e^{-t}$}
+\end{figure}
+
+
 Pri NDE opazimo dve pomembni lastnosti, ki v nadaljevanju pri diferencialnih enačbah z zamikom ne bosta veljali. 
 Vrednost odvoda funkcije $x$ v točki $t$ je bila odvisna le od njene vrednosti v tej isti točki. Poleg tega smo 
 imeli še en začetni pogoj, zaradi katerega smo dobili enolično rešitev. Ta pogoj je bil podan kot vrednost funkcije
@@ -189,6 +194,20 @@ ena sama, ker desna stran izpolnjuje Lipschitzev pogoj. Splošneje pa vemo, da
 je splošna rešitev NDE reda $n$, če obstaja, $n$-parametrična.
 Z vsakim dodatnim začetnim pogojem, ki je podan kot vrednost funkcije ali enega izmed njenih odvodov v fiksni točki,
 se število parametrov v splošni rešitvi zmanjša za ena.
+
+Če NDE iz primera zapišemo kot 
+\begin{equation*}
+    \begin{split}
+        \dot{t} &= 1 \\
+        \dot{x} &= -x,
+    \end{split}
+\end{equation*}
+lahko narišemo tudi fazni portret.
+\begin{figure}[h]
+    \includegraphics[width=10cm, height=10cm]{faza.png}
+    \caption{Fazni portet NDE $\dot{x} = -x$ z njeno rešitvijo}
+\end{figure}
+
 
 \newpage
 
@@ -251,9 +270,10 @@ dimenzionalna.
     levi odvod enak 0, desni pa -1. To nakazuje, da gladka odvisnost odvoda $\dot{x}(t)$ od zamaknjene
     funkcije $x(t-\tau)$
     ne zagotavlja gladkosti rešitve, ki bi jo dobili
-    v NDE za $\tau=0$. Še podrobneje se bomo s tovrstno analizo ukvarjali v naslednjem razdelku.
+    v NDE za $\tau=0$. %Še podrobneje se bomo s tovrstno analizo ukvarjali v naslednjem razdelku.
 \end{zgled}
-
+Hitro lahko tudi opazimo, da začetni pogoj tu veliko bolj vpliva na obliko končne rešitve, saj je podan kot funkcija in 
+ne le kot številka. Zato je tu risanje faznih portetov v splošnem nemogoče.
 
 
 \section{Obstoj in enoličnost rešitve}
@@ -1178,13 +1198,37 @@ ki ji pravimo logistična funkcija.
 Opazimo, da je rešitev ustrezna tudi za $x_0=0$ in $x_0=K$. Iz 
 \[\lim_{t\to\infty}x(t)=\frac{x_0K}{x_0}=K\]
 pa vidimo, da se za $x_0\neq0$ velikost populacije z večanjem časa res bliža svoji nosilnosti. $K$ je asimpotsko stabilna 
-rešitev logistične enačbe, 0 pa nestabilna, saj se poljubna rešitev, ki se začne bliža 0, v neskončnosti bliža $K$.
+rešitev logistične enačbe, 0 pa nestabilna, saj se poljubna rešitev, ki se začne blizu 0, v neskončnosti bliža $K$.
 
 \subsection{Logistična enačba z zamikom}
 
 Navadna logistična enačba predpostavlja, da sprememba v velikosti populacije takoj vpliva na njeno rast. Da bi naredili 
 model bolj realističen, je smiselno vpeljati logistično enačbo z zamikom. Ta je podana kot 
-\[\dot{x}(t)=rx\left(1-\frac{x(t-\tau)}{K}\right).\]
+\[\dot{x}(t)=rx(t)\left(1-\frac{x(t-\tau)}{K}\right).\]
+Hitro vidimo, da sta tudi v tem primeru $x^*=0$ in $x^*=K$ konstantni rešitvi. Za iskanje splošne rešitve definirajmo 
+$p(t)$ kot majhno spremembo populacije v času $t$, torej $p(t)^2\approx0$. V enačbo vpeljemo substitucijo $x(t)\equiv x^*+p(t)$:
+\[\dot{p}(t)=r(x^*+p(t))\left(1-\frac{x^*}{K}-\frac{p(t-\tau)}{K}\right), \quad t\geq0.\]
+Za začetni pogoj uporabimo $p(t)=0.01$ za $t\in[-\tau,0]$.
+Če vzamemo $x^*=0$, je 
+\[\dot{p}(t)=rp(t)\left(1-\frac{p(t-\tau)}{K}\right).\]
+Ker smo privzeli, da je $p(t)^2\approx0$, smo enačbo z zamikom prevedli na sledečo NDE:
+\[\dot{p}(t)=rp(t).\]
+Sledi, da je $p(t)=ce^{rt}$. Ko upoštevamo še začetni pogoj, dobimo, da je za $x^*=0$ rešitev 
+\[p_1(t)=0.01e^{rt}.\] 
+Ker je $r>0$, je $x^*=0$ nestabilna rešitev.
+Sedaj vzemimo $x^*=K$. V tem primeru je enačba enaka 
+\[\dot{p}(t)=r(K+p(t))\left(-\frac{p(t-\tau)}{K}\right).\]
+Ker je $p(t)p(t-\tau)\approx0$, se enačba prevede na 
+\[\dot{p}(t)=-ap(t-\tau).\]
+Dobili smo tip enačbe, kakršnega smo obravnavali v petem poglavju. Stacionarna točka je $p^*=0$. Ker želimo, da 
+je $p^*=x^*$, enačbi prištejemo primerno konstanto. Ta je enaka $rK$. V tem primeru je enačba enaka 
+\[\dot{p}(t)=-r(p(t-\tau)-K)\]
+in velja $p^*=x^*=K$. Ker je to enačba z zamikom, vzamemo za začetni pogoj $p_1(t)=0.01e^{rt}$ za $t\in[-\tau,0]$.
+Kot smo že ugotovili je reševanje take enačbe precej zahtevno, zato si tu pomagamo z numeričnimi metodami. Izkaže se, da 
+funkciji $p_1$ in $p_2$ zelo dobro aproksimirata rešitev $x(t)$ za majhne $t$, slednja pa tudi za večje $t$, le če 
+je $r\tau \leq \pi/2$. Za $r\tau>\pi/2$ so lahko vrednosti $x(t)$ kompleksne in je zato ne moremo aproksimirati z 
+realnima funkcija $p_1$ in $p_2$. 
+
 
 \newpage
 \overfullrule=0mm\printbibliography
