@@ -11,6 +11,7 @@
 \usepackage{biblatex}
 \addbibresource{viri.bib}
 \nocite{*}
+\usepackage{pdfpages}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -287,6 +288,10 @@ dimenzionalna.
     funkcije $x(t-\tau)$
     ne zagotavlja gladkosti rešitve, ki bi jo dobili
     v NDE za $\tau=0$. %Še podrobneje se bomo s tovrstno analizo ukvarjali v naslednjem razdelku.
+    \begin{figure}[h]
+        \includegraphics[height=8cm, width=10cm]{primer.jpg}
+        \caption{Rešitev za $\tau=1$}
+    \end{figure}
 \end{zgled}
 Hitro lahko tudi opazimo, da začetni pogoj tu veliko bolj vpliva na obliko končne rešitve, saj je podan kot funkcija in 
 ne le kot številka. Zato je tu risanje faznih portetov v splošnem nemogoče.
@@ -1243,7 +1248,7 @@ in velja $p^*=x^*=K$. Ker je to enačba z zamikom, vzamemo za začetni pogoj $p_
 Kot smo že ugotovili je reševanje take enačbe precej zahtevno, zato si tu pomagamo z numeričnimi metodami. Izkaže se, da 
 funkciji $p_1$ in $p_2$ zelo dobro aproksimirata rešitev $x(t)$ za majhne $t$, slednja pa tudi za večje $t$, le če 
 je $r\tau \leq \pi/2$. Za $r\tau>\pi/2$ so lahko vrednosti $x(t)$ kompleksne in je zato ne moremo aproksimirati z 
-realnima funkcija $p_1$ in $p_2$. 
+realnima funkcijama $p_1$ in $p_2$. 
 
 
 \newpage
