@@ -1,0 +1,465 @@
+\documentclass{beamer}
+\usepackage{bbold}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usetheme{Boadilla}
+\title{Diferencialne enačbe z zamikom}
+\author{David Rozman}
+\addtobeamertemplate{title page}{}{\begin{center}Mentor: doc. dr. Uroš Kuzman\end{center}}
+\date{\today}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+
+\begin{document}
+
+\begin{frame}
+
+\titlepage
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Motivacija}
+    \begin{itemize}
+        \item Navadne diferencialne enačbe povezujejo odvod funkcije v točki z njenimi vrednostmi v isti točki.
+        \item Vpliv dogodkov v resničnem življenju se ne pozna takoj ob njihovem nastanku.
+        \item Želja po bolj realističnih modelih.
+        \item Uporaba v ostalih naravoslovnih vedah.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Navadne diferencialne enačbe}
+   % \begin{block}{Definicija}
+        Splošna diferencialna enačba reda $n$ je enačba oblike:
+    \[F(x,y,y',y'',\dots,y^{(n)})=0,\]
+    kjer je $F$ dana funkcija $n+2$ spremenljivk, $y$ neznana funkcija spremenljivke $x$, $y^{(k)}$ pa njeni
+    odvodi.
+    %\end{block}
+    \begin{itemize}
+        \item Red enačbe je red najvišjega odvoda.
+        \item Začetni pogoji so podani kot vrednosti funkcije in njenih odvodov v določeni točki.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Zgled NDE}
+    Podana je NDE z začetnim pogojem:
+    \begin{equation*}
+    \begin{split}
+      \dot{x}(t) & =-x(t),\quad x(0)=1 \\
+      \frac{dx}{dt} & =-x \\
+      \frac{dx}{-x} & =dt \\
+      \int \frac{dx}{-x} & =\int dt \\
+     -ln|x| & =t+c \\
+      x(t) & =De^{-t} \\
+    \end{split}
+    \end{equation*}
+Ko upoštevamo še začetni pogoj, dobimo $D=1$. Končna rešitev je torej: \[x(t)=e^{-t}\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Diferencialne enačbe z zamikom}
+    Naj bo $\tau > 0$ konstanta in $J = [\xi,\xi +a]$, kjer je $\xi \geq 0$ in $a > 0$. Enačbi oblike
+    \[\dot{x}(t)=f(t,x(t-\tau))\, \quad \text{za } t \in J\]
+    pravimo diferencialna enačba prvega reda z zamikom, kjer je $\tau$ zamik.
+    Začetni pogoj je podan kot
+    \[x(t)=\phi(t) \quad \text{za } t \in [\xi-\tau,\xi],\]kjer je $\phi$ zvezna funkcija.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Zgled}
+    Podana je DDE z začetnim pogojem:
+    \[\dot{x}(t)=-x(t-\tau), \quad \text{za } t \geq 0,\]
+    \[x(t)=1, \quad t \in [-\tau,0]\]
+    Najprej rešimo za $t \in [0,\tau]$. Tedaj je $t-\tau \in [-\tau,0]$, zato je:
+    \[\dot{x}(t)=-x(t-\tau)=-1\]
+    Iz tega sledi:
+    \[x(t)=x(0)+ \int_{0}^{t}(-1)ds = 1-t, \quad \text{za } t \in [0,\tau]\]
+    Tako smo dobili rešitev za interval $[0,\tau]$.
+    Analogno nadaljujemo za $t \in [\tau, 2\tau]$. Tu velja $t-\tau \in [0,\tau]$, torej:
+    \[\dot{x}(t)=-x(t-\tau)=-(1-(t-\tau))=(t-\tau)-1\]
+    Od tod sledi:
+    \[x(t)=x(\tau)+\int_{\tau}^{t}((s-\tau)-1)ds=1-t+\frac{(t-\tau)^2}{2},\quad \text{za }t\in[\tau,2\tau]\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Zgled}
+    Pokažemo lahko, da za vsak interval $[(n-1)\tau,n\tau], n\in \N$ velja
+    \[x(t)=1+\sum_{k=1}^{n}(-1)^k\frac{(t-(k-1)\tau)^k}{k!}.\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Primerjava}
+        Pomembne razlike:
+        \begin{itemize}
+            \item Rešitev je neskončno dimenzionalna.
+            \item Rešitev je povsod zvezna, ne pa tudi odvedljiva.
+        \end{itemize}
+    \includegraphics[width=9cm,height=7cm]{primer.jpg}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Obstoj in enoličnost rešitve}
+    \begin{block}{Izrek}
+        Podana je DDE
+        \[\dot{x}(t)=f(t,x(t-\tau))\, \quad \text{za } t \in [\xi,\xi +a],\]
+        kjer je $a,\tau>0$, $\xi \geq 0$ in $f$ zvezna na traku $S=[\xi,\xi +a] \times \R$.
+        Začetni pogoj je podan kot
+        \[x(t)=\phi(t) \quad \text{za } t \in [\xi-\tau,\xi],\] kjer je  $\phi$ zvezna. 
+        Potem obstaja natanko ena rešitev začetnega problema.
+    \end{block}
+    Dokaz je konstruktiven in podoben prejšnjemu zgledu.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model eksponentne rasti z zamikom}
+    Obravnavamo DDE oblike
+    \[\dot{x}(t)= \alpha x(t-\tau), \quad \tau > 0,\quad \alpha \in \R.\]
+    Enačbo zreduciramo na en parameter. Definiramo $\mu:=\eta t, \eta > 0$ in $U(\mu)=x(t)$. Sledi:
+    \[\frac{dU}{d\mu}=\frac{dx}{\eta dt}=-\alpha \eta^{-1}x(t-\tau)=-\alpha \eta^{-1}U(\eta t - \eta \tau)=
+    -\alpha \eta^{-1}U(\mu - \eta \tau).\]
+    Če izberemo $\eta := 1/\tau$ in $\beta:=\alpha \tau$, dobimo
+    \[\frac{dU}{d\mu} & =-\beta U(\mu -1).\]
+    Definiramo še $L(U)=\frac{dU}{d\mu} + \beta U(\mu -1).$
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model eksponentne rasti z zamikom}
+    Uporabimo nastavek $U(\mu)=e^{\lambda\mu}$:
+    \[h(\lambda) \equiv \lambda + \beta e^{-\lambda} =0.\]
+    Če je $\lambda$ ničla te enačbe, je $e^{\lambda\mu}$ rešitev DDE $(1)$.
+Nastavek $\lambda = a + ib$ vstavimo v enačbo in dobimo sistem:
+\begin{equation*}
+    \begin{split}
+        a &= -\beta e^{-a}\cos(b) \\
+        b &= \beta e^{-a}\sin(b).
+    \end{split}      
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model eksponentne rasti z zamikom}
+    \begin{block}{Trditev}
+        Števila $\mu^{j}e^{\lambda \mu}, j=0,1,\dots,n$, so rešitve enačbe $\frac{dU}{d\mu} & =-\beta U(\mu -1)$ natanko
+    tedaj, ko je $\lambda$ $(n+1)$-kratna ničla karakteristične funkcije $h$.
+    \end{block}
+    \begin{proof}[Dokaz]
+        Linearni operator $L$ $n$-krat odvajamo po $\lambda$:
+        \[L(\mu^{k}e^{\lambda\mu})=\frac{\partial^k}{\partial\lambda^k}(e^{\lambda\mu}h(\lambda))
+        =e^{\lambda\mu}\left(\sum_{k=0}^{n}\binom{n}{k}h^{(k)}(\lambda)\mu^{n-k}\right). \]
+        To je enako 0 natanko tedaj, ko je $\lambda$ $(n+1)$-kratna ničla funkcije $h$.
+    \end{proof}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Model eksponentne rasti z zamikom}
+    \begin{block}{Trditev}
+        Za karakteristično funkcijo $h$ velja naslednje:
+    \begin{enumerate}
+        \item Če je $\beta < 0$, potem obstaja natanko ena realna ničla $\lambda$ in je pozitivna.
+        \item Če je $0 < \beta < 1/e$, potem obstajata natanko dve različni negativni realni
+         ničli, $\lambda_{1} < \lambda_{2}$, za kateri velja:
+         \[ \lim_{\beta \to 0}\lambda_{1}=-\infty \quad \text{in} \quad \lim_{\beta \to 0}\lambda_{2}=0. \]
+        \item Če je $\beta = 1/e$, potem je edina realna ničla $\lambda = -1$ in je dvakratna.
+        \item Če je $\beta > 1/e$, potem funkcija nima realnih ničel.
+    \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Laplaceova transformacija}
+    \begin{block}{Definicija}
+        Naj bo $f:[0,\infty) \to \R$ zvezna funkcija. Laplaceova transformacija funkcije $f$ je kompleksna funkcija
+        $F$, podana s predpisom
+        \[ F(s)=\int_{0}^{\infty}f(t)e^{-st}dt.\]
+    \end{block}
+        Predpostavimo, da je
+    $|f(t)|\leq e^{at}$ za $a\in\R$ in $t\geq0$. Ker za $s\in\C$ velja $|e^{s}|=e^{\text{Re}(s)}$, imamo
+    \[|e^{-st}f(t)| \leq ce^{-t\text{Re}(s)}e^{at}=ce^{-t(\text{Re}(s)-a)}.\]
+    Če funkcijo na desni strani te neenačbe integriramo po $t\in [0,\infty)$, dobimo integral, ki je konvergenten za $\text{Re}(s)>a$.   
+\end{frame}
+
+\begin{frame}
+    \frametitle{Inverzna transformacija}
+    \begin{block}{Izrek}
+        Naj bo $f$ zvezna funkcija z naslednjimi lastnostmi:
+    \begin{enumerate}
+        \item[(a)]Integral $\int_0^{\infty}f(t)e^{-at}dt$ je absolutno konvergenten za nek $a>0$,
+        \item[(b)]$f$ ima omejen odvod v okolici točke $u>0$.  
+    \end{enumerate}
+    Potem obstaja
+    \[F(s)=\int_0^{\infty}e^{-st}f(t)dt\]
+    za $\text{Re}(s)\geq a$. Za $b>a$ pa velja:
+    \[\lim_{T\to\infty}\frac{1}{2\pi}\int_{-T}^{T}e^{(b+it)u}F(b+it)dt=f(u).\]
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Inverzna transformacija}
+    Če vpeljemo novo spremenljivko $s=b+ir$ za $r\in[-T,T]$, lahko formulo še malo polepšamo:
+\[\frac{1}{2\pi}\int_{-T}^{T}e^{(b+it)u}F(b+it)dr=\frac{1}{2\pi i}\int_{b-iT}^{b+iT}F(s)e^{st}ds.\]
+Desni integral je krivuljni interal po daljici med točkama $b-iT$ in $b+iT$. Označimo
+\[ \int_{(b)}F(s)e^{st}ds=\lim_{T\to\infty}\frac{1}{2\pi i}\int_{b-iT}^{b+iT}F(s)e^{st}ds,\]
+kadar desna stran obstaja.
+Končna formula za inverzno funkcijo je torej:
+\[f(t)=\int_{(b)}F(s)e^{st}ds.\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reševanje DDE z Laplaceovo transformacijo}
+    \begin{equation*} 
+        \begin{split}
+            \dot{x}(t)=x(t-1), \quad x(t)=\varphi(t), \quad t\in[-1,0].
+        \end{split}
+    \end{equation*}
+    Obe strani pomnožimo z $e^{-st}$ in integriramo na intervalu $[0,\infty)$:
+     \[\int_{0}^{\infty}\dot{x}(t)e^{-st}dt = \int_{0}^{\infty}x(t-1)e^{-st}dt.\]
+    Z uvedbo nove spremenljivke $u=t-1$ preoblikujemo desno stran enačbe:
+    \begin{equation*}
+        \begin{split}
+            \int_{0}^{\infty}x(t-1)e^{-st}dt &= \int_{-1}^{\infty}x(u)e^{-s(u+1)}du \\
+             &= \int_{-1}^{\infty}x(t)e^{-s(t+1)}dt \\
+             &= e^{-s}\left(\int_{0}^{\infty}x(t)e^{-st}dt + \int_{-1}^{0}x(t)e^{-st}dt\right). 
+        \end{split}      
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reševanje DDE z Laplaceovo transformacijo}
+    Na levi strani enačbe uporabimo integracijo per partes. Pri tem predpostavljamo, da za 
+    rešitev velja $x(t)e^{-st} \to 0$, ko gre $t \to\infty$.
+    \[\int_{0}^{\infty}\dot{x}(t)e^{-st}dt=-x(0)e^{-s}+s\int_{0}^{\infty}x(t)e^{-st}dt.\]
+    Sedaj upoštevajmo še, da za $t\in[-1,0]$ velja $x(t)=\varphi(t)$. Enačbo (3) smo pretvorili na naslednjo obliko:
+    \[(s-e^{-s})\int_{0}^{\infty}x(t)e^{-st}dt=\varphi(0)e^{-s}+e^{-s}\int_{-1}^0\varphi(t)e^{-st}dt.\]
+    Za $s-e^{-s}\neq 0$ dobimo torej:
+    \[\int_{0}^{\infty}x(t)e^{-st}dt=\frac{\varphi(0)e^{-s}+e^{-s}\int_{-1}^0\varphi(t)e^{-st}dt}{s-e^{-s}}.\]
+    Izraz na desni je zvezna funkcija spremenljivke $s$. Označimo jo z $G(s)$. Po izreku o inverzni
+    transformaciji dobimo:
+    \[x(t)=\int_{(c)}G(s)e^{st}ds.\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Linearni sistemi DDE}
+    Sistem linearnih DDE s konstantnimi koeficienti je podan z 
+    \begin{equation*}
+        \begin{split}
+            \dot{x}(t)=Ax(t)+Bx(t-\tau)+f(t)\quad \text{za}\quad t\geq0,
+        \end{split}
+    \end{equation*} kjer so
+    $A,B\in\R^{n\times n}$, $\tau>0$ in $f$ zvezna funkcija. Začetni pogoj je znova podan s predpisom
+    \begin{equation*}
+        \begin{split}
+            x(t)=\phi(t)\quad \text{za}\quad t\in [-\tau,0],
+        \end{split}
+    \end{equation*}
+    kjer je $\phi$ zvezna funkcija. Če je $f(t)\equiv0$, pravimo,
+    da je sistem homogen.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Linearni sistemi DDE}
+    \begin{block}{Izrek}
+        Podan je linearen sistem DDE oblike:
+    \begin{equation*}
+        \sum_{i=0}^m\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right)=f(t),\end{equation*}
+    kjer je 
+    \[0=\tau_0<\tau_1<\dots<\tau_m, \quad \det(A_0)\neq0,\]
+    pri začetnem pogoju
+    \[x(t)=\phi(t), \quad t \in[0,\tau_m].\]
+    Z $S$ označimo množico točk oblike $t=\sum_{i=0}^{m}j_i\tau_i$, kjer so $j_i\in\Z$. Naj bo še $S_1=S\cap[\tau_m,\infty)$ in
+    $S_2=S\cap(\tau_m,\infty)$. Naj bo vektor $\phi$ reda $\mathcal{C}^1([0,\tau_m])$ in $f$ reda $\mathcal{C}^0([0,\infty))$,
+    razen morda za kočno mnogo točk nezveznosti na $S_1$. Potem obstaja natanko ena funkcija $x(t)$, ki je zvezna 
+    za $t\geq0$, zadošča začetnemu pogoju in reši sistem za $t\geq\tau_m$, $t\notin S_2$.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Zgled}
+    Podan je homogen linearen sistem DDE
+    \[\dot{x}=Ax(t)+Bx(t-\tau)\quad \text{za}\quad t\geq0,\]
+    kjer je $A=
+    \begin{bmatrix}
+        0 & 1 \\
+        -2 & 3 
+    \end{bmatrix}$
+    in $B=
+    \begin{bmatrix}
+        0 & 1 \\
+        1 & 0 
+    \end{bmatrix}.$
+    Začetni pogoj je podan kot 
+    $\phi(t)=\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}$
+    za $t\in[-\tau,0]$. \\
+    Najprej izračunamo lastne vrednosti matrike $A$ in pripadajoče lastne vektorje:
+    \[\lambda_1=1, \quad \lambda_2=2, \quad v_1=\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}, \quad v_2=\begin{bmatrix}
+        1 \\
+        2 
+    \end{bmatrix}.\]
+    Rešitve sistema 
+    $\dot{x}(t)=Ax(t)$
+    so torej 
+    \[x_h(t)=c_1e^t\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}
+    +c_2e^{2t}\begin{bmatrix}
+        1 \\
+        2 
+    \end{bmatrix}.\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Zgled}
+    Za $t\in[0,\tau]$ je
+    \begin{equation*}
+        \begin{split}
+            \dot{x}(t) &= Ax(t)+B\phi(t-\tau) \\
+            &= \begin{bmatrix}
+                0 & 1 \\
+                -2 & 3 
+            \end{bmatrix}x(t)+\begin{bmatrix}
+                0 & 1 \\
+                1 & 0 
+            \end{bmatrix}
+            \begin{bmatrix}
+                1  \\
+                1  
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+                0 & 1 \\
+                -2 & 3 
+            \end{bmatrix}x(t)+
+            \begin{bmatrix}
+                1  \\
+                1  
+            \end{bmatrix}.
+        \end{split}
+    \end{equation*}
+    Iščemo partikularno rešitev 
+    \[x_p(t)=\begin{bmatrix}
+        p_1  \\
+        p_2  
+    \end{bmatrix}\]
+    za neki konstantni $p_1$ in $p_2$, ki reši ta sistem. Dobimo $p_1=-2$ in $p_2=-1$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Zgled}
+    Za $t\in[0,\tau]$ je splošna rešitev sistema
+    \[x(t)=x_h(t)+x_p(t)= c_1e^t\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}
+    +c_2e^{2t}\begin{bmatrix}
+        1 \\
+        2 
+    \end{bmatrix} + \begin{bmatrix}
+        -2  \\
+        -1  
+    \end{bmatrix}.\]
+    Z upoštevanjem začetnega pogoja določimo še konstanti $c_1$ in $c_2$:
+    \[x(0)=\begin{bmatrix}
+        1  \\
+        1  
+    \end{bmatrix} = c_1 \begin{bmatrix}
+        1  \\
+        1  
+    \end{bmatrix} + c_2 \begin{bmatrix}
+        1  \\
+        2  
+    \end{bmatrix} + \begin{bmatrix}
+        -2  \\
+        -1  
+    \end{bmatrix} = \begin{bmatrix}
+        c_1 + c_2 -2  \\
+        c_1+2c_2 -1  
+    \end{bmatrix}.\]
+    Dobimo, da je $c_1=4$ in $c_2=-1$. Končna rešitev je torej 
+    \[x(t)=x_h(t)+x_p(t)= 4e^t\begin{bmatrix}
+        1 \\
+        1 
+    \end{bmatrix}
+    -e^{2t}\begin{bmatrix}
+        1 \\
+        2 
+    \end{bmatrix} + \begin{bmatrix}
+        -2  \\
+        -1  
+    \end{bmatrix}, \quad t\in[0,\tau].\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Zgled}
+    Za iskanje rešitve na $[\tau,2\tau]$ uporabimo variacijo konstante. Partikularno rešitev iščemo v obliki
+    $x_p(t)=W(t)\vec{D}(t)$, kjer je $W$ matrika Wronskega, za $\vec{D}$ pa velja
+    \[\vec{D} =\int W^{-1}(B\Psi(t))dt.\]
+    Po dolgem računanju dobimo, da je rešitev za $t\in[\tau,2\tau]$ enaka 
+    \[\begin{bmatrix}
+        te^{2t}+(\frac{1}{2}e^{-2\tau}-\tau-4)e^{2t}+4te^t+(4-e^{\tau}-3e^{-\tau}-4\tau e^{\tau}-4\tau)e^t+\frac{1}{2}  \\
+        2te^{2t}+(e^{-2\tau}-2\tau-5)e^{2t}+4te^{t}+(4-e^{\tau}-3e^{-\tau}-4\tau e^{\tau}-4\tau)e^t+1 
+    \end{bmatrix}.\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reševanje sistemov v splošnem}
+    Podan imamo homogen sistem DDE
+    \[ \dot{x}(t)=Ax(t)+Bx(t-\tau).\]
+    Rešitve sistema $\dot{x}(t)=Ax(t)+Bx(t-\tau)$ so oblike $x(t)=e^{\lambda t}v$, kjer je $\lambda$ lastna vrednost in $v$ pripadajoči lastni 
+    vektor matrike $A+e^{-\lambda\tau}B$. 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Logistična enačba}
+    Logistična enačba je podana s predpisom
+    \[\dot{x}(t) = ax\left(1-\frac{x}{K}\right),\quad a,K>0.\]
+    Rešitev je logistična krivulja:
+    \[(t)=\frac{x_0K}{x_0+(K-x_0)e^{-at}},\]
+    kjer je $x_0=x(0).$
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Logistična funkcija za $K=1$, $a=1$ in $x_0=0.5$}
+    \includegraphics[width=\textwidth]{1200px-Logistic-curve.svg.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Logistična enačba z zamikom}
+    Logistična enačba z zamikom je podana s predpisom
+    \[\dot{x}(t)=ax(t)\left(1-\frac{x(t-\tau)}{K}\right), \quad a,K>0.\]
+    Vpeljemo substitucijo $x(t)\equiv x^*+p(t)$, kjer je $x^*$ 0 ali $K$, $p$ pa majhna sprememba 
+    populacije:
+    \[\dot{p}(t)=a(x^*+p(t))\left(1-\frac{x^*}{K}-\frac{p(t-\tau)}{K}\right), \quad t\geq0.\]
+    Za $x^*=0$ dobimo
+    \[\dot{p}(t)=ap(t)\left(1-\frac{p(t-\tau)}{K}\right).\]
+    Če za začetni pogoj vzamemo $p(t)=0.01$ za $t\in[-\tau,0]$, je
+    \[p_1(t)=0.0e^{at}.\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Logistična enačba z zamikom}
+    Za $x^*=K$ se enača prevede na
+    \[\dot{p}(t)=-ap(t-\tau).\]
+    Za začetni pogoj vzamemo $p_1(t)$ za $t\in[-\tau,0]$.
+    Za reševanje uporabimo numerične metode.
+\end{frame}
+
+\begin{frame}
+    \includegraphics[width=\textwidth]{logi.jpg}
+\end{frame}
+
+
+\end{document}
