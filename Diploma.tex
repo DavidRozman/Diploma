@@ -111,24 +111,24 @@ pa skoraj vedno zahteva uporabo numeričnih metod. Diferencialne enačbe z zamik
 zamaknjene logistične enačbe.
  \vfill
 \begin{center}
-{\bf Angle"ski naslov dela}\\[3mm] % prevod slovenskega naslova dela 
+{\bf Delay dif\mbox{}ferential equations}\\[3mm] % prevod slovenskega naslova dela 
 {\sc Abstract}
 \end{center}
 % tekst povzetka v anglescini
 Delay differential equations connect the derivative of a function with its value in a previous state. The initial 
 condition is given as a function over a certain interval. Solving such equations is generally much harder than solving 
-ordinary differential equations, therefore numerical methods are commonly used in the process. The conditions for 
-existence and uniqueness of a solution are similar to those for ordinary differential equations, yet the solution
-is often neither differentiable nor continuous. Laplace transform can be used to solve equations, altough the final 
+ordinary dif\mbox{}ferential equations, therefore numerical methods are commonly used in the process. The conditions for 
+existence and uniqueness of a solution are similar to those for ordinary dif\mbox{}ferential equations, yet the solution
+is often neither dif\mbox{}ferentiable nor continuous. Laplace transform can be used to solve equations, although the final 
 result may not be expressed as an elementary function. Certain equations can still be solved using specific 
-expression or variation of constant. Systems can be solved using a general method, altough numerical methods 
-will be required most of the time in the process. Delay differential equations are useful as a tool to analyse
-delayed logistic equation.
+expressions or variation of constant. Systems can be solved using a general method, altough numerical methods 
+have to be applied most of the time. Delay dif\mbox{}ferential equations are useful as a tool to analyse
+the logistic equation.
 
 \vfill\noindent
-{\bf Math. Subj. Class. (2010):} navedite vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}  \\[1mm]  
-{\bf Klju"cne besede:} navedite nekaj klju"cnih pojmov, ki nastopajo v delu  \\[1mm]  
-{\bf Keywords:} angle"ski prevod klju"cnih besed
+{\bf Math. Subj. Class. (2010):} 34K05, 34K06, 34K20  \\[1mm]  
+{\bf Klju"cne besede:} Diferencialne enačbe, zamik, eksistenčni izrek, Laplaceova transformacija, logistična funkcija  \\[1mm]  
+{\bf Keywords:} Dif\mbox{}ferential equations, delay, existence theorem, Laplace transform, logistic function
 \pagebreak
 
 
@@ -221,8 +221,8 @@ se število parametrov v splošni rešitvi zmanjša za ena.
 \end{equation*}
 lahko narišemo tudi fazni portret.
 \begin{figure}[h]
-    \includegraphics[width=10cm, height=10cm]{faza.png}
-    \caption{Fazni portet NDE $\dot{x} = -x$ z njeno rešitvijo}
+    \includegraphics[width=10cm, height=10cm]{tempsnip.png}
+    \caption{Fazni portet NDE $\dot{x} = -x$}
 \end{figure}
 
 
@@ -235,7 +235,7 @@ lahko narišemo tudi fazni portret.
     \[\dot{x}(t)=f(t,x(t-\tau))\, \quad \text{za } t \in J\]
     pravimo diferencialna enačba prvega reda z zamikom (V nadaljevanju jo bomo 
     označevali s kratico DDE, ki ustreza angleškemu prevodu njenega imena - 
-    delay differential equation.), kjer je $\tau$ zamik.
+    delay dif\mbox{}ferential equation.), kjer je $\tau$ zamik.
     Začetni pogoj je podan kot
     \[x(t)=\phi(t) \quad \text{za } t \in J_{-} = [\xi-\tau,\xi],\]kjer je $\phi$ zvezna funkcija.
 \end{definicija}
@@ -289,11 +289,11 @@ dimenzionalna.
     ne zagotavlja gladkosti rešitve, ki bi jo dobili
     v NDE za $\tau=0$. %Še podrobneje se bomo s tovrstno analizo ukvarjali v naslednjem razdelku.
     \begin{figure}[h]
-        \includegraphics[height=8cm, width=10cm]{primer.jpg}
+        \includegraphics[height=8cm, width=14cm]{bolsa.png}
         \caption{Rešitev za $\tau=1$}
     \end{figure}
 \end{zgled}
-Hitro lahko tudi opazimo, da začetni pogoj tu veliko bolj vpliva na obliko končne rešitve, saj je podan kot funkcija in 
+Opazimo, da začetni pogoj tu veliko bolj vpliva na obliko končne rešitve, saj je podan kot funkcija in 
 ne le kot številka. Zato je tu risanje faznih portetov v splošnem nemogoče.
 
 
@@ -494,6 +494,7 @@ Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednos
     še $\lim_{x \to \infty}|\psi(t)-\phi(t)|=0$, pravimo, da je rešitev asimptotsko stabilna.
 \end{definicija}
 
+\newpage
 
 \begin{trditev}
     Za DDE oblike $\dot{x}(t)= \alpha x(t-\tau), \tau >0, \alpha \in \R$, velja:
@@ -580,7 +581,7 @@ dele: $$(0,\infty) = (0,u-d] \cup (u-d,u+d] \cup (u+d,\infty]$$ za nek $d>0$. Za
 integrala dobimo:
 \begin{equation*}
     \begin{split}
-        \int_{-T}^{T}e^{u(a+it)}F(a+it)dt) &= 2e^{au}\int_0^{u-d}g(u,r,T)dr +
+        \int_{-T}^{T}e^{u(a+it)}F(a+it)dt &= 2e^{au}\int_0^{u-d}g(u,r,T)dr +
         2e^{au}\int_{u-d}^{u+d}g(u,r,T)dr+ \\
         &+ 2e^{au}\int_{u+d}^{\infty}g(u,r,T)dr,
     \end{split}
@@ -641,8 +642,7 @@ Končna formula za inverzno funkcijo je torej:
 \[f(t)=\int_{(b)}F(s)e^{st}ds.\]
 
 \subsection{Reševanje DDE z Laplaceovo transformacijo}
-    Z Laplaceovo transformacijo bomo ponovno rešili DDE iz 3. poglavja, le da imamo tokrat
-    podan bolj splošen začetni pogoj:
+    Sedaj si na konkretnem zgledu poglejmo, kako si lahko z Laplaceovo transformacijo pomagamo pri reševanju DDE.
     \begin{equation} \label{eq3}
         \begin{split}
             \dot{x}(t)=x(t-1), \quad x(t)=\varphi(t), \quad t\in[-1,0].
@@ -660,11 +660,11 @@ Končna formula za inverzno funkcijo je torej:
     \end{equation*}
     Na levi strani enačbe uporabimo integracijo per partes. Pri tem predpostavljamo, da za 
     rešitev velja $x(t)e^{-st} \to 0$, ko gre $t \to\infty$.
-    \[\int_{0}^{\infty}\dot{x}(t)e^{-st}dt=-x(0)e^{-s}+s\int_{0}^{\infty}x(t)e^{-st}dt.\]
+    \[\int_{0}^{\infty}\dot{x}(t)e^{-st}dt=-x(0)+s\int_{0}^{\infty}x(t)e^{-st}dt.\]
     Sedaj upoštevajmo še, da za $t\in[-1,0]$ velja $x(t)=\varphi(t)$. Enačbo (3) smo pretvorili na naslednjo obliko:
-    \[(s-e^{-s})\int_{0}^{\infty}x(t)e^{-st}dt=\varphi(0)e^{-s}+e^{-s}\int_{-1}^0\varphi(t)e^{-st}dt.\]
-    Za $s-e^{-s}\neq 0$ dobimo torej:
-    \[\int_{0}^{\infty}x(t)e^{-st}dt=\frac{\varphi(0)e^{-s}+e^{-s}\int_{-1}^0\varphi(t)e^{-st}dt}{s-e^{-s}}.\]
+    \[(s-1)\int_{0}^{\infty}x(t)e^{-st}dt=\varphi(0)+\int_{-1}^0\varphi(t)e^{-st}dt.\]
+    Za $s\neq 1$ dobimo torej:
+    \[\int_{0}^{\infty}x(t)e^{-st}dt=\frac{\varphi(0)+\int_{-1}^0\varphi(t)e^{-st}dt}{s-1}.\]
     Izraz na desni je zvezna funkcija spremenljivke $s$. Označimo jo z $G(s)$. Po izreku o inverzni
     transformaciji dobimo:
     \[x(t)=\int_{(c)}G(s)e^{st}ds.\]
@@ -688,7 +688,7 @@ $x(t)=e^{\lambda t}c$, $\lambda \in\C$, $c\in\R\setminus\{0\}$, in ga vstavimo v
 \begin{equation*}
         0 = \lambda e^{\lambda t}c - ae^{\lambda t}c -be^{\lambda(t-\tau)}c.   
 \end{equation*}
-Ker $e^{\lambda t}c \neq0$ za $vse t\in\R$, je karakteristična funkcija
+Ker $e^{\lambda t}c \neq0$ za vse $t\in\R$, je karakteristična funkcija
 \[h(\lambda)=\lambda-a-be^{-\lambda\tau}.\]
 Iščemo ničle karakteristične funkcije $h$. Izraz lahko z uvedbo novih spremenljivk še dodatno 
 poenostavimo. Če nastavimo $z:=\lambda\tau$, $\alpha:=a\tau$ in $\beta:=b\tau$, se karakteristična
@@ -706,6 +706,22 @@ Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne ras
 \end{trditev}
 Dokaz trditve se nahaja v viru \cite{envir}
 
+\subsection{Obstoj in enoličnost rešitve}
+Ker so linearne DDE oblike
+\[\dot{x}(t)=f(t,x(t),x(t-\tau)), \quad t\in[\xi,\xi+a],\]
+za $a,\tau>0$ in $\xi>=0$ in z začetnim pogojem
+\[x(t)=\phi(\tau), \quad t\in[\xi-\tau,\xi],\]
+na njih ne moremo takoj aplicirati eksistenčnega izreka iz četrtega poglavja. Zato jih najprej preoblikujemo.
+Za $t\in[\xi,\xi+\tau]$ velja 
+\begin{equation*}
+    \begin{split}
+        \dot{x}(t)&=f(t,x(t),\phi(t-\tau)), \\
+        x(\xi) &= \phi(\xi).
+    \end{split}
+\end{equation*}
+To je NDE prvega reda, na kateri lahko ob dodatni predpostavki, da je $\phi$ zvezna uporabimo eksistenčni izrek za navadne 
+diferencialne enačbe. Torej je rešitev na $[\xi,\xi+\tau]$ enolična. Induktivno lahko kot pri dokazu eksistenčnega 
+izreka v četrtem poglavju rešitev razširimo na $[\xi,\infty)$.
 
 
 \section{Linearni sistemi DDE}
@@ -769,45 +785,27 @@ rešitev sistema \eqref{eq5}.
 Naslednji izrek za bolj splošne sisteme DDE nam bo podal pomemben rezultat o enoličnosti in obstoju rešitve.
 
 \begin{izrek}
-    Podan je linearen sistem DDE oblike:
+    Podan je linearen sistem DDE s konstantnimi koeficienti:
     \begin{equation} \label{eq7}
-        \sum_{i=0}^m\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right)=f(t),\end{equation}
-    kjer je 
-    \[0=\tau_0<\tau_1<\dots<\tau_m, \quad \det(A_0)\neq0,\]
-    pri začetnem pogoju
-    \[x(t)=\phi(t), \quad t \in[0,\tau_m].\]
-    Z $S$ označimo množico točk oblike $t=\sum_{i=0}^{m}j_i\tau_i$, kjer so $j_i\in\Z$. Naj bo še $S_1=S\cap[\tau_m,\infty)$ in
-    $S_2=S\cap(\tau_m,\infty)$. Naj bo vektor $\phi$ reda $\mathcal{C}^1([0,\tau_m])$ in $f$ reda $\mathcal{C}^0([0,\infty))$,
-    razen morda za kočno mnogo točk nezveznosti na $S_1$. Potem obstaja natanko ena funkcija $x(t)$, ki je zvezna 
-    za $t\geq0$, zadošča začetnemu pogoju in reši sistem (7) za $t\geq\tau_m$, $t\notin S_2$. Nadalje, $x(t)$ je reda
-    $\mathcal{C}^1$ za $t>0$, $t\notin S_1$. Če je $f$ zvezna na $[0,\infty)$, je $x(t)$ reda $\mathcal{C}^1$ za vse $t>0$ in 
-    reši sistem (7) za vse $t>\tau_m$ natanko tedaj, ko je zvezno odvedljiva v točki $t=\tau_m$. To je natanko tedaj, ko velja
-    $\sum_{i=0}^m\left(A_ig'(\tau_m-\tau_i)+B_ig(\tau_m-\tau_i)\right)=f(\tau_m)$.
+        \dot{x}(t)=Ax(t)+Bx(t-\tau)=f(t)\quad \text{za}\quad t\geq\tau,
+    \end{equation}
+    kjer je $\tau>0$, pri začetnem pogoju
+    \[x(t)=\phi(t), \quad t \in[0,\tau].\]
+    Naj bo $\phi$ gladka. Potem obstaja natanko ena funkcija $x(t)$, ki 
+    zadošča začetnemu pogoju in reši sistem (7) za $t\geq\tau$. Če je $f$ zvezna na $[0,\infty)$, je $x(t)$ 
+    zvezno odvedljiva za vse $t>0$ razen morda v točkah oblike $t=n\tau$ za $n\in\N$.
 \end{izrek}
 
-\noindent\textit{Opomba:} Če vzamemo $A_0=I$, $A_i=0$ za vse $i\neq0$, $B_0\neq0$, $B_i\neq0$ za nek $i\neq0$ ter 
-$B_j=0$ za $j\neq0,i$, smo sistem prevedli na obliko (5) z zamikom $\tau_i$.
-
 \begin{proof}
-    Ker je $A_0$ obrnljiva, lahko sistem \eqref{eq7} pomnožimo z $A_0^{-1}$. Brez škode za splošnost lahko zato predpostavimo, da 
-    za sistem (7) velja $A_0=I$. Definirajmo:
-    \[g(t)=f(t)-\sum_{i=1}^{m}\left(A_i\dot{x}(t-\tau_i)+B_ix(t-\tau_i)\right).\]
-    Ker je $f$ reda $\mathcal{C}^0$ na $[0,\infty)$ razen na $S_1$ in $\phi$ reda $\mathcal{C}^1$ na $[0,\tau_m]$, je
-    $g$ reda $\mathcal{C}^0$ na $[\tau_m,\tau_m+\tau_1]$. Po integraciji sledi, da obstaja enolična funkcija $x(t)$, ki zadošča sistemu (7) na 
-    $(\tau_m,\tau_m+\tau_1)$ in začetnemu pogoju. Ta funkcija je reda $\mathcal{C}^1$ na $[0,\tau_m+\tau_1]$ razen morda v 
-    točki $t=\tau_m$. Sledi, da je 
-    $g$ reda $\mathcal{C}^0$ na $[\tau_m,\tau_m+2\tau_1]$ razen morda v točkah $t=\tau_m+\tau_j$, $j=1,\dots,m$, $t<\tau_m+2\tau_1$.
-    
-    Z integracijo 
-    razširimo rešitev na $[0,\tau_m+2\tau_1]$. 
-    Tu je rešitev reda $\mathcal{C}^0$, zadošča sistemu na $(\tau_m,\tau_m+2\tau_1)$
-    razen morda v točkah $t=\tau_m+\tau_j$, $j=1,\dots,m$, $t<\tau_m+2\tau_1$ in reda $\mathcal{C}^1$ na $[0,\tau_m+2\tau_1]$, razen 
-    morda v točkah $t=\tau_m+\tau_j$, $j=0,\dots,m$, $t<\tau_m+2\tau_1$.
-    Postopek lahko induktivno ponavljamo v neskočnčnost. Vidimo, da je
-    rešitev $x(t)$ reda $\mathcal{C}^0$ na $[0,\infty)$, in reda $\mathcal{C}^1$ razen morda na $S_1$.
-    Iz zgronje konstrukcije je lahko videti, da če je $f$ reda $\mathcal{C}^0$ na $[0,\infty)$, je $x(t)$
-    reda $\mathcal{C}^1$ na $[0,\infty)$ in reši sistem za vse $t>\tau_m$ natanko tedaj, ko je zvezno odvedljiva v $t=\tau_m$.
-    To je res natanko tedaj, ko je $\dot{x}(\tau_m+0)=\dot{\phi}(\tau_m-0)$, torej, ko drži pogoj iz izreka.
+    Definirajmo
+    \[g(t)=f(t)-\dot{x}(t)+Ax(t)+Bx(t-\tau).\]
+    Ker je $f$ zvezna na $[0,\infty)$ in $\phi$ gladka na $[0,\tau]$, je $g$ zvezna na $[0,2\tau]$. Po integraciji 
+    sledi, da obstaja enolična funkcija $x(t)$, ki zadošča sistemu (7) na $(\tau,2\tau)$ in začetnemu pogoju. Ta 
+    funkcija je zvezno odvedljiva na $[0,2\tau]$ razen morda v $t=\tau$ ali $t=2\tau$.
+    Sledi, da je $g$ zvezna na $[\tau,3\tau]$. Z integracijo razširimo rešitev 
+    na $[0,3\tau]$. Tu je rešitev zvezno odvedljiva razen morda za $t=n\tau$ za $n=1,2,3$. Postopek lahko 
+    induktivno ponavljamo v neskončnost. Vidimo, da je rešitev zvezna na $[0,\infty)$ in zvezno odvedljiva razen 
+    morda v točkah oblike $t=n\tau$ za $n\in\N$.
 \end{proof}
 
 \begin{lema}
@@ -881,7 +879,7 @@ Po enoličnosti rešitve je to res za $t\geq0$.
     +c_2e^{2t}\begin{bmatrix}
         1 \\
         2 
-    \end{bmatrix}.\]
+    \end{bmatrix}\]
     za konstanti $c_1$ in $c_2$. 
     Za $t\in[0,\tau]$ je
     \begin{equation*}
@@ -998,7 +996,7 @@ Po enoličnosti rešitve je to res za $t\geq0$.
     \begin{equation*}
         \begin{split}
             \dot{x}(t) &= Ax(t)+Bx(t-\tau) \\
-            &= Ax(t)+B\Psi(t) \\
+            &= Ax(t)+B\Psi(t-\tau) \\
             &= \begin{bmatrix}
                 0 & 1 \\
                 -2 & 3 
@@ -1007,16 +1005,16 @@ Po enoličnosti rešitve je to res za $t\geq0$.
                 1 & 0 
             \end{bmatrix}
             \begin{bmatrix}
-                4e^{t}-e^{2t}-2  \\
-                4e^{t}-2e^{2t}-1  
+                4e^{(t-\tau)}-e^{2(t-\tau)}-2  \\
+                4e^{(t-\tau)}-2e^{2(t-\tau)}-1  
             \end{bmatrix} \\
             &= \begin{bmatrix}
                 0 & 1 \\
                 -2 & 3 
             \end{bmatrix}x(t)+
             \begin{bmatrix}
-                4e^{t}-2e^{2t}-1  \\
-                4e^{t}-e^{2t}-2  
+                4e^{(t-\tau)}-2e^{2(t-\tau)}-1  \\
+                4e^{(t-\tau)}-e^{2(t-\tau)}-2  
             \end{bmatrix}.
         \end{split}
     \end{equation*}
@@ -1184,35 +1182,35 @@ osnovno verzijo logistične enačbe, nato pa še enačbo z zamikom.
 \subsection{Navadna logistična enačba}
 Populacijo nekega ekosistema želimo opisati s funkcijo časa $x(t)$. Eksponentni model predpostavlja, da je rast 
 populacije premo sorazmerna z njeno velikostjo, torej
-\[\dot{x}(t)=rx(t), \]
-kjer je $r$ konstanta. V tem primeru gre torej za eksponentno rast. Ker pa je ekosistem omejen z viri, se slej ko 
-prej rast upočasni skoraj na 0, ko populacija doseže nosilnost okolja ($K$) za dano vrsto. Zato konstantno $r$ v 
-enačbi zamenjamo z neko funkcijo $f(x)$, za katero velja $f(x)\approx r>0$ za majhne $x$, torej, da je rast na začetku 
-približno eksponentna, ter $f(x)<0$ za velike $t$. Najpreprostejša funkcija s tema lastnostima je $f(x)=r-ax$, 
-kjer je $a>0$. Vstavimo v enačbo in dobimo
-\[\dot{x}(t)=(r-ax(t))x(t).\]
+\[\dot{x}(t)=ax(t), \]
+kjer je $a$ konstanta. V tem primeru gre torej za eksponentno rast. Ker pa je ekosistem omejen z viri, se slej ko 
+prej rast upočasni skoraj na 0, ko populacija doseže nosilnost okolja ($K$) za dano vrsto. Zato konstantno $a$ v 
+enačbi zamenjamo z neko funkcijo $f(x)$, za katero velja $f(x)\approx a>0$ za majhne $x$, torej, da je rast na začetku 
+približno eksponentna, ter $f(x)<0$ za velike $t$. Najpreprostejša funkcija s tema lastnostima je $f(x)=a-bx$, 
+kjer je $b>0$. Vstavimo v enačbo in dobimo
+\[\dot{x}(t)=(a-bx(t))x(t).\]
 %Pogosto tu še izpostavimo $r$:
 \begin{equation} \label{eq8}
-    \dot{x}(t) = rx\left(1-\frac{x}{K}\right),
+    \dot{x}(t) = ax\left(1-\frac{x}{K}\right),
 \end{equation}
-kjer je $K=r/a$. Enačbi \eqref{eq8} pravimo logistična enačba.
+kjer je $K=a/b$. Enačbi \eqref{eq8} pravimo logistična enačba.
 
 Sedaj izpeljimo še rešitve. Trivialni rešitvi sta $x(t)=0$ in $x(t)=K$. Da poiščemo še ostale, zapišemo enačbo v obliki
-\[\frac{dx}{(1-\frac{x}{K})x}=r\text{ }dt.\]
+\[\frac{dx}{(1-\frac{x}{K})x}=a\text{ }dt.\]
 Vidimo, da gre za enačbo z ločljivimi spremenljivkami. Z razcepom na parcialne ulomke dobimo
-\[\left(\frac{1}{x}+\frac{\frac{1}{K}}{1-\frac{x}{K}}\right)dy=r\text{ }dt.\]
+\[\left(\frac{1}{x}+\frac{\frac{1}{K}}{1-\frac{x}{K}}\right)dy=a\text{ }dt.\]
 Tako smo enačbo poenostavili in lahko integriramo obe strani:
-\[\ln|x|-\ln\biggr{|}1-\frac{x}{K}\biggr{|}=rt+c.\]
+\[\ln|x|-\ln\biggr{|}1-\frac{x}{K}\biggr{|}=at+c.\]
 Če je $0<x(t)<K$ za vse $t\geq0$, lahko absolutne vrednosti odstranimo. Dobimo 
-\[\frac{x}{1-\frac{x}{K}}=e^ce^{rt}.\]
+\[\frac{x}{1-\frac{x}{K}}=e^ce^{at}.\]
 Ko upoštevamo še začetni pogoj $x(0)=x_0$, dobimo končno rešitev
-\[x(t)=\frac{x_0K}{x_0+(K-x_0)e^{-rt}},\]
+\[x(t)=\frac{x_0K}{x_0+(K-x_0)e^{-at}},\]
 ki ji pravimo logistična funkcija.
 
 
 \begin{figure}[h]
     \includegraphics[width=10cm, height=6cm]{1200px-Logistic-curve.svg.png}
-    \caption{Logistična funkcija za $K=1$, $r=1$ in $x_0=0.5$}
+    \caption{Logistična funkcija za $K=1$, $a=1$ in $x_0=0.5$}
 \end{figure}
 
 \noindent Za začetni pogoj $x(0)>K$ se izkaže, da je rešitev ista.
@@ -1225,30 +1223,34 @@ rešitev logistične enačbe, 0 pa nestabilna, saj se poljubna rešitev, ki se z
 
 Navadna logistična enačba predpostavlja, da sprememba v velikosti populacije takoj vpliva na njeno rast. Da bi naredili 
 model bolj realističen, je smiselno vpeljati logistično enačbo z zamikom. Ta je podana kot 
-\[\dot{x}(t)=rx(t)\left(1-\frac{x(t-\tau)}{K}\right).\]
+\[\dot{x}(t)=ax(t)\left(1-\frac{x(t-\tau)}{K}\right).\]
 Hitro vidimo, da sta tudi v tem primeru $x^*=0$ in $x^*=K$ konstantni rešitvi. Za iskanje splošne rešitve definirajmo 
 $p(t)$ kot majhno spremembo populacije v času $t$, torej $p(t)^2\approx0$. V enačbo vpeljemo substitucijo $x(t)\equiv x^*+p(t)$:
-\[\dot{p}(t)=r(x^*+p(t))\left(1-\frac{x^*}{K}-\frac{p(t-\tau)}{K}\right), \quad t\geq0.\]
+\[\dot{p}(t)=a(x^*+p(t))\left(1-\frac{x^*}{K}-\frac{p(t-\tau)}{K}\right), \quad t\geq0.\]
 Za začetni pogoj uporabimo $p(t)=0.01$ za $t\in[-\tau,0]$.
 Če vzamemo $x^*=0$, je 
-\[\dot{p}(t)=rp(t)\left(1-\frac{p(t-\tau)}{K}\right).\]
+\[\dot{p}(t)=ap(t)\left(1-\frac{p(t-\tau)}{K}\right).\]
 Ker smo privzeli, da je $p(t)^2\approx0$, smo enačbo z zamikom prevedli na sledečo NDE:
-\[\dot{p}(t)=rp(t).\]
-Sledi, da je $p(t)=ce^{rt}$. Ko upoštevamo še začetni pogoj, dobimo, da je za $x^*=0$ rešitev 
-\[p_1(t)=0.01e^{rt}.\] 
-Ker je $r>0$, je $x^*=0$ nestabilna rešitev.
+\[\dot{p}(t)=ap(t).\]
+Sledi, da je $p(t)=ce^{at}$. Ko upoštevamo še začetni pogoj, dobimo, da je za $x^*=0$ rešitev 
+\[p_1(t)=0.01e^{at}.\] 
+Ker je $a>0$, je $x^*=0$ nestabilna rešitev.
 Sedaj vzemimo $x^*=K$. V tem primeru je enačba enaka 
-\[\dot{p}(t)=r(K+p(t))\left(-\frac{p(t-\tau)}{K}\right).\]
+\[\dot{p}(t)=a(K+p(t))\left(-\frac{p(t-\tau)}{K}\right).\]
 Ker je $p(t)p(t-\tau)\approx0$, se enačba prevede na 
 \[\dot{p}(t)=-ap(t-\tau).\]
 Dobili smo tip enačbe, kakršnega smo obravnavali v petem poglavju. Stacionarna točka je $p^*=0$. Ker želimo, da 
-je $p^*=x^*$, enačbi prištejemo primerno konstanto. Ta je enaka $rK$. V tem primeru je enačba enaka 
-\[\dot{p}(t)=-r(p(t-\tau)-K)\]
-in velja $p^*=x^*=K$. Ker je to enačba z zamikom, vzamemo za začetni pogoj $p_1(t)=0.01e^{rt}$ za $t\in[-\tau,0]$.
+je $p^*=x^*$, enačbi prištejemo primerno konstanto. Ta je enaka $aK$. V tem primeru je enačba enaka 
+\[\dot{p}(t)=-a(p(t-\tau)-K)\]
+in velja $p^*=x^*=K$. Ker je to enačba z zamikom, vzamemo za začetni pogoj $p_1(t)=0.01e^{at}$ za $t\in[-\tau,0]$.
 Kot smo že ugotovili je reševanje take enačbe precej zahtevno, zato si tu pomagamo z numeričnimi metodami. Izkaže se, da 
 funkciji $p_1$ in $p_2$ zelo dobro aproksimirata rešitev $x(t)$ za majhne $t$, slednja pa tudi za večje $t$, le če 
-je $r\tau \leq \pi/2$. Za $r\tau>\pi/2$ so lahko vrednosti $x(t)$ kompleksne in je zato ne moremo aproksimirati z 
+je $a\tau \leq \pi/2$. Za $a\tau>\pi/2$ so lahko vrednosti $x(t)$ kompleksne in je zato ne moremo aproksimirati z 
 realnima funkcijama $p_1$ in $p_2$. 
+\begin{figure}[h]
+    \includegraphics[width=12cm, height=10cm]{logdelay.JPG}
+    \caption{Rešitev in približka rešitve za različne $\tau$ in $a$}
+\end{figure}
 
 
 \newpage
