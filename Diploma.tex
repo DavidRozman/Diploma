@@ -12,6 +12,7 @@
 \addbibresource{viri.bib}
 \nocite{*}
 \usepackage{pdfpages}
+\usepackage{graphicx}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -1271,7 +1272,7 @@ Z upoštevanjem pogoja $x(\tau)=x_0e^{a(1-x_0/K)\tau}$ lahko določimo tudi kons
 interval. Že po dveh korakih je jasno, da kljub obstoju eksaktne rešitve ne bomo znali analizirati obnašanja funkcije 
 $x(t)$ za velike čase, zato uporabimo drugačen način.
 
-Pomagamo si z linearizacijo. To pomeni, da rešitev zapišemo v obliki $$x(t)=K+p(t),$$ pri čemer predpostavimo, da je 
+\noindent Pomagamo si z linearizacijo. To pomeni, da rešitev zapišemo v obliki $$x(t)=K+p(t),$$ pri čemer predpostavimo, da je 
 funkcija $p(t)$ tako majhna, da lahko njene kvadratne člene zanemarimo. Spomnimo, zgoraj smo ugotovili:
 \begin{itemize}
     \item $\dot{x}(t)>0$ za $x(t)>0$ in $x(t-\tau)<K$.
@@ -1289,10 +1290,21 @@ Ker lahko zanemarimo kvadratne člene funkcije $p(t)$, velja
 \end{equation*}
 Tako enačbo smo že obravnavali v četrtem poglavju. Po lemi 4.6 vemo, da zanjo velja:
 \begin{itemize}
-    \item $p(t)$ oscilira za $\tau<1/e$.
-    \item $p(t)$ ne oscilira za $\tau\geq1/e$.
+    \item $p(t)$ oscilira za $-a\tau<1/e$.
+    \item $p(t)$ ne oscilira za $-a\tau\geq1/e$.
 \end{itemize} 
-Tovrstno dogajanje potrjujeta tudi spodnji skici, ki sta bili izdelani v okolju Matlab.
+Tovrstno dogajanje potrjuje tudi spodnja skica, ki je bila izdelana v okolju Matlab.
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{slikca1.eps}
+\end{figure}
+
+\noindent Z zeleno barvo je označena prava rešitev logistične enačbe z zamikom, z modro pa 
+približek za funkcijo $p(t)$. Opazimo, da se rešitve 
+tudi bližajo vrednosti $K$, vendar hkrati okoli nje nihajo. Funkcija $p(t)$ se obnaša podobno kot 
+rešitev v vseh primerih, razen zadnjem, kjer je $a\tau=-2.25<-\pi/2$, zaradi česar je po trditvi 4.5 $x=K$
+nestabilna rešitev. 
+
 
 \newpage
 \overfullrule=0mm\printbibliography
