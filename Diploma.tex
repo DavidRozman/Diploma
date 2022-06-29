@@ -301,7 +301,8 @@ ne le kot številka. Zato koncept faznega portreta za diferencialne enačbe z za
 \section{Obstoj in enoličnost rešitve}
 
 V tem razdelku bomo dokazali eksistenčni izrek
-za začetni problem, ki ga porodi osnovni tip diferencialnih enačb z zamikom.
+za začetni problem, ki ga porodi osnovni tip diferencialnih enačb z zamikom. Poglavje je povzeto po 
+viru \cite{angdiploma}.
 
 \begin{izrek}
     Dan je začetni problem $$\dot{x}(t)=f(t,x(t-\tau)),$$
@@ -310,10 +311,10 @@ za začetni problem, ki ga porodi osnovni tip diferencialnih enačb z zamikom.
 \end{izrek}
 
 \begin{proof}[Dokaz]
-    Naj bo \[\dot{x_{n}}(t)=f(t,x_{n}(t-\tau)) \text{ za } t \in [\xi + (n-1)\tau,\xi + n\tau],\]
+    Naj bo \[\dot{x}_n(t)=f(t,x_{n}(t-\tau)) \text{ za } t \in [\xi + (n-1)\tau,\xi + n\tau],\]
     kjer je $n \in \N$.
     Iz $t \in [\xi, \xi + \tau]$ sledi $t-\tau \in [\xi - \tau, \xi]$. Za rešitev $x_{1}$ mora torej veljati:
-    \[\dot{x_{1}}=f(t,x_{1}(t-\tau))=f(t,\phi(t-\tau)),\quad x_{1}(\xi)=\phi(\xi).\]
+    \[\dot{x}_1(t)=f(t,x_{1}(t-\tau))=f(t,\phi(t-\tau)),\quad x_{1}(\xi)=\phi(\xi).\]
     Iz tega sledi, da je
     \begin{equation*}
         \begin{split}
@@ -322,7 +323,7 @@ za začetni problem, ki ga porodi osnovni tip diferencialnih enačb z zamikom.
         \end{split}      
         \end{equation*}
     Funkcija $x_{1}$ je torej enolično definirana na intervalu $[\xi, \xi + \tau]$. Analogno lahko pokažemo, da velja
-    \[\dot{x_{2}}=f(t,x_{2}(t-\tau))=f(t,x_{1}(t-\tau)) \text{ za } t \in [\xi + \tau, \xi + 2\tau]\] in 
+    \[\dot{x}_2(t)=f(t,x_{2}(t-\tau))=f(t,x_{1}(t-\tau)) \text{ za } t \in [\xi + \tau, \xi + 2\tau]\] in 
     \[x_{2}(\xi + \tau)=x_{1}(\xi + \tau).\]
     Torej velja:
     \begin{equation*}
@@ -346,6 +347,8 @@ za začetni problem, ki ga porodi osnovni tip diferencialnih enačb z zamikom.
 \end{proof}
 
 \section{Model eksponentne rasti z zamikom}
+
+Sledeče poglavje je povzeto po viru \cite{angdiploma}.
 
 V tem poglavju si bomo pogledali nekoliko splošnejšo verzijo DDE iz 3. poglavja, ki je podana na sledeči način:
 \[\dot{x}(t)= \alpha x(t-\tau), \quad \tau > 0,\quad \alpha \in \R.\]
@@ -535,8 +538,11 @@ je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funk
 
 \section{Reševanje DDE z Laplaceovo transformacijo}
 
+
+
 V tem poglavju si bomo ogledali, kako si lahko pri reševanju DDE pomagamo z Laplaceovo transformacijo.
-Da bi razumeli postopek, najprej ponovimo in predstavimo nekaj lastnosti omenjene transformacije.
+Da bi razumeli postopek, najprej ponovimo in predstavimo nekaj lastnosti omenjene transformacije. Poglavje je 
+povzeto po viru \cite{knjiga}.
 
 \begin{definicija}
     Naj bo $f:[0,\infty) \to \R$ zvezna funkcija. Laplaceova transformacija funkcije $f$ je kompleksna funkcija
@@ -680,6 +686,8 @@ Končna formula za inverzno funkcijo je torej:
 
 \section{Linearne diferencialne enačbe z zamikom}
 
+Poglavje je povzeto po viru \cite{angdiploma}.
+
 \begin{definicija}
     Linearna DDE je podana na sledeči način:
     \begin{equation} \label{eq4}
@@ -737,7 +745,8 @@ Ker se podobna ideja pojavi tudi v naslednjem razdelku, je za primer linearne DD
 
 V tem razdelku si bomo ogledali tudi sistem več diferencialnih enačb z zamikom. Ker bi bila analiza splošnega
 sistema te oblike prezahtevna, se bomo omejili na linearne sisteme, za 
-katere imamo dobro razvito teorijo tudi v primeru navadnih diferencialnih enačb.
+katere imamo dobro razvito teorijo tudi v primeru navadnih diferencialnih enačb. Poglavje je povzeto po viru 
+\cite{angdiploma}.
 
 \begin{definicija}
     Sistem linearnih DDE s konstantnimi koeficienti je podan z 
@@ -1192,7 +1201,8 @@ reševanje linearnih sistemov NDE, saj tu karakteristična funkcija ni več poli
 
 \section{Logistična enačba z zamikom}
 V tem poglavju bomo obravnavali logistično enačbo, ki opisuje rast prebivalstva ekosistema. Najprej bomo analizirali 
-osnovno verzijo logistične enačbe, nato pa še enačbo z zamikom.
+osnovno verzijo logistične enačbe, nato pa še enačbo z zamikom. Poglavje je povzeto po virih \cite{angdiploma}, 
+\cite{logist} in \cite{slologist}.
 
 Populacijo nekega ekosistema želimo opisati s funkcijo časa $x(t)$. Eksponentni model predpostavlja, da je rast 
 populacije premo sorazmerna z njeno velikostjo, torej
@@ -1236,39 +1246,53 @@ rešitev logistične enačbe, 0 pa nestabilna, saj se poljubna rešitev, ki se z
 
 Navadna logistična enačba predpostavlja, da sprememba v velikosti populacije takoj vpliva na njeno rast. Da bi naredili 
 model bolj realističen, je smiselno vpeljati logistično enačbo z zamikom. Ta je podana kot 
-\[\dot{x}(t)=ax(t)\left(1-\frac{x(t-\tau)}{K}\right).\]
-Hitro vidimo, da sta tudi v tem primeru $x^*=0$ in $x^*=K$ konstantni rešitvi. Za iskanje splošne rešitve definirajmo 
-$p(t)$ kot majhno spremembo populacije v času $t$, torej $p(t)^2\approx0$. V enačbo vpeljemo substitucijo $x(t)\equiv x^*+p(t)$:
-\[\dot{p}(t)=a(x^*+p(t))\left(1-\frac{x^*}{K}-\frac{p(t-\tau)}{K}\right), \quad t\geq0.\]
-Za začetni pogoj uporabimo $p(t)=0.01$ za $t\in[-\tau,0]$.
-Če vzamemo $x^*=0$, je 
-\[\dot{p}(t)=ap(t)\left(1-\frac{p(t-\tau)}{K}\right).\]
-Ker smo privzeli, da je $p(t)^2\approx0$, smo enačbo z zamikom prevedli na sledečo NDE:
-\[\dot{p}(t)=ap(t).\]
-Sledi, da je $p(t)=ce^{at}$. Ko upoštevamo še začetni pogoj, dobimo, da je za $x^*=0$ rešitev 
-\[p_1(t)=0.01e^{at}.\] 
-Ker je $a>0$, je $x^*=0$ nestabilna rešitev.
-Sedaj vzemimo $x^*=K$. V tem primeru je enačba enaka 
-\[\dot{p}(t)=a(K+p(t))\left(-\frac{p(t-\tau)}{K}\right).\]
-Ker je $p(t)p(t-\tau)\approx0$, se enačba prevede na 
-\[\dot{p}(t)=-ap(t-\tau).\]
-Dobili smo tip enačbe, kakršnega smo obravnavali v petem poglavju. Stacionarna točka je $p^*=0$. Ker želimo, da 
-je $p^*=x^*$, enačbi prištejemo primerno konstanto. Ta je enaka $aK$. V tem primeru je enačba enaka 
-\[\dot{p}(t)=-a(p(t-\tau)-K)\]
-in velja $p^*=x^*=K$. Ker je to enačba z zamikom, vzamemo za začetni pogoj $p_1(t)=0.01e^{at}$ za $t\in[-\tau,0]$.
-Kot smo že ugotovili je reševanje take enačbe precej zahtevno, zato si tu pomagamo z numeričnimi metodami. Izkaže se, da 
-funkciji $p_1$ in $p_2$ zelo dobro aproksimirata rešitev $x(t)$ za majhne $t$, slednja pa tudi za večje $t$, a le če 
-je $a\tau \leq \pi/2$. Za $a\tau>\pi/2$ so lahko vrednosti $x(t)$ kompleksne in je zato ne moremo aproksimirati z 
-realnima funkcijama $p_1$ in $p_2$. 
+\[\dot{x}(t)=ax(t)\left(1-\frac{x(t-\tau)}{K}\right),\]
+pri začetnem pogoju 
+\[x(t)=x_0\quad\text{za }t\in[-\tau,0] \text{ in }x_0\in(0,K).\]
+Zamaknjen je torej del, ki se nanaša na omejenost virov, prav tako pa predpostavljamo, da je začetno stanje na intervalu
+med ničelnim in ravnovesnim stanjem. Opazimo, da za take $x(t)\in(0,K)$ in $x(t-\tau)\in(0,K)$ velja, da je
+$\dot{x}(t)>0$, kar pomeni, da funkcija $x$ narašča do trenutka ko $x(t-\tau)$ preseže vrednost $K$. Za razliko od 
+običajne logistične enačbe se to ob zadostnem zamiku dejansko zgodi, kar bomo potrdili v nadaljevanju.
 
-Naslednja slika prikazuje rešitev zamaknjene logistične enačbe in njena numerična približka pri različnih parametrih 
-$\tau$ in $a$. Ker $K$ vpliva le na položaj in ne obliko krivulj, izberemo $K=2$. Vidimo, da $p_2(t)$ dobro aproksimira
-rešitev, razen v zadnjem primeru, saj je tam $a\tau>\pi/2$ in je zato $x^*=K$ nestabilna rešitev.
-\begin{figure}[h]
-    \includegraphics[width=12cm, height=10cm]{logdelay.JPG}
-    \caption{Rešitev in približka rešitve za različne $\tau$ in $a$}
-\end{figure}
+Reševanja enačbe se lahko lotimo na že znani induktivni način. Za $t\in[0,\tau]$ velja 
+\[\dot{x}(t)=ax(t)(1-bx_0) \Rightarrow x(t)=Ce^{a(1-x_0/K)t}.\]
+Ker je $x(0)=x_0$, je torej 
+\[x(t)=x_0e^{a(1-x_0/K)t}, \quad t\in[0,\tau].\]
+Sedaj nadaljujemo za $t\in[\tau,2\tau]$:
+\[\dot{x}(t)=ax(t)\left(1-\frac{x_0e^{a(1-x_0/K)(t-\tau)}}{K}\right).\]
+Znova smo dobili enačbo z ločljivimi spremenljivkami, katere splošna rešitev je 
+\begin{equation*}
+    \begin{split}
+        x(t) &= De^{a\int(1-\frac{x_0e^{a(1-x_0/K)t}}{K})dt} \\
+             &= De^{at-\frac{x_0/K}{1-x_0/K}e^{a(1-x_0/K)t}}
+    \end{split}
+\end{equation*}
+Z upoštevanjem pogoja $x(\tau)=x_0e^{a(1-x_0/K)\tau}$ lahko določimo tudi konstanto $D$ in nadaljujemo na naslednji 
+interval. Že po dveh korakih je jasno, da kljub obstoju eksaktne rešitve ne bomo znali analizirati obnašanja funkcije 
+$x(t)$ za velike čase, zato uporabimo drugačen način.
 
+Pomagamo si z linearizacijo. To pomeni, da rešitev zapišemo v obliki $$x(t)=K+p(t),$$ pri čemer predpostavimo, da je 
+funkcija $p(t)$ tako majhna, da lahko njene kvadratne člene zanemarimo. Spomnimo, zgoraj smo ugotovili:
+\begin{itemize}
+    \item $\dot{x}(t)>0$ za $x(t)>0$ in $x(t-\tau)<K$.
+    \item $\dot{x}(t)<0$ za $x(t)>0$ in $x(t-\tau)>K$.
+\end{itemize}
+Pričakujemo torej, da bo vrednost $x=K$ stabilna ravnovesna točka, natančnejše obnašanje funkcije $x(t)$ okoli nje pa bo 
+podala $p(t)$. Argumente za ustreznost tovrstne linearne analize ravnovesja lahko bralec najde v viru \cite{analiza}.
+Ker lahko zanemarimo kvadratne člene funkcije $p(t)$, velja
+\begin{equation*}
+    \begin{split}
+        (p(t)+K)'= p'(t) &=  a(K+p(t))\left(1-1-\frac{p(t-\tau)}{K}\right) \\
+        p'(t) &= -ap(t-\tau)-\frac{a}{K}p(t)p(t-\tau) \\
+        p'(t) &\approx -ap(t-\tau).
+    \end{split}
+\end{equation*}
+Tako enačbo smo že obravnavali v četrtem poglavju. Po lemi 4.6 vemo, da zanjo velja:
+\begin{itemize}
+    \item $p(t)$ oscilira za $\tau<1/e$.
+    \item $p(t)$ ne oscilira za $\tau\geq1/e$.
+\end{itemize} 
+Tovrstno dogajanje potrjujeta tudi spodnji skici, ki sta bili izdelani v okolju Matlab.
 
 \newpage
 \overfullrule=0mm\printbibliography
