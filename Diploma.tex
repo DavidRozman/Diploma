@@ -13,6 +13,13 @@
 \nocite{*}
 \usepackage{pdfpages}
 \usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\usepackage{float}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -104,13 +111,11 @@ Ljubljana, \letnica}
 % tekst povzetka v slovenscini
  %V povzetku na kratko opi"site vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pa"c pa le opis vsebine.
 Diferencialne enačbe z zamikom povezujejo odvod funkcije z njenimi vrednosti v preteklem času. Začetni pogoj je 
-podan kot funkcija na ustreznem intervalu. Ker je reševanje takih enačb precej bolj zahtevno kot reševanje navadnih 
+podan kot funkcija na ustreznem intervalu. Ker je reševanje takih enačb še bolj zahtevno kot reševanje navadnih 
 diferencialnih enačb, je zanje značilna uporaba numeričnih metod. Pogoji za obstoj in enoličnost rešitve so podobni kot
-pri navadnih diferencialnih enačbah, vendar pa rešitve pogosto niso zvezne in odvedlijve.. Do rešitev lahko pridemo tudi s 
-pomočjo Laplaceove transformacije, pri čemer končni rezultat ne bo nujno izražen z elementarnimi funkcijami. Določene 
-enačbe lahko še vedno rešimo z nastavki ali variacijo konstante. Pri sistemih poznamo splošen postopek za reševanje, ki 
-pa skoraj vedno zahteva uporabo numeričnih metod. Diferencialne enačbe z zamikom so koristne tudi pri analiziranju 
-zamaknjene logistične enačbe.
+pri navadnih diferencialnih enačbah, vendar pa rešitve pogosto niso zvezne in odvedlijve. V nalogi je predstavljenih 
+nekaj standardnih metod za reševanje 
+izbranih tipov enačb, analizirana pa sta tudi zamaknjena modela eksponentne in logistične rasti.
  \vfill
 \begin{center}
 {\bf Delay dif\mbox{}ferential equations}\\[3mm] % prevod slovenskega naslova dela 
@@ -121,11 +126,8 @@ Delay differential equations connect the derivative of a function with its value
 condition is given as a function over a certain interval. Solving such equations is generally much harder than solving 
 ordinary dif\mbox{}ferential equations, therefore numerical methods are commonly used in the process. The conditions for 
 existence and uniqueness of a solution are similar to those for ordinary dif\mbox{}ferential equations, yet the solution
-is often neither dif\mbox{}ferentiable nor continuous. Laplace transform can be used to solve equations, although the final 
-result may not be expressed as an elementary function. Certain equations can still be solved using specif\mbox{}ic 
-expressions or variation of constant. Systems can be solved using a general method, altough numerical methods 
-have to be applied most of the time. Delay dif\mbox{}ferential equations are useful as a tool to analyse
-the logistic equation.
+is often neither dif\mbox{}ferentiable nor continuous. In this thesis I present some of the standard methods for solving certain 
+types of delay dif\mbox{}ferential equations and analyse delayed exponential and logistic growth models.
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2010):} 34K05, 34K06, 34K20  \\[1mm]  
@@ -147,7 +149,7 @@ Leibniz predstavila infinitizemalni račun. V naslednjih sto letih so veliko del
 enačb namenili največji svetovni matematiki, kot so Euler, Bernoulli in Lagrange, ter odkrili nekaj najpomembnejših
 metod za reševanje.
 
-Kljub mnogim raziskavam pa diferencialne enačbe še danes ostajajo kompleksen matematični problem. Podobno kot pri
+Kljub mnogim raziskavam diferencialne enačbe še danes ostajajo kompleksen matematični problem. Podobno kot pri
 nedoločenem integralu, splošni postopek za njihovo reševanje ne obstaja. Ker znamo reševati le določene tipe in je
 eksplicitno iskanje rešitve v praksi redko izvedljivo, za reševanje pogosto uporabimo numerične metode,
 pogosto pa se omejimo tudi zgolj na obstoj rešitve.
@@ -236,7 +238,7 @@ v trenutnem času ampak tudi v neki pretekli točki.
 
 \noindent V nadaljevanju bomo take enačbe
 označevali s kratico DDE, kar ustreza angleškemu prevodu njenega imena - 
-delay dif\mbox{}ferential equation. Konstanti $\tau>0$ pravimo zamik.
+\textit{delay dif\mbox{}ferential equation}. Konstanti $\tau>0$ pravimo zamik.
 Začetni pogoj za tovrstne enačbe je podan s predpisom
 \[x(t)=\phi(t) \quad \text{za } t \in J_{-} = [\xi-\tau,\xi],\]kjer je $\phi$ zvezna funkcija.
 
@@ -349,10 +351,10 @@ viru \cite{angdiploma}.
 
 \section{Model eksponentne rasti z zamikom}
 
-Sledeče poglavje je povzeto po viru \cite{angdiploma}.
 
 V tem poglavju si bomo pogledali nekoliko splošnejšo verzijo DDE iz 3. poglavja, ki je podana na sledeči način:
-\[\dot{x}(t)= \alpha x(t-\tau), \quad \tau > 0,\quad \alpha \in \R.\]
+\[\dot{x}(t)= -\alpha x(t-\tau), \quad \tau > 0,\quad \alpha \in \R.\]
+Poglavje je povzeto po viru \cite{angdiploma}.
 Enačba je odvisna od dveh parametrov, zato jo zaradi lažjega reševanja zreduciramo na enega.
 Z uvedbo nove spremenljivke $\mu:=\eta t, \eta > 0$, in funkcijo
 $U(\mu)=x(t)$ želimo enačbo prevesti na tako, kjer bo zamik $\tau$ enak 1:
@@ -409,7 +411,7 @@ Dobimo sistem enačb za $a$ in $b$:
 
 \noindent Funkcija $h$ je analitična, zato zanjo veljajo naslednje lastnosti:
 \begin{enumerate}
-    \item[(1)] Za pojubno število $R > 0$, je množica ničel, ki zadoščajo pogoju $|\lambda|\leq R$ končna. Torej je
+    \item[(1)] Za pojubno število $R > 0$ je množica ničel, ki zadoščajo pogoju $|\lambda|\leq R$ končna. Torej je
             množica ničel funkcije $h$ števna množica.
     \item[(2)] Naj bo množica ničel karakteristične enačbe neskončna. 
     Torej gre za zaporedje, ki ga lahko označimo z $\left\{\lambda_n\right\}$. Potem velja
@@ -508,12 +510,12 @@ Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednos
 
 
 \begin{trditev}
-    Za DDE oblike $\dot{x}(t)= \alpha x(t-\tau), \tau >0, \alpha \in \R$, velja:
+    Za DDE oblike $\dot{x}(t)= -\alpha x(t-\tau), \tau >0, \alpha \in \R$, velja:
     \begin{enumerate}
-        \item Če je $\alpha > 0$, je $x=0$ nestabilna rešitev.
-        \item Če je $0>\alpha \tau >-\pi/2$, je $x=0$ asimptotsko stabilna.
-        \item Če je $\alpha \tau = -\pi/2$, sta rešitvi $x=\sin(\pi\mu/2)$ in $x=\cos(\pi\mu/2)$.
-        \item Če je $\alpha\tau < -\pi/2$, je $x=0$ nestabilna.
+        \item Če je $\alpha < 0$, je $x=0$ nestabilna rešitev.
+        \item Če je $0<\alpha \tau <\pi/2$, je $x=0$ asimptotsko stabilna.
+        \item Če je $\alpha \tau = \pi/2$, sta rešitvi $x=\sin(\pi(t/\tau)/2)$ in $x=\cos(\pi(t/\tau)/2)$.
+        \item Če je $\alpha\tau > \pi/2$, je $x=0$ nestabilna.
     \end{enumerate}
 \end{trditev}
 
@@ -521,20 +523,16 @@ Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednos
 je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funkcije, oziroma nestabilna,
 če obstaja ničla $\lambda$ s pozitivnim realnim delom.
 
-\begin{lema}
-    Za DDE oblike $\dot{x}(t)= \alpha x(t-\tau), \tau >0, \alpha \in \R$ sta naslednji trditvi
-    ekvivalentni:
-    \begin{itemize}
-        \item Vse rešitve so oscilirajoče.
-        \item $\alpha\tau < 1/e$
-    \end{itemize}
-\end{lema}
+\begin{trditev}
+    Rešitve DDE oblike $\dot{x}(t)= -\alpha x(t-\tau), \tau >0, \alpha \in \R$,
+    oscilirajo natanko tedaj, ko je $\alpha\tau>1/e.$
+\end{trditev}
 
 \begin{proof}
     Za vsak $\lambda \in \R$ je $U(\mu)=e^{\lambda\mu}$ bodisi monotona, bodisi konstantna funkcija.
     Za realne $\lambda$ torej rešitev $x(t)$ ne oscilira. Funkcija $x(t)$ je torej oscilirajoča natanko tedaj, ko
-    je $\lambda\in\mathbb{C}\setminus\mathbb{R}$. Po trditvi 5.3 je to res natanko tedaj, ko je 
-    $\beta = \alpha\tau < 1/e$.
+    je $\lambda\in\mathbb{C}\setminus\mathbb{R}$. Po trditvi 4.3 je to res natanko tedaj, ko je 
+    $\beta = \alpha\tau > 1/e$.
 \end{proof}
 
 \section{Reševanje DDE z Laplaceovo transformacijo}
@@ -736,7 +734,7 @@ Potem za $t\in[\xi,\xi+\tau]$ velja
     \end{split}
 \end{equation*}
 To je NDE prvega reda, na kateri lahko ob dodatni predpostavki, da je $\phi$ zvezna uporabimo eksistenčni izrek za navadne 
-diferencialne enačbe, saj je $f$ linearna.. Torej dobimo rešitev, ki je enolična na $[\xi,\xi+\tau]$. Sedaj postopamo 
+diferencialne enačbe, saj je $f$ linearna. Torej dobimo rešitev, ki je enolična na $[\xi,\xi+\tau]$. Sedaj postopamo 
 induktivno in rešitev razširimo na naslednji interval $[\xi+\tau,\xi+2\tau]$.
 Podobno kot pri že videnem dokazu eksistenčnega izreka lahko torej rešitev razširimo na $[\xi,\infty)$.
 Ker se podobna ideja pojavi tudi v naslednjem razdelku, je za primer linearne DDE ne bomo bolj natančno analizirali.
@@ -1241,8 +1239,8 @@ ki ji pravimo logistična funkcija.
 \noindent Za začetni pogoj $x(0)>K$ se izkaže, da je rešitev ista.
 Opazimo, da je rešitev ustrezna tudi za $x_0=0$ in $x_0=K$. Iz 
 \[\lim_{t\to\infty}x(t)=\frac{x_0K}{x_0}=K\]
-pa vidimo, da se za $x_0\neq0$ velikost populacije z večanjem časa res bliža svoji nosilnosti. $K$ je asimpotsko stabilna 
-rešitev logistične enačbe, 0 pa nestabilna, saj se poljubna rešitev, ki se začne blizu 0, v neskončnosti bliža $K$.
+pa vidimo, da se za $x_0\neq0$ velikost populacije z večanjem časa res bliža svoji nosilnosti. Torej je $x=K$ asimpotsko stabilna 
+rešitev logistične enačbe, $x=0$ pa nestabilna, saj se poljubna rešitev, ki se začne blizu 0, v neskončnosti bliža $K$.
 
 
 Navadna logistična enačba predpostavlja, da sprememba v velikosti populacije takoj vpliva na njeno rast. Da bi naredili 
@@ -1253,7 +1251,8 @@ pri začetnem pogoju
 Zamaknjen je torej del, ki se nanaša na omejenost virov, prav tako pa predpostavljamo, da je začetno stanje na intervalu
 med ničelnim in ravnovesnim stanjem. Opazimo, da za take $x(t)\in(0,K)$ in $x(t-\tau)\in(0,K)$ velja, da je
 $\dot{x}(t)>0$, kar pomeni, da funkcija $x$ narašča do trenutka ko $x(t-\tau)$ preseže vrednost $K$. Za razliko od 
-običajne logistične enačbe se to ob zadostnem zamiku dejansko zgodi, kar bomo potrdili v nadaljevanju.
+običajne logistične enačbe se to ob zadostnem zamiku dejansko zgodi(tudi v primeru začetne vrednosti, ki je manjša od $K$),
+kar bomo potrdili v nadaljevanju.
 
 Reševanja enačbe se lahko lotimo na že znani induktivni način. Za $t\in[0,\tau]$ velja 
 \[\dot{x}(t)=ax(t)(1-bx_0) \Rightarrow x(t)=Ce^{a(1-x_0/K)t}.\]
@@ -1272,7 +1271,7 @@ Z upoštevanjem pogoja $x(\tau)=x_0e^{a(1-x_0/K)\tau}$ lahko določimo tudi kons
 interval. Že po dveh korakih je jasno, da kljub obstoju eksaktne rešitve ne bomo znali analizirati obnašanja funkcije 
 $x(t)$ za velike čase, zato uporabimo drugačen način.
 
-\noindent Pomagamo si z linearizacijo. To pomeni, da rešitev zapišemo v obliki $$x(t)=K+p(t),$$ pri čemer predpostavimo, da je 
+Pomagamo si z linearizacijo. To pomeni, da rešitev zapišemo v obliki $$x(t)=K+p(t),$$ pri čemer predpostavimo, da je 
 funkcija $p(t)$ tako majhna, da lahko njene kvadratne člene zanemarimo. Spomnimo, zgoraj smo ugotovili:
 \begin{itemize}
     \item $\dot{x}(t)>0$ za $x(t)>0$ in $x(t-\tau)<K$.
@@ -1288,24 +1287,44 @@ Ker lahko zanemarimo kvadratne člene funkcije $p(t)$, velja
         p'(t) &\approx -ap(t-\tau).
     \end{split}
 \end{equation*}
-Tako enačbo smo že obravnavali v četrtem poglavju. Po lemi 4.6 vemo, da zanjo velja:
-\begin{itemize}
-    \item $p(t)$ oscilira za $-a\tau<1/e$.
-    \item $p(t)$ ne oscilira za $-a\tau\geq1/e$.
-\end{itemize} 
-Tovrstno dogajanje potrjuje tudi spodnja skica, ki je bila izdelana v okolju Matlab.
+Tako enačbo smo obravnavali v četrtem poglavju. Po trditvi 4.6 vemo, da $p(t)$ oscilira natanko tedaj, ko je 
+$a\tau>1/e$.
+Podobne zaključke lahko naredimo tudi za rešitve zamaknjene logistične enačbe v okolici ravnovesne točke $x=K$. 
+Temu pritrjuje tudi skica na naslednji strani, ki je bila izdelana v okolju Matlab.
+Numerična rešitev zamaknjene logistične enačbe je bila izračunana z osnovno enokoračno
+difere\-nčno metodo s korakom
+$h=0.01$ pri začetni vrednosti $x0=0.01$ in nosilnosti $K=1$.
 
-\begin{figure}[h]
-    \includegraphics[width=\textwidth]{slikca1.eps}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+
+\lstinputlisting{logist.m}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{slikca6.eps}
 \end{figure}
 
-\noindent Z zeleno barvo je označena prava rešitev logistične enačbe z zamikom, z modro pa 
-približek za funkcijo $p(t)$. Opazimo, da se rešitve 
-tudi bližajo vrednosti $K$, vendar hkrati okoli nje nihajo. Funkcija $p(t)$ se obnaša podobno kot 
-rešitev v vseh primerih, razen zadnjem, kjer je $a\tau=-2.25<-\pi/2$, zaradi česar je po trditvi 4.5 $x=K$
-nestabilna rešitev. 
+Vidimo, da se v vseh primerih, razen v zadnjem, vrednost $x(t)$ bliža nosilnosti $K=1$. Za $\alpha=\tau=1.5$, je namreč
+$\alpha\tau=2.25>\pi/2$, zaradi česar je po trditvi 4.5 $x=K$ v tem primeru nestabilna rešitev. V ostalih primerih 
+rešitev res niha okoli nosilnosti, kot smo pričakovali.
 
 
-\newpage
+
 \overfullrule=0mm\printbibliography
 \end{document}
