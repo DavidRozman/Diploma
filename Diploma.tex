@@ -111,8 +111,7 @@ Ljubljana, \letnica}
 % tekst povzetka v slovenscini
  %V povzetku na kratko opi"site vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pa"c pa le opis vsebine.
 Diferencialne enačbe z zamikom povezujejo odvod funkcije z njenimi vrednosti v preteklem času. Začetni pogoj je 
-podan kot funkcija na ustreznem intervalu. Ker je reševanje takih enačb še bolj zahtevno kot reševanje navadnih 
-diferencialnih enačb, je zanje značilna uporaba numeričnih metod. Pogoji za obstoj in enoličnost rešitve so podobni kot
+podan kot funkcija na ustreznem intervalu. Pogoji za obstoj in enoličnost rešitve takega začetnega problema so podobni kot
 pri navadnih diferencialnih enačbah, vendar pa rešitve pogosto niso zvezne in odvedlijve. V nalogi je predstavljenih 
 nekaj standardnih metod za reševanje 
 izbranih tipov enačb, analizirana pa sta tudi zamaknjena modela eksponentne in logistične rasti.
@@ -123,8 +122,7 @@ izbranih tipov enačb, analizirana pa sta tudi zamaknjena modela eksponentne in 
 \end{center}
 % tekst povzetka v anglescini
 Delay differential equations connect the derivative of a function with its value in a previous state. The initial 
-condition is given as a function over a certain interval. Solving such equations is generally much harder than solving 
-ordinary dif\mbox{}ferential equations, therefore numerical methods are commonly used in the process. The conditions for 
+condition is given as a function over a certain interval. The conditions for 
 existence and uniqueness of a solution are similar to those for ordinary dif\mbox{}ferential equations, yet the solution
 is often neither dif\mbox{}ferentiable nor continuous. In this thesis I present some of the standard methods for solving certain 
 types of delay dif\mbox{}ferential equations and analyse delayed exponential and logistic growth models.
@@ -152,7 +150,7 @@ metod za reševanje.
 Kljub mnogim raziskavam diferencialne enačbe še danes ostajajo kompleksen matematični problem. Podobno kot pri
 nedoločenem integralu, splošni postopek za njihovo reševanje ne obstaja. Ker znamo reševati le določene tipe in je
 eksplicitno iskanje rešitve v praksi redko izvedljivo, za reševanje pogosto uporabimo numerične metode,
-pogosto pa se omejimo tudi zgolj na obstoj rešitve.
+velikokrat pa se omejimo tudi zgolj na obstoj rešitve.
 
 Navadne diferencialne enačbe povezujejo odvod funkcije v neki točki z njenimi trenutnimi vrednostmi.
 V tej nalogi bomo obravnavali diferencialne enačbe z zamikom, pri katerih je vrednost odvoda iskane funkcije odvisna
@@ -161,15 +159,16 @@ katerih trenutno stanje je odvisno tudi od njihovih stanj v preteklosti. Take en
 iz biologije, kemije in mehanike.
 
 Na začetku naloge bomo na kratko ponovili osnove navadnih diferencialnih enačb. Nato bomo definirali
-diferencialne enačbe z zamikom in si na preprostem zgledu pogledali primer reševanja in rešitev primerjali z 
-rešitvijo analogne navadno diferencialne enačbe. V podrobnejši analizi bomo navedli eksistenčne izreke, torej kdaj 
+diferencialne enačbe z zamikom in si na preprostem zgledu pogledali primer reševanja in dobljeno rešitev primerjali z 
+rešitvijo analogne navadno diferencialne enačbe. V podrobnejši analizi bomo navedli eksistenčni izrek, torej kdaj 
 rešitev obstaja ter kakšne lastnosti ima iskana funkcija. Za tem si bomo pogledali nekaj osnovnih tipov enačb z 
-njihovimi postopki za reševanje. Na koncu pa bomo predstavili še nekaj zgledov uporabe takih enačb pri modeliranju.
+njihovimi postopki za reševanje. Predstavili pa bomo tudi dva zgleda uporabe takih enačb pri modeliranju.
 
 
 \section{Primerjava NDE in DDE}
 
-Za začetek se spomnimo osnov navadnih diferencialnih enačb.
+Za začetek se spomnimo osnov navadnih diferencialnih enačb. Poglavje je povzeto po virih \cite{angdiploma} in 
+\cite{wikide}.
 
 \begin{definicija}
     Navadna diferencialna enačba (NDE) reda $n$ je enačba oblike
@@ -177,7 +176,8 @@ Za začetek se spomnimo osnov navadnih diferencialnih enačb.
     kjer je $F$ dana funkcija $n+2$ spremenljivk, $y$ neznana funkcija spremenljivke $x$, $y^{(k)}$ pa njeni
     odvodi.
 \end{definicija}
-Red enačbe je torej red najvišjega odvoda, ki nastopa v enačbi. Pridevnik \textit{navadna} se nanaša na dejstvo,
+
+\noindent Red enačbe je torej red najvišjega odvoda, ki nastopa v enačbi. Pridevnik \textit{navadna} se nanaša na dejstvo,
 da v njej nastopa funkcija ene spremenljivke. V splošnem poznamo 
 tudi parcialne diferencialne enačbe za funkcije več spremenljivk, ki pa jih v tej nalogi ne bomo obravnavali.
 
@@ -209,13 +209,12 @@ Rešitev je funkcija, ki je zvezna in odvedljiva na realni osi.
 
 Pri NDE opazimo dve pomembni lastnosti, ki v nadaljevanju pri diferencialnih enačbah z zamikom ne bosta veljali. 
 Vrednost odvoda funkcije $x$ v točki $t$ je bila odvisna le od njene vrednosti v tej isti točki. Poleg tega smo 
-imeli še en začetni pogoj, zaradi katerega smo dobili enolično rešitev. Ta pogoj je bil podan kot vrednost funkcije
-$x$ v eni točki. Običajna verzija eksistenčnega izreka pove, da je rešitev tovrstnega začetnega problema
+enačbi dodali začetni pogoj, zaradi katerega smo dobili enolično rešitev. Ta pogoj je bil podan kot vrednost funkcije
+$x$ v točki. Standardna verzija eksistenčnega izreka pove, da je rešitev tovrstnega začetnega problema
 ena sama, ker desna stran izpolnjuje Lipschitzev pogoj. Splošneje pa vemo, da
 je splošna rešitev NDE reda $n$, če obstaja, $n$-parametrična.
 Z vsakim dodatnim začetnim pogojem, ki je podan kot vrednost funkcije ali enega izmed njenih odvodov v fiksni točki,
-se število parametrov v splošni rešitvi zmanjša za ena.
-
+se število parametrov v končnodimenzionalni splošni rešitvi zmanjša za ena.
 Če NDE iz primera zapišemo kot $(\dot{t},\dot{x})=(1,-x)$,
 lahko narišemo tudi njen fazni portret.
 \begin{figure}[h]
@@ -241,9 +240,8 @@ označevali s kratico DDE, kar ustreza angleškemu prevodu njenega imena -
 \textit{delay dif\mbox{}ferential equation}. Konstanti $\tau>0$ pravimo zamik.
 Začetni pogoj za tovrstne enačbe je podan s predpisom
 \[x(t)=\phi(t) \quad \text{za } t \in J_{-} = [\xi-\tau,\xi],\]kjer je $\phi$ zvezna funkcija.
-
-\textit{Opomba:} V nadaljevanju diplomske naloge, bo izraz začetni problem pomenil diferencialno enačbo z
-zamikom skupaj z začetnim pogojem zanjo.
+V nadaljevanju diplomske naloge, bo izraz začetni problem pomenil diferencialno enačbo z
+zamikom skupaj z začetnim pogojem.
 
 Pomembna razlika v primerjavi z začetnimi problemi, ki smo jih obravnavali pri teoriji za NDE, je 
 dejstvo, da začetni pogoj ni več podan kot vrednost 
@@ -260,11 +258,11 @@ dimenzionalna.
     Iz tega sledi
     \[x(t)=x(0)+ \int_{0}^{t}(-1)ds = 1-t, \quad \text{za } t \in [0,\tau].\]
     Tako smo dobili rešitev za interval $[0,\tau]$
-    Analogno nadaljujemo za $t \in [\tau, 2\tau]$. Tu velja $t-\tau \in [0,\tau]$, torej
+    Analogno nadaljujemo za $t \in [\tau, 2\tau]$. Tu velja $t-\tau \in [0,\tau]$, torej imamo
     \[\dot{x}(t)=-x(t-\tau)=-(1-(t-\tau))=(t-\tau)-1.\]
-    Od tod sledi
+    Od tod sledi, da velja
     \[x(t)=x(\tau)+\int_{\tau}^{t}((s-\tau)-1)ds=1-t+\frac{(t-\tau)^2}{2},\quad \text{za }t\in[\tau,2\tau].\]
-    Dokažimo sedaj, da za vsak interval $[(n-1)\tau,n\tau], n\in \N$ velja
+    Dokažimo sedaj, da za vsak interval $[(n-1)\tau,n\tau], n\in \N$, velja
     \[x(t)=1+\sum_{k=1}^{n}(-1)^k\frac{(t-(k-1)\tau)^k}{k!}.\]
     Za $n=1$ dobimo: $x(t)=1-t$, kar je v skladu z že izračunano rešitvijo.
     Predpostavimo sedaj, da formula drži za nek $n \in \N$ in dokažimo, da potem velja tudi za $n+1$.
@@ -346,7 +344,7 @@ viru \cite{angdiploma}.
         \end{dcases}
     \]
     je dobro definirana za vse $t \in J_{-} \cup J = [\xi - \tau, \xi + a]$ in je rešitev začetnega problema. Iz 
-    postopka pa sledi, da je enolična.
+    postopka sledi, da je to edina možna rešitev.
 \end{proof}
 
 \section{Model eksponentne rasti z zamikom}
@@ -354,12 +352,12 @@ viru \cite{angdiploma}.
 
 V tem poglavju si bomo pogledali nekoliko splošnejšo verzijo DDE iz 3. poglavja, ki je podana na sledeči način:
 \[\dot{x}(t)= -\alpha x(t-\tau), \quad \tau > 0,\quad \alpha \in \R.\]
-Poglavje je povzeto po viru \cite{angdiploma}.
+Poglavje je povzeto po virih \cite{angdiploma} in \cite{envir}.
 
 
-Enačba je odvisna od dveh parametrov, zato jo zaradi lažjega reševanja zreduciramo na enega.
-Z uvedbo nove spremenljivke $\mu:=\eta t, \eta > 0$, in funkcijo
-$U(\mu)=x(t)$ želimo enačbo prevesti na tako, kjer bo zamik $\tau$ enak 1:
+Enačba je odvisna od dveh parametrov, zato jo bomo nekoliko poenostavili. Natančneje, z uvedbo nove spremenljivke
+ $\mu:=\eta t, \eta > 0$, in funkcije
+$U(\mu)=x(t)$ želimo enačbo preoblikovati tako, da bo njen zamik $\tau$ enak 1:
 \[\frac{dU}{d\mu}=\frac{dx}{\eta dt}=-\alpha \eta^{-1}x(t-\tau)=-\alpha \eta^{-1}U(\eta t - \eta \tau)=
 -\alpha \eta^{-1}U(\mu - \eta \tau).\]
 Če izberemo $\eta := 1/\tau$ in $\beta:=\alpha \tau$, dobimo:
@@ -368,7 +366,8 @@ $U(\mu)=x(t)$ želimo enačbo prevesti na tako, kjer bo zamik $\tau$ enak 1:
  \frac{dU}{d\mu} & =-\beta U(\mu -1).
     \end{split}
 \end{equation}
-Na množici odvedljivih funkcij, definiramo sledeči linearni operator:
+
+Sedaj na množici odvedljivih funkcij, definiramo sledeči linearni operator:
 \[L(U)=\frac{dU}{d\mu} + \beta U(\mu -1).\]
 Ker obravnavana DDE spominja na NDE, pri katerih so rešitve eksponentne funkcije, poskusimo tudi tukaj
 iskati rešitve DDE \eqref{eq1} z nastavkom $U(\mu)=e^{\lambda \mu}$. Ko ga vstavimo v linearni operator,
@@ -379,7 +378,7 @@ Iščemo $\lambda \in \C$ tako, da bo vrednost dobljenega izraza enaka 0. Ker
 za vsako kompleksno število $\lambda$ velja $e^{\lambda \mu} \neq 0$ , moramo rešiti naslednjo karakteristično
 enačbo:
 \[ h(\lambda) \equiv \lambda + \beta e^{-\lambda} =0.\]
-Če je $\lambda$ ničla te enačbe, je $e^{\lambda\mu}$ rešitev DDE $(1)$.
+Enostavno je preveriti, da iz dejstva, da je $\lambda\in\mathbb{C}$ ničla te enačbe sledi, da je $e^{\lambda\mu}$ rešitev DDE $(1)$.
 Nastavek $\lambda = a + ib$ vstavimo v enačbo:
 \begin{equation*}
     \begin{split}
@@ -389,7 +388,7 @@ Nastavek $\lambda = a + ib$ vstavimo v enačbo:
         a + \beta e^{-a}\cos(b) + i(b-\beta e^{-a}\sin(b)) &= 0
     \end{split}      
 \end{equation*}
-Dobimo sistem enačb za $a$ in $b$:
+Dobimo sistem enačb za realni in imaginarni del ničle:
 \begin{equation*}
     \begin{split}
         a &= -\beta e^{-a}\cos(b) \\
@@ -411,12 +410,12 @@ Dobimo sistem enačb za $a$ in $b$:
     To je enako 0 natanko tedaj, ko je $\lambda$ $(n+1)$-kratna ničla funkcije $h$.
 \end{proof}
 
-\noindent Funkcija $h$ je analitična, zato zanjo veljajo naslednje lastnosti:
+\noindent Funkcija $h$ je holomorfna, zato zanjo veljajo naslednje lastnosti:
 \begin{enumerate}
     \item[(1)] Za pojubno število $R > 0$ je množica ničel, ki zadoščajo pogoju $|\lambda|\leq R$ končna. Torej je
             množica ničel funkcije $h$ števna množica.
     \item[(2)] Naj bo množica ničel karakteristične enačbe neskončna. 
-    Torej gre za zaporedje, ki ga lahko označimo z $\left\{\lambda_n\right\}$. Potem velja
+    Tedaj jih lahko uredimo v zaporedje, ki ga označimo z $\left\{\lambda_n\right\}$. Za to zaporedje velja
     $|\lambda_{n}| \to \infty$. Ker je $|\beta|e^{-\text{Re}(\lambda_{n})}=|\lambda_n|$, sledi, da
     $\text{Re}(\lambda_n) \to -\infty$. Prav tako za vsak $a \in \R$ obstaja končno mnogo ničel $\lambda_n$,
     da je $\text{Re}(\lambda_n) \geq a$. 
@@ -428,11 +427,11 @@ Dobimo sistem enačb za $a$ in $b$:
 \begin{trditev}
     Za karakteristično funkcijo $h$ velja naslednje:
     \begin{enumerate}
-        \item Če je $\beta < 0$, potem obstaja natanko ena realna ničla $\lambda$ in je pozitivna.
+        \item Če je $\beta < 0$, potem obstaja natanko ena realna ničla karakteristične enačbe, ki je pozitivna.
         \item Če je $0 < \beta < 1/e$, potem obstajata natanko dve različni negativni realni
-         ničli, $\lambda_{1} < \lambda_{2}$, za kateri velja:
+         ničli karakteristične enačbe, $\lambda_{1} < \lambda_{2}$, za kateri velja:
          \[ \lim_{\beta \to 0}\lambda_{1}=-\infty \quad \text{in} \quad \lim_{\beta \to 0}\lambda_{2}=0. \]
-        \item Če je $\beta = 1/e$, potem je edina realna ničla $\lambda = -1$ in je dvakratna.
+        \item Če je $\beta = 1/e$, potem je edina realna ničla karakteristične enačbe $\lambda = -1$ dvakratna.
         \item Če je $\beta > 1/e$, potem funkcija nima realnih ničel.
     \end{enumerate}
 \end{trditev}
@@ -445,17 +444,17 @@ Dobimo sistem enačb za $a$ in $b$:
         torej natanko ena realna ničla. Ker je $\beta < 0$, bo za tako ničlo veljalo tudi $\lambda = -\beta e^{-\lambda} >0$.
         \item Funkcija $h$ ima pri $\lambda=\ln\beta$ stacionarno točko z negativno lastno vrednostjo. Po drugi strani pa velja, da je gre $h\to\infty$ za $\lambda\to\pm\infty$
         , zato obstajata natanko dve realni ničli. Ker je 
-        $\beta > 0$, za eno izmed njiju velja $\lambda = -\beta e^{-\lambda} <0$. Drugi del trditve sledi iz dejstva, da velja:
+        $\beta > 0$, za eno velja $\lambda = -\beta e^{-\lambda} <0$. Drugi del trditve sledi iz dejstva, da velja:
         $ \beta = -\lambda e^{\lambda} \to 0$ natanko tedaj, ko gre $\lambda \to 0$ ali $\lambda \to -\infty$.
         \item Kot v prejšnjem primeru imamo tudi tokrat stacionarno točko, ki pa je hkrati enaka ničli. 
-        Tedaj je taka ničla enaka $\lambda = -1$. Velja $h'(-1)=0$ in $h''(-1)=1$, torej
+        Res, ničla je $\lambda = -1$. Velja pa tudi $h'(-1)=0$ in $h''(-1)=1$, torej
         je ničla reda 2.
         \item Stacionarna točka ima v tem primeru pozitivno vrednost. Ker je na intervalu pred njo funkcija padajoča,
          za njo pa padajoča, realne ničle ne obstajajo. 
     \end{enumerate}
 \end{proof}
 
-Za $\beta > 0$ ima enačba lepe lastnosti, kar nam pove naslednja trditev.
+Za $\beta > 0$ ima karakteristična enačba nekatere lepe lastnosti, kar nam pove naslednja trditev.
 
 \begin{trditev}
     Za karakteristično funkcijo $h$ velja:
@@ -484,8 +483,8 @@ upoštevamo Eulerjevo formulo:
 \[ r(\cos(\theta - \pi)+i\sin(\theta - \pi))=\beta e^{-a}(\cos(-b)+i\sin(-b)).\]
 Veljati mora torej:
 \[r=\beta e^{-a} \quad \text{in} \quad \theta - \pi = -b + 2k\pi, \quad k \in \Z.\]
-Rešitve enačbe iščemo v prvem kvadrantu, torej $a(\theta)>0,\quad b(\theta) = \pi - \theta > 0, \quad
-k=0$ in $\theta \in (0,\pi/2)$. Ko upoštevamo še $y/x = \tan(\theta)$, dobimo naslednjo družino rešitev:
+Rešitve enačbe iščemo v prvem kvadrantu, torej $a(\theta)>0$, $b(\theta) = \pi - \theta > 0$,
+$k=0$ in $\theta \in (0,\pi/2)$. Ko upoštevamo še $y/x = \tan(\theta)$, dobimo naslednjo družino rešitev:
 \begin{equation*}
     \begin{split}
         x(\theta) &= (\pi - \theta)\cot(\theta), \\
@@ -498,7 +497,7 @@ velja:
 \[ a(\theta) \to \infty, \quad b(\theta) \to \pi, \quad \beta(\theta) \to \infty.\]
 Za $\theta \to \pi/2$ pa je:
 \[a(\theta) \to 0, \quad b(\theta) \to \pi/2, \quad \beta(\theta) \to \pi/2.\]
-Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednosti $(\pi/2, \infty)$.
+Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednosti enaka $(\pi/2, \infty)$.
 \end{proof}
 
 \begin{definicija}
@@ -515,13 +514,13 @@ Ker je $\beta$ strogo padajoča na $(0,\pi/2)$, sledi da je njena zaloga vrednos
     Za DDE oblike $\dot{x}(t)= -\alpha x(t-\tau), \tau >0, \alpha \in \R$, velja:
     \begin{enumerate}
         \item Če je $\alpha < 0$, je $x=0$ nestabilna rešitev.
-        \item Če je $0<\alpha \tau <\pi/2$, je $x=0$ asimptotsko stabilna.
+        \item Če je $0<\alpha \tau <\pi/2$, je $x=0$ asimptotsko stabilna rešitev.
         \item Če je $\alpha \tau = \pi/2$, sta rešitvi $x=\sin(\pi(t/\tau)/2)$ in $x=\cos(\pi(t/\tau)/2)$.
-        \item Če je $\alpha\tau > \pi/2$, je $x=0$ nestabilna.
+        \item Če je $\alpha\tau > \pi/2$, je $x=0$ nestabilna rešitev.
     \end{enumerate}
 \end{trditev}
 
-\noindent \textit{Opomba: }Dokaz sledi direktno iz prejšnjih trditev in rezultata, ki pove, da je $x=0$ asimptotsko stabilna, če 
+\noindent Dokaz sledi direktno iz prejšnjih trditev in rezultata, ki pove, da je $x=0$ asimptotsko stabilna, če 
 je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funkcije, oziroma nestabilna,
 če obstaja ničla $\lambda$ s pozitivnim realnim delom.
 
@@ -533,7 +532,7 @@ je $\text{Re}(\lambda) < 0$ za vse $\lambda$, ki so ničle karakteristične funk
 \begin{proof}
     Za vsak $\lambda \in \R$ je $U(\mu)=e^{\lambda\mu}$ bodisi monotona, bodisi konstantna funkcija.
     Za realne $\lambda$ torej rešitev $x(t)$ ne oscilira. Funkcija $x(t)$ je torej oscilirajoča natanko tedaj, ko
-    je $\lambda\in\mathbb{C}\setminus\mathbb{R}$. Po trditvi 4.3 je to res natanko tedaj, ko je 
+    je $\lambda\in\mathbb{C}\setminus\mathbb{R}$. Po Trditvi 4.3 je to res natanko tedaj, ko je 
     $\beta = \alpha\tau > 1/e$.
 \end{proof}
 
@@ -553,7 +552,7 @@ povzeto po viru \cite{knjiga}.
 
 \noindent V zgornji definiciji funkcije $F$ nismo podali njenega definicijskega območja, zato se je
 najprej potrebno vprašati, za katere $s\in\C$, je funkcija $F$ sploh definirana. Predpostavimo, da je
-$|f(t)|\leq e^{at}$ za $a\in\R$ in $t\geq0$. Ker za $s\in\C$ velja $|e^{s}|=e^{\text{Re}(s)}$, imamo
+$|f(t)|\leq e^{at}$ za $a\in\R$ in $t\geq0$. Ker za $s\in\C$ velja $|e^{s}|=e^{\text{Re}(s)}$, imamo oceno
 \[|e^{-st}f(t)| \leq ce^{-t\text{Re}(s)}e^{at}=ce^{-t(\text{Re}(s)-a)}.\]
 Če funkcijo na desni strani te neenačbe integriramo po $t\in [0,\infty)$, dobimo integral, ki je konvergenten za $\text{Re}(s)>a$.
 Laplaceova transformacija je torej preslikava, ki funkciji, definirani na $[0,\infty)$, priredi
@@ -616,7 +615,7 @@ nam torej le še:
 Predpostavimo, da obstaja Taylorjev polinom druge stopnje za funkcijo $f$ na okolici točke $u$.
 Zapišimo:
 \[f(r)e^{-ar}=f(u)e^{-au}+h(u,r)(u-r),\]
-kjer je $|h(u,r)|\leq k, \quad r\in(u-d,u+d).$
+kjer je $|h(u,r)|\leq k$, $r\in(u-d,u+d).$
 Vstavimo v $I$ in dobimo:
 \[I = 2f(u)\int_{u-d}^{u+d}\frac{\sin(T(u-r))}{u-r}dr+2e^{au}\int_{u-d}^{u+d}h(u,r)\sin(T(u-r))dr.\]
 Ker je $|\sin(T(u-r))|\leq1$, je drugi integral reda $\mathcal{O}(d)$, ko gre $T\to\infty$. Z uvedbo 
@@ -655,8 +654,9 @@ kadar desna stran obstaja.
 Končna formula za inverzno funkcijo je torej:
 \[f(t)=\int_{(b)}F(s)e^{st}ds.\]
 
-
+\begin{zgled}
     Sedaj si na konkretnem zgledu poglejmo, kako si lahko z Laplaceovo transformacijo pomagamo pri reševanju DDE.
+    Naj bo podan začetni problem:
     \begin{equation} \label{eq3}
         \begin{split}
             \dot{x}(t)=x(t-1), \quad x(t)=\varphi(t), \quad t\in[-1,0].
@@ -672,74 +672,19 @@ Končna formula za inverzno funkcijo je torej:
              &= e^{-s}\left(\int_{0}^{\infty}x(t)e^{-st}dt + \int_{-1}^{0}x(t)e^{-st}dt\right). 
         \end{split}      
     \end{equation*}
-    Na levi strani enačbe uporabimo integracijo per partes. Pri tem predpostavljamo, da za 
-    rešitev velja $x(t)e^{-st} \to 0$, ko gre $t \to\infty$.
+    Na levi strani enačbe uporabimo integracijo po delih. Pri tem upoštevamo, da za 
+    rešitev velja $x(t)e^{-st} \to 0$, ko gre $t \to\infty$. Dobimo:
     \[\int_{0}^{\infty}\dot{x}(t)e^{-st}dt=-x(0)+s\int_{0}^{\infty}x(t)e^{-st}dt.\]
-    Sedaj upoštevajmo še, da za $t\in[-1,0]$ velja $x(t)=\varphi(t)$. Enačbo (3) smo pretvorili na naslednjo obliko:
+    Sedaj upoštevajmo še, da za $t\in[-1,0]$ velja $x(t)=\varphi(t)$ in enačbo (3) pretvorimo v naslednjo obliko:
     \[(s-1)\int_{0}^{\infty}x(t)e^{-st}dt=\varphi(0)+\int_{-1}^0\varphi(t)e^{-st}dt.\]
-    Za $s\neq 1$ dobimo torej:
+    Za $s\neq 1$ dobimo:
     \[\int_{0}^{\infty}x(t)e^{-st}dt=\frac{\varphi(0)+\int_{-1}^0\varphi(t)e^{-st}dt}{s-1}.\]
     Izraz na desni je zvezna funkcija spremenljivke $s$. Označimo jo z $G(s)$. Po izreku o inverzni
     transformaciji dobimo:
     \[x(t)=\int_{(c)}G(s)e^{st}ds.\]
-    Za razliko od 3. poglavja, nam tu rešitve ni uspelo
-    izraziti z elementarnimi funkcijami. Kljub temu bi lahko z dodatno analizo obravnavali njene lastnosti.
-
-\section{Linearne diferencialne enačbe z zamikom}
-
-Poglavje je povzeto po viru \cite{angdiploma}.
-
-\begin{definicija}
-    Linearna DDE je podana na sledeči način:
-    \begin{equation} \label{eq4}
-        \begin{split}
-            \dot{x}(t)=ax(t)=bx(t-\tau)+f(t),\quad a,b\in\R, \quad \tau>0.
-        \end{split}
-    \end{equation}
-    Če je $f(t)=0$, je enačba homogena, sicer je nehomogena. 
-\end{definicija}
-
-V tem poglavju bomo obravnavali homogene linearne DDE. Za njihovo reševanje uporabimo nastavek
-$x(t)=e^{\lambda t}c$, $\lambda \in\C$, $c\in\R\setminus\{0\}$, in ga vstavimo v enačbo:
-\begin{equation*}
-        0 = \lambda e^{\lambda t}c - ae^{\lambda t}c -be^{\lambda(t-\tau)}c.   
-\end{equation*}
-Ker $e^{\lambda t}c \neq0$ za vse $t\in\R$, je karakteristična funkcija
-\[h(\lambda)=\lambda-a-be^{-\lambda\tau}.\]
-Iščemo ničle karakteristične funkcije $h$. Izraz lahko z uvedbo novih spremenljivk še dodatno 
-poenostavimo. Če nastavimo $z:=\lambda\tau$, $\alpha:=a\tau$ in $\beta:=b\tau$, se karakteristična
-enačba prevede na
-\[h(z)=z-\alpha-\beta e^{-z}=0.\]
-Reševanje te karakteristične enačbe je podobno kot pri modelu eksponentne rasti z zamikom.
-\begin{trditev}
-    Za homogene DDE oblike \eqref{eq4} in rešitev $x=0$ velja:
-    \begin{itemize}
-        \item Če je $a+b>0$, potem je $x=0$ stabilna.
-        \item Če je $a+b<0$ in $b\geq a$, potem je $x=0$ asimptotsko stabilna.
-        \item Če je $a+b<0$ in $b<a$, potem obstaja $\tau^{*}>0$, tako da je $x=0$ 
-        asimptotsko stabilna za $0<\tau<\tau^{*}$ in nestabilna za $\tau>\tau^{*}$.
-    \end{itemize}
-\end{trditev}
-\noindent Dokaz trditve se nahaja v viru \cite{envir}
-
-\subsection{Obstoj in enoličnost rešitve}
-Linearne DDE so splošnejše od tistih, ki smo jih obravnavali v poglavju o eksistenčnem izreku.
-Res, podane so s predpisom
-\[\dot{x}(t)=f(t,x(t),x(t-\tau)), \quad t\in[\xi,\xi+\tau],\]
-kjer je $\tau>0,$ $\xi\geq 0$, funkcija $f$ pa je linearna. Natančneje, v zvezi ne nastopa zgolj člen $x(t-\tau)$ ampak tudi člen $x(t)$. To pomeni, da direktna aplikacija eksistenčnega izreka zanje ni možna. Vseeno lahko obstoj rešitve dokažemo z uporabo eksistenčnega izreka za NDE. Res, denimo da velja
-$$x(t)=\phi(t), t\in J_{-}.$$
-Potem za $t\in[\xi,\xi+\tau]$ velja 
-\begin{equation*}
-    \begin{split}
-        \dot{x}(t)&=f(t,x(t),\phi(t-\tau)), \\
-        x(\xi) &= \phi(\xi).
-    \end{split}
-\end{equation*}
-To je NDE prvega reda, na kateri lahko ob dodatni predpostavki, da je $\phi$ zvezna uporabimo eksistenčni izrek za navadne 
-diferencialne enačbe, saj je $f$ linearna. Torej dobimo rešitev, ki je enolična na $[\xi,\xi+\tau]$. Sedaj postopamo 
-induktivno in rešitev razširimo na naslednji interval $[\xi+\tau,\xi+2\tau]$.
-Podobno kot pri že videnem dokazu eksistenčnega izreka lahko torej rešitev razširimo na $[\xi,\infty)$.
-Ker se podobna ideja pojavi tudi v naslednjem razdelku, je za primer linearne DDE ne bomo bolj natančno analizirali.
+    Za razliko od 3. poglavja, rešitev tokrat ni izražena 
+    z elementarnimi funkcijami.
+\end{zgled}
 
 
 \section{Linearni sistemi DDE}
@@ -750,22 +695,22 @@ katere imamo dobro razvito teorijo tudi v primeru navadnih diferencialnih enačb
 \cite{angdiploma}.
 
 \begin{definicija}
-    Sistem linearnih DDE s konstantnimi koeficienti je podan z 
+    Sistem linearnih DDE prvega reda s konstantnimi koeficienti je podan z 
     \begin{equation} \label{eq5}
         \begin{split}
             \dot{x}(t)=Ax(t)+Bx(t-\tau)+f(t)\quad \text{za}\quad t\geq0,
         \end{split}
     \end{equation} kjer so
-    $A,B\in\R^{n\times n}$, $\tau>0$ in $f$ zvezna funkcija. Začetni pogoj je znova podan s predpisom
+    $A,B\in\R^{n\times n}$, $\tau>0$ in $f$ zvezna funkcija $n$ spremenljivk. Začetni pogoj je podan s predpisom
     \begin{equation} \label{eq6}
         \begin{split}
             x(t)=\phi(t)\quad \text{za}\quad t\in [-\tau,0],
         \end{split}
     \end{equation}
-    le da je $\phi$ tokrat zvezna vektorska funkcija. Če je $f(t)\equiv0$, pravimo,
+    kjer je $\phi$ tokrat zvezna vektorska funkcija. Če je $f(t)\equiv0$, pravimo,
     da je sistem homogen.
 \end{definicija}
-Za analizo linearnih sistemov DDE bomo uporabili Laplaceovo transformacijo. Najprej jo uporabimo na levi strani sistema:
+Za analizo linearnih sistemov DDE lahko znova uporabimo Laplaceovo transformacijo. Najprej jo uporabimo na levi strani sistema:
 \begin{equation*}
     \begin{split}
         G_1(s)&= \int_0^{\infty}e^{-st}\dot{x}(t)dt \\
@@ -805,14 +750,17 @@ Spomnimo, da mora taka funkcija rešiti sistem \eqref{eq5} za $f=0$ in zadostiti
 Kljub nezveznosti funkcije $\xi$ pri $\theta=0$ funkcija $k$ obstaja za $t\geq0$. Pravimo ji fundamentalna matrična
 rešitev sistema \eqref{eq5}.
 
-Naslednji izrek za bolj splošne sisteme DDE nam bo podal pomemben rezultat o enoličnosti in obstoju rešitve.
+Nadalje lahko formuliramo in dokažemo tudi eksistenčni izrek, ki je zelo podoben tistemu iz tretjega poglavja, čeprav 
+je linearni sistem DDE, ki ga obravnavamo,  bolj splošen od začetne enačbe prvega reda. Res, v njem 
+imamo namreč tudi člen $x(t)$, kar pomeni, da je naš sistem odvisen tako od sedanjega kot tudi od preteklih časov. 
+Seveda pa je v primeru, ko je $B=0$ to kar običajen sistem NDE s konstantnimi koeficienti.
 
 \begin{izrek}
-    Podan je linearen sistem DDE s konstantnimi koeficienti:
+    Za $\tau>0$ je podan linearen sistem DDE s konstantnimi koeficienti
     \begin{equation} \label{eq7}
-        \dot{x}(t)=Ax(t)+Bx(t-\tau)=f(t)\quad \text{za}\quad t\geq\tau,
+        \dot{x}(t)=Ax(t)+Bx(t-\tau)=f(t)\quad \text{za}\quad t\geq\tau
     \end{equation}
-    kjer je $\tau>0$, pri začetnem pogoju
+    in začetnim pogojem
     \[x(t)=\phi(t), \quad t \in[0,\tau].\]
     Naj bo $\phi$ gladka. Potem obstaja natanko ena funkcija $x(t)$, ki 
     zadošča začetnemu pogoju in reši sistem (7) za $t\geq\tau$. Če je $f$ zvezna na $[0,\infty)$, je $x(t)$ 
@@ -831,29 +779,29 @@ Naslednji izrek za bolj splošne sisteme DDE nam bo podal pomemben rezultat o en
     morda v točkah oblike $t=n\tau$ za $n\in\N$.
 \end{proof}
 
-\begin{lema}
-    Rešitev sistema \eqref{eq5} pri začetnem pogoju \eqref{eq6} lahko izrazimo kot
-    \[x(t):=x(t;\phi,f)=x(t;\phi,0)+x(t;0,f),\]
-    kjer smo z $x(t;\phi,f)$ označili rešitev začetnega problema z nehomogenostjo $f$ in začetno funkcijo $\phi$.
-\end{lema}
+%\begin{lema}
+ %   Rešitev sistema \eqref{eq5} pri začetnem pogoju \eqref{eq6} lahko izrazimo kot
+ %   \[x(t):=x(t;\phi,f)=x(t;\phi,0)+x(t;0,f),\]
+ %   kjer smo z $x(t;\phi,f)$ označili rešitev začetnega problema z nehomogenostjo $f$ in začetno funkcijo $\phi$.
+%\end{lema}
 
-\begin{proof}
-    Za $t\in [0,\tau]$ velja:
-    \begin{equation*}
-        \begin{split}
-            \dot{x}(t;\phi,f) &= Ax(t;\phi,f)+B\phi(t-\tau)+f(t) \\
-            \dot{x}(t;\phi,0)  &= Ax(t;\phi,0)+B\phi(t-\tau)\\
-            \dot{x}(t;0,f)  &= Ax(t;0,f)+f(t).
-        \end{split}      
-    \end{equation*}
-Za $t\in[0,\tau]$ je torej
-\[\dot{x}(t;\phi,0)+\dot{x}(t;0,f)=A\left(x(t;\phi,0)+x(t;0,f)\right)+B\phi(t-\tau)+f(t).\]
-Sledi, da je
-\[x(t):=x(t;\phi,f)=x(t;\phi,0)+x(t;0,f).\]
-Po enoličnosti rešitve je to res za $t\geq0$.
-\end{proof}
+%\begin{proof}
+ %   Za $t\in [0,\tau]$ velja:
+  %  \begin{equation*}
+   %     \begin{split}
+    %        \dot{x}(t;\phi,f) &= Ax(t;\phi,f)+B\phi(t-\tau)+f(t) \\
+     %       \dot{x}(t;\phi,0)  &= Ax(t;\phi,0)+B\phi(t-\tau)\\
+      %      \dot{x}(t;0,f)  &= Ax(t;0,f)+f(t).
+       % \end{split}      
+   % \end{equation*}
+%Za $t\in[0,\tau]$ je torej
+%\[\dot{x}(t;\phi,0)+\dot{x}(t;0,f)=A\left(x(t;\phi,0)+x(t;0,f)\right)+B\phi(t-\tau)+f(t).\]
+%Sledi, da je
+%\[x(t):=x(t;\phi,f)=x(t;\phi,0)+x(t;0,f).\]
+%Po enoličnosti rešitve je to res za $t\geq0$.
+%\end{proof}
 
-Zaključimo z zgledom, ki ilustrira konstrukcijo rešitve iz eksistenčnega izreka za linearne DDE in linearne sisteme DDE.
+Oglejmo si zgled, ki ilustrira konstrukcijo rešitve iz zgornjega izreka.
 \begin{zgled}
     Podan je homogen linearen sistem DDE
     \[\dot{x}=Ax(t)+Bx(t-\tau)\quad \text{za}\quad t\geq0,\]
@@ -868,11 +816,11 @@ Zaključimo z zgledom, ki ilustrira konstrukcijo rešitve iz eksistenčnega izre
         1 & 0 
     \end{bmatrix}.$
     Začetni pogoj je podan kot 
-    $\phi(t)=\begin{bmatrix}
+    $$\phi(t)=\begin{bmatrix}
         1 \\
         1 
-    \end{bmatrix}$
-    za $t\in[-\tau,0]$. \\
+    \end{bmatrix}
+    \text{ za } t\in[-\tau,0]$$. \\
     Najprej izračunamo lastne vrednosti matrike $A$ in pripadajoče lastne vektorje:
     \[\text{det}(A-\lambda I)=\lambda^2-3\lambda+2=0.\]
     Lastni vrednosti $A$ sta torej $\lambda_1=1$ in $\lambda_2=2$.
@@ -1012,7 +960,7 @@ Zaključimo z zgledom, ki ilustrira konstrukcijo rešitve iz eksistenčnega izre
         1 \\
         2 
     \end{bmatrix}.\]
-    Označimo
+    Naj bo
     \[\Psi(t)=\begin{bmatrix}
         4e^{t}-e^{2t}-2  \\
         4e^{t}-2e^{2t}-1  
@@ -1053,7 +1001,7 @@ Zaključimo z zgledom, ki ilustrira konstrukcijo rešitve iz eksistenčnega izre
         e^t & e^{2t} \\
         e^t & 2e^{2t} 
     \end{bmatrix}.\]
-    Partikularno rešitev iščemo v obliki $x_p(t)=W(t)D(t)$, $D(t)=(D_1(t),D_2(t)).$ Ko to vstavimo v enačbo, dobimo 
+    Partikularno rešitev iščemo v obliki $x_p(t)=W(t)D(t)$, kjer je $D(t)$ neznana vektorska funkcija. Ko to vstavimo v enačbo, dobimo 
     \begin{equation*}
         \begin{split}
             \dot{W}D+W\dot{D} &= AWD+B\Psi(t) \\
@@ -1099,7 +1047,8 @@ Zaključimo z zgledom, ki ilustrira konstrukcijo rešitve iz eksistenčnega izre
                     \end{bmatrix}.
         \end{split}
     \end{equation*}
-    Partikularna rešitev je torej 
+    Pripomnimo, da smo v zadnjem koraku brez škode za splošnost zanemarili vektor konstant, ki ga dobimo pri integraciji. 
+    Partikularna rešitev je torej enaka
     \begin{equation*}
         \begin{split}
             x_p(t) &= WD \\
@@ -1116,7 +1065,7 @@ Zaključimo z zgledom, ki ilustrira konstrukcijo rešitve iz eksistenčnega izre
                     \end{bmatrix}.
         \end{split}
     \end{equation*}
-    Za $t\in[\tau,2\tau]$ je splošna rešitev sistema torej
+    Za $t\in[\tau,2\tau]$ je splošna rešitev sistema torej enaka
     \[x(t)=x_h(t)+x_p(t)=\begin{bmatrix}
         te^{2t}+(c_2-3)e^{2t}+4te^t+c_1e^t+\frac{1}{2}  \\
         2te^{2t}+(2c_2-3)e^{2t}+4te^{t}+c_1e^t+1 
@@ -1141,12 +1090,12 @@ Zaključimo z zgledom, ki ilustrira konstrukcijo rešitve iz eksistenčnega izre
         te^{2t}+(\frac{1}{2}e^{-2\tau}-\tau-4)e^{2t}+4te^t+(4-e^{\tau}-3e^{-\tau}-4\tau e^{\tau}-4\tau)e^t+\frac{1}{2}  \\
         2te^{2t}+(e^{-2\tau}-2\tau-5)e^{2t}+4te^{t}+(4-e^{\tau}-3e^{-\tau}-4\tau e^{\tau}-4\tau)e^t+1 
     \end{bmatrix}.\]
-    Z induktivnim postopkom bi dobili rešitev na poljubnem intervalu $[n\tau, (n+1)\tau],$ $n\in\N.$
+    Z induktivnim postopkom bi dobili rešitev na poljubnem intervalu, ki je oblike $[n\tau, (n+1)\tau]$ za $n\in\N.$
 
 \end{zgled}
 
 
-Nazadnje izpeljimo še nekoliko splošnejši postopek za reševanje linearnih sistemov DDE oblike 
+Nazadnje izpeljimo še nekoliko splošnejši postopek za reševanje homogenih linearnih sistemov DDE oblike 
 \[\dot{x}(t)=L(x_t),\]
 kjer je $L:C\to\C^n$ za $C=\mathcal{C}([-\tau,0],\C^n)$ linearna preslikava, $x_t$ pa je definiran kot 
 \[x_t(\theta):=x(t+\theta) \quad \text{za} \quad -\tau\leq\theta\leq0.\]
@@ -1175,12 +1124,12 @@ $j$-ti stolpec matrike je torej vektor $L((\okr)e_j)$. Potem je
     \end{split}
 \end{equation*}
 Ker je torej $L_\lambda v =\lambda v$ in $v\neq0$, je $x(t)=e^{\lambda t}v$ rešitev sistema natanko tedaj, ko je
-$\lambda$ lastna vrednost matrike $L_\lambda$, oziroma
+$\lambda$ lastna vrednost matrike $L_\lambda$, oziroma, ko velja
 \[ \text{det}(L_\lambda-\lambda I)=0,\]
-vektor $v$ pa njen lastni vektor.
+vektor $v$ pa je njen lastni vektor.
 Poglejmo si znova homogen sistem 
 \[ \dot{x}(t)=Ax(t)+Bx(t-\tau),\]
-z $A$ in $B$ $n\times n$ matriki in zamik $\tau>0$. Linearno preslikavo $L$ definirajmo na naslednji način:
+z $A$ in $B$ $n\times n$ matriki in zamik $\tau>0$. Linearno preslikavo $L$ definiramo na naslednji način:
 \[L(y)=Ay(0)+By(-\tau).\]
 Matrika $L_\lambda$ je v tem primeru
 \begin{equation*}
@@ -1197,35 +1146,40 @@ Matrika $L_\lambda$ je v tem primeru
 Karakteristična enačba sistema je torej
 \[\text{det}(A+e^{-\lambda\tau}B-\lambda I)=0.\]
 Rešitve sistema $\dot{x}(t)=Ax(t)+Bx(t-\tau)$ so torej oblike $x(t)=e^{\lambda t}v$, kjer je $\lambda$ lastna vrednost in $v$ pripadajoči lastni 
-vektor matrike $A+e^{-\lambda\tau}B$. Opazimo, da je reševanje linearnih sistemov DDE precej bolj zahtevno kot
-reševanje linearnih sistemov NDE, saj tu karakteristična funkcija ni več polinom.
+vektor matrike $A+e^{-\lambda\tau}B$. Opazimo, da je v primerjavi z reševanjem sistemov NDE s konstantnimi koeficienti ta postopek bolj zahteven,
+saj karakteristična funkcija ni več polinom.
 
 \section{Logistična enačba z zamikom}
 V tem poglavju bomo obravnavali logistično enačbo, ki opisuje rast prebivalstva ekosistema. Najprej bomo analizirali 
 osnovno verzijo logistične enačbe, nato pa še enačbo z zamikom. Poglavje je povzeto po virih \cite{angdiploma}, 
 \cite{logist} in \cite{slologist}.
 
-Populacijo nekega ekosistema želimo opisati s funkcijo časa $x(t)$. Eksponentni model predpostavlja, da je rast 
-populacije premo sorazmerna z njeno velikostjo, torej
+Populacijo nekega ekosistema želimo opisati s funkcijo časa $x(t)$. Spomnimo, eksponentni model predpostavlja, da je rast 
+populacije premo sorazmerna z njeno velikostjo, podaja pa ga enačba
 \[\dot{x}(t)=ax(t), \]
-kjer je $a$ konstanta. V tem primeru gre torej za eksponentno rast. Ker pa je ekosistem omejen z viri, se slej ko 
-prej rast upočasni skoraj na 0, ko populacija doseže nosilnost okolja ($K>0$) za dano vrsto. Zato konstantno $a$ v 
-enačbi zamenjamo z neko funkcijo $f(x)$, za katero velja $f(x)\approx a>0$ za majhne $x$, torej, da je rast na začetku 
-približno eksponentna, ter $f(x)<0$ za velike $t$. Najpreprostejša funkcija s tema lastnostima je $f(x)=a-bx$, 
+kjer je $a$ konstanta. V tem primeru za rešitev dobimo eksponentno funkcijo, ki pa le redko ustreza dejanskemu 
+stanju v modelih iz narave.
+Kadar je ekosistem omejen z viri, rast slej ko prej začne upočasnjevati, ko se populacija 
+približa maksimalni nosilnosti okolja za neko dano vrsto. 
+To maksimalno kapaciteto populacije označimo z $K>0$.
+Iščemo torej model oblike $\dot{x}=f(x)$, pri katerem bo $f(x)\approx ax$ 
+za majhne vrednosti funkcije $x$, v bližini rešitve $x=K$ pa se bo rast upočasnila. Najpreprostejša funkcija
+s tema lastnostima je $f(x)=a-bx$, 
 kjer je $b>0$. Vstavimo v enačbo in dobimo
-\[\dot{x}(t)=(a-bx(t))x(t).\]
+\[\dot{x}(t)=(a-bx(t))x(t),\]
+oziroma
 %Pogosto tu še izpostavimo $r$:
 \begin{equation} \label{eq8}
     \dot{x}(t) = ax\left(1-\frac{x}{K}\right),
 \end{equation}
 kjer je $K=a/b$. Enačbi \eqref{eq8} pravimo logistična diferencialna enačba.
 
-Sedaj izpeljimo še rešitve. Trivialni rešitvi sta $x(t)=0$ in $x(t)=K$. Da poiščemo še ostale, zapišemo enačbo v obliki
+Poiščimo rešitve zgornje NDE.. Trivialni rešitvi sta $x(t)=0$ in $x(t)=K$. Da poiščemo še ostale, enačbo preoblikujemo:
 \[\frac{dx}{(1-\frac{x}{K})x}=a\text{ }dt.\]
 Vidimo, da gre za enačbo z ločljivimi spremenljivkami. Z razcepom na parcialne ulomke dobimo
 \[\left(\frac{1}{x}+\frac{\frac{1}{K}}{1-\frac{x}{K}}\right)dy=a\text{ }dt.\]
 Tako smo enačbo poenostavili in lahko integriramo obe strani:
-\[\ln|x|-\ln\biggr{|}1-\frac{x}{K}\biggr{|}=at+c.\]
+\[\ln|x|-\ln\biggr{|}1-\frac{x}{K}\biggr{|}=at+C.\]
 Če je $0<x(t)<K$ za vse $t\geq0$, lahko absolutne vrednosti odstranimo. Dobimo 
 \[\frac{x}{1-\frac{x}{K}}=e^ce^{at}.\]
 Ko upoštevamo še začetni pogoj $x(0)=x_0$, dobimo končno rešitev
@@ -1239,26 +1193,27 @@ ki ji pravimo logistična funkcija.
 \end{figure}
 
 \noindent Za začetni pogoj $x(0)>K$ se izkaže, da je rešitev ista.
-Opazimo, da je rešitev ustrezna tudi za $x_0=0$ in $x_0=K$. Iz 
+Opazimo, da je rešitev ustrezna tudi za $x_0=0$ in $x_0=K$. Nadalje iz
 \[\lim_{t\to\infty}x(t)=\frac{x_0K}{x_0}=K\]
 pa vidimo, da se za $x_0\neq0$ velikost populacije z večanjem časa res bliža svoji nosilnosti. Torej je $x=K$ asimpotsko stabilna 
-rešitev logistične enačbe, $x=0$ pa nestabilna, saj se poljubna rešitev, ki se začne blizu 0, v neskončnosti bliža $K$.
+rešitev logistične enačbe, $x=0$ pa nestabilna rešitev.
 
-
-Navadna logistična enačba predpostavlja, da sprememba v velikosti populacije takoj vpliva na njeno rast. Da bi naredili 
-model bolj realističen, je smiselno vpeljati logistično enačbo z zamikom. Ta je podana kot 
+Navadna logistična enačba predpostavlja, da sprememba v velikosti populacije takoj vpliva na njeno rast, 
+vendar pa se v naravi pogosto zgodi, da se tak vpliv zgodi z zamikom. Če to upoštevamo, dobimo naslednjo DDE:
 \[\dot{x}(t)=ax(t)\left(1-\frac{x(t-\tau)}{K}\right),\]
 pri začetnem pogoju 
 \[x(t)=x_0\quad\text{za }t\in[-\tau,0] \text{ in }x_0\in(0,K).\]
 Zamaknjen je torej del, ki se nanaša na omejenost virov, prav tako pa predpostavljamo, da je začetno stanje na intervalu
 med ničelnim in ravnovesnim stanjem. Opazimo, da za take $x(t)\in(0,K)$ in $x(t-\tau)\in(0,K)$ velja, da je
 $\dot{x}(t)>0$, kar pomeni, da funkcija $x$ narašča do trenutka ko $x(t-\tau)$ preseže vrednost $K$. Za razliko od 
-običajne logistične enačbe se to ob zadostnem zamiku dejansko zgodi(tudi v primeru začetne vrednosti, ki je manjša od $K$),
+običajne logistične enačbe se to ob zadostnem zamiku dejansko zgodi (tudi v primeru začetne vrednosti, ki je manjša od $K$),
 kar bomo potrdili v nadaljevanju.
 
 Reševanja enačbe se lahko lotimo na že znani induktivni način. Za $t\in[0,\tau]$ velja 
-\[\dot{x}(t)=ax(t)(1-bx_0) \Rightarrow x(t)=Ce^{a(1-x_0/K)t}.\]
-Ker je $x(0)=x_0$, je torej 
+$$\dot{x}(t)=ax(t)(1-bx_0),$$
+torej je splošna rešitev te NDE enaka
+$$x(t)=Ce^{a\left(1-x_0/K\right)t}.$$
+Ob upoštevanju pogoja $x(0)=x_0$ dobimo 
 \[x(t)=x_0e^{a(1-x_0/K)t}, \quad t\in[0,\tau].\]
 Sedaj nadaljujemo za $t\in[\tau,2\tau]$:
 \[\dot{x}(t)=ax(t)\left(1-\frac{x_0e^{a(1-x_0/K)(t-\tau)}}{K}\right).\]
@@ -1289,10 +1244,10 @@ Ker lahko zanemarimo kvadratne člene funkcije $p(t)$, velja
         p'(t) &\approx -ap(t-\tau).
     \end{split}
 \end{equation*}
-Tako enačbo smo obravnavali v četrtem poglavju. Po trditvi 4.6 vemo, da $p(t)$ oscilira natanko tedaj, ko je 
+Tako enačbo smo obravnavali v četrtem poglavju. Po Trditvi 4.6 vemo, da $p(t)$ oscilira natanko tedaj, ko je 
 $a\tau>1/e$.
 Podobne zaključke lahko naredimo tudi za rešitve zamaknjene logistične enačbe v okolici ravnovesne točke $x=K$. 
-Temu pritrjuje tudi skica na naslednji strani, ki je bila izdelana v okolju Matlab.
+Temu pritrjuje tudi spodnja slika, ki je bila izdelana v okolju Matlab.
 Numerična rešitev zamaknjene logistične enačbe je bila izračunana z osnovno enokoračno
 difere\-nčno metodo s korakom
 $h=0.01$ pri začetni vrednosti $x0=0.01$ in nosilnosti $K=1$.
@@ -1315,16 +1270,17 @@ $h=0.01$ pri začetni vrednosti $x0=0.01$ in nosilnosti $K=1$.
     %emph=[2]{word1,word2}, emphstyle=[2]{style},    
 }
 
-
 \lstinputlisting{logist.m}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{slikca6.eps}
+    \includegraphics[width=12cm, height=9cm]{slikca6.eps}
 \end{figure}
 
-Vidimo, da se v vseh primerih, razen v zadnjem, vrednost $x(t)$ bliža nosilnosti $K=1$. Za $\alpha=\tau=1.5$, je namreč
-$\alpha\tau=2.25>\pi/2$, zaradi česar je po trditvi 4.5 $x=K$ v tem primeru nestabilna rešitev. V ostalih primerih 
-rešitev res niha okoli nosilnosti, kot smo pričakovali.
+
+\noindent Vidimo, da se v vseh primerih, razen v zadnjem, vrednost funkcije $x(t)$ na oscilirajoč način 
+bliža nosilnosti $K=1$. Za $\alpha=\tau=1.5$ to ni res, saj je
+$\alpha\tau=2.25>\pi/2$. Po Trditvi 4.5. lahko od tod sklepamo, da je $x=K$ nestabilna rešitev, saj 
+se tako vede tudi njena linearna aproksimacija v bližini ravnovesne točke.
 
 
 
